@@ -1,8 +1,14 @@
 import type { IconType } from "react-icons"
-import { FaEye } from "react-icons/fa"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
-export const IconEye:IconType = () => {
+export const IconEye:IconType = (props) => {
    return (
-      <FaEye />
+      <FaEye {...props}/>
+   )
+} 
+
+export const IconEyeSlash:IconType = (props) => {
+   return (
+      <FaEyeSlash {...props}/>
    )
 } 
