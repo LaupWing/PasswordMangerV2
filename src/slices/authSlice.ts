@@ -26,4 +26,14 @@ export const login =
 
    }
 
+export const logout = 
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+
+   }
+   
+export const getUser = 
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+
+   }
+
 export default counterSlice.reducer
