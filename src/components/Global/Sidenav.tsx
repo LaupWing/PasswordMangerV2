@@ -2,7 +2,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren } from "react"
-import { IconItems } from "~/components/Elements"
+import { IconFavorite, IconItems } from "~/components/Elements"
 
 const Sidenav = () => {
    return (
@@ -12,10 +12,14 @@ const Sidenav = () => {
             alt="logo" 
             className="w-20 mx-auto mb-6"
          />
-         <ul className="text-white text-sm flex flex-col">
+         <ul className="text-white text-sm flex flex-col space-y-2">
             <SidenavLink href="/">
                <IconItems className="w-5 mr-1"/>
                Alle Items
+            </SidenavLink>
+            <SidenavLink href="/favorites">
+               <IconFavorite className="w-5 mr-1"/>
+               Favoriete
             </SidenavLink>
          </ul>
       </div>
