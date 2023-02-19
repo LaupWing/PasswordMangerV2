@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, Dispatch } from "@reduxjs/toolkit"
+import { store } from "~/redux/store"
 
 export const counterSlice = createSlice({
    name: "counter",
@@ -19,5 +20,10 @@ export const counterSlice = createSlice({
 })
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+export const login = 
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+
+   }
 
 export default counterSlice.reducer
