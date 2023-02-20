@@ -4,7 +4,7 @@ import { auth } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
 
-export const counterSlice = createSlice({
+export const authSlice = createSlice({
    name: "counter",
    initialState: {
       value: 0,
@@ -15,13 +15,13 @@ export const counterSlice = createSlice({
          const lastSignInTime = action.payload.user.metadata.lastSignInTime
          state.expire_time = Number(lastSignInTime) + ((60 * 30)*1000)  
       },
-      decrement: (state) => {
+      startTimer: (state) => {
          state.value -= 1
       },
    },
 })
 
-export const { setExperTime, decrement } = counterSlice.actions
+export const { setExperTime, startTimer } = authSlice.actions
 
 export const login = 
    (email: string, password: string, secretKey: string) => 
@@ -47,4 +47,4 @@ export const getUser =
 
    }
 
-export default counterSlice.reducer
+export default authSlice.reducer
