@@ -23,7 +23,11 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
 export const login = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
-      
+      try{
+         
+      }catch(e){
+         throw e
+      }
    }
 
 export const logout = 
