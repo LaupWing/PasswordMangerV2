@@ -1,4 +1,6 @@
 import { createSlice, Dispatch } from "@reduxjs/toolkit"
+import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "~/firebase"
 import { store } from "~/redux/store"
 
 export const counterSlice = createSlice({
@@ -22,9 +24,14 @@ export const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
 export const login = 
-   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+   (email: string, password: string) => 
+   async (dispatch: Dispatch, getState: typeof store.getState) => {
       try{
+         await setPersistence(auth, browserSessionPersistence)
+         const user = await signInWithEmailAndPassword(auth, email, password)
+
          
+
       }catch(e){
          throw e
       }
