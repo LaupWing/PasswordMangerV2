@@ -4,12 +4,17 @@ import { auth } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
 
+interface AuthState {
+   expire_time: number
+}
+
+const initialState:AuthState = {
+   expire_time: 0
+}
+
 export const authSlice = createSlice({
    name: "counter",
-   initialState: {
-      value: 0,
-      expire_time: 0
-   },
+   initialState,
    reducers: {
       setExperTime: (state, action: PayloadAction<UserCredential>) => {
          const lastSignInTime = action.payload.user.metadata.lastSignInTime
@@ -30,7 +35,9 @@ export const login =
          await setPersistence(auth, browserSessionPersistence)
          const user = await signInWithEmailAndPassword(auth, email, password)
          await checkSecretKey(secretKey, user.user.uid)
-         await dispatch(setExperTime(user))
+
+         dispatch(setExperTime(user))
+         dispatch(startTimer())
       }catch(e){
          auth.signOut()
          throw e
