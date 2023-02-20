@@ -1,10 +1,14 @@
 import "~/styles/globals.css"
 import type { AppProps } from "next/app"
+import { Provider } from "react-redux"
+import { store } from "~/redux/store"
 
 export default function App({ Component, pageProps }: AppProps) {
    return  (
-      <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
-         <Component {...pageProps} />
-      </div>
+      <Provider store={store}>
+         <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
+            <Component {...pageProps} />
+         </div>
+      </Provider>
    )
 }

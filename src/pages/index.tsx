@@ -1,10 +1,14 @@
 import Head from "next/head"
 import { Inter } from "@next/font/google"
 import Sidenav from "~/components/Global/Sidenav"
+import { useAppDispatch } from "~/redux/hooks"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
+   const dispatch = useAppDispatch()
+
+   
    return (
       <>
          <Head>

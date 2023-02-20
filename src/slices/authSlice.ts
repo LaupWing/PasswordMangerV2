@@ -6,10 +6,14 @@ import { store } from "~/redux/store"
 
 interface AuthState {
    expire_time: number
+   interval: number
+   timer: number
 }
 
 const initialState:AuthState = {
-   expire_time: 0
+   expire_time: 0,
+   interval: 0,
+   timer: 0
 }
 
 export const authSlice = createSlice({
@@ -21,7 +25,9 @@ export const authSlice = createSlice({
          state.expire_time = Number(lastSignInTime) + ((60 * 30)*1000)  
       },
       startTimer: (state) => {
-         state.value -= 1
+         state.interval = window.setInterval(() => {
+            state.timer++
+         }, 1000)
       },
    },
 })
