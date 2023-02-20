@@ -26,6 +26,7 @@ export const authSlice = createSlice({
       },
       startTimer: (state) => {
          state.interval = window.setInterval(() => {
+            console.log("heh")
             state.timer++
          }, 1000)
       },
