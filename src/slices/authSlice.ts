@@ -31,7 +31,6 @@ export const login =
          const user = await signInWithEmailAndPassword(auth, email, password)
 
          
-
       }catch(e){
          throw e
       }
