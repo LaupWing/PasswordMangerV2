@@ -8,12 +8,20 @@ interface AuthState {
    expire_time: number
    interval: number
    timer: number
+   time_left: {
+      minutes: string,
+      seconds: string
+   }
 }
 
 const initialState:AuthState = {
    expire_time: 0,
    interval: 0,
-   timer: 0
+   timer: 0,
+   time_left: {
+      minutes: "",
+      seconds: ""
+   }
 }
 
 export const authSlice = createSlice({
@@ -22,11 +30,16 @@ export const authSlice = createSlice({
    reducers: {
       setExperTime: (state, action: PayloadAction<UserCredential>) => {
          const lastSignInTime = action.payload.user.metadata.lastSignInTime
-         state.expire_time = Number(lastSignInTime) + ((60 * 30)*1000)  
+         state.expire_time =  Math.floor(Number(lastSignInTime) + ((60 * 30)*1000))  
       },
       incrementTimer: (state) => {
-         console.log(state.timer)
          state.timer = state.timer + 1
+         const timeLeft = state.expire_time - state.timer
+
+         const minutes = Math.floor(timeLeft / 60)
+         const seconds = Math.floor(timeLeft - minutes * 60) < 10 
+            ? `0${Math.floor(timeLeft - minutes * 60)}` 
+            : Math.floor(timeLeft - minutes * 60) 
       },
    },
 })
