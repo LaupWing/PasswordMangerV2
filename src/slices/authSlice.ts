@@ -35,14 +35,13 @@ export const authSlice = createSlice({
       incrementTimer: (state) => {
          state.timer = state.timer + 1
          const timeLeft = state.expire_time - state.timer
-
-         const minutes = Math.floor(timeLeft / 60)
-         const seconds = Math.floor(timeLeft - minutes * 60)
-         
-         state.time_left = {
-            minutes,
-            seconds
-         }
+         console.log(state.timer)
+         // const minutes = Math.floor(timeLeft / 60)
+         // const seconds = Math.floor(timeLeft - minutes * 60)
+         // state.time_left = {
+         //    minutes,
+         //    seconds
+         // }
       },
    },
 })

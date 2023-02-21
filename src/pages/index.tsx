@@ -9,12 +9,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
    const dispatch = useAppDispatch()
-   const {timer} = useAppSelector(state => state.auth)
+   const {time_left} = useAppSelector(state => state.auth)
    useEffect(() =>{
-      // window.setInterval(() => {
+      setInterval(() => {
          // dispatch(incrementTimer())
-         // state.timer = state.timer + 1
-      // }, 1000)
+      }, 1000)
    },[])
    return (
       <>
@@ -27,7 +26,9 @@ export default function Home() {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
-        <Sidenav />
+         {time_left.minutes}
+         {time_left.seconds}
+         <Sidenav />
       </>
    )
 }
