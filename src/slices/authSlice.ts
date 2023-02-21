@@ -24,16 +24,14 @@ export const authSlice = createSlice({
          const lastSignInTime = action.payload.user.metadata.lastSignInTime
          state.expire_time = Number(lastSignInTime) + ((60 * 30)*1000)  
       },
-      startTimer: (state) => {
-         state.interval = window.setInterval(() => {
-            console.log("heh")
-            state.timer++
-         }, 1000)
+      incrementTimer: (state) => {
+         console.log(state.timer)
+         state.timer = state.timer + 1
       },
    },
 })
 
-export const { setExperTime, startTimer } = authSlice.actions
+export const { setExperTime, incrementTimer } = authSlice.actions
 
 export const login = 
    (email: string, password: string, secretKey: string) => 
@@ -44,7 +42,7 @@ export const login =
          await checkSecretKey(secretKey, user.user.uid)
 
          dispatch(setExperTime(user))
-         dispatch(startTimer())
+         // dispatch(startTimer())
       }catch(e){
          auth.signOut()
          throw e
