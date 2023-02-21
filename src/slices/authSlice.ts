@@ -9,8 +9,8 @@ interface AuthState {
    interval: number
    timer: number
    time_left: {
-      minutes: string,
-      seconds: string
+      minutes: number,
+      seconds: number
    }
 }
 
@@ -19,8 +19,8 @@ const initialState:AuthState = {
    interval: 0,
    timer: 0,
    time_left: {
-      minutes: "",
-      seconds: ""
+      minutes: 0,
+      seconds: 0
    }
 }
 
@@ -37,9 +37,12 @@ export const authSlice = createSlice({
          const timeLeft = state.expire_time - state.timer
 
          const minutes = Math.floor(timeLeft / 60)
-         const seconds = Math.floor(timeLeft - minutes * 60) < 10 
-            ? `0${Math.floor(timeLeft - minutes * 60)}` 
-            : Math.floor(timeLeft - minutes * 60) 
+         const seconds = Math.floor(timeLeft - minutes * 60)
+         
+         state.time_left = {
+            minutes,
+            seconds
+         }
       },
    },
 })
