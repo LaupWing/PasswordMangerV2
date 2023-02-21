@@ -11,10 +11,10 @@ export default function Home() {
    const dispatch = useAppDispatch()
    const {timer} = useAppSelector(state => state.auth)
    useEffect(() =>{
-      window.setInterval(() => {
-         dispatch(incrementTimer())
+      // window.setInterval(() => {
+         // dispatch(incrementTimer())
          // state.timer = state.timer + 1
-      }, 1000)
+      // }, 1000)
    },[])
    return (
       <>
