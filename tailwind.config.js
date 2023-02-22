@@ -2,6 +2,9 @@
 module.exports = {
    content: ["./src/**/*.{js,ts,jsx,tsx}"],
    theme: {
+      fontFamily: {
+         sans: ["Poppins", "sans-serif"],
+      },
       extend: {
          colors: {
             main: {
@@ -9,10 +12,10 @@ module.exports = {
                secondary: "#282828",
                tertiare: "#404040",
             },
-            accent:{
+            accent: {
                blue: "#325DA8",
-               grey: "#9E9E9E"
-            }
+               grey: "#9E9E9E",
+            },
          },
       },
    },
