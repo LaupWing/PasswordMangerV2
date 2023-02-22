@@ -9,11 +9,15 @@ const LoginPage = () => {
                alt="logo" 
                className="w-28 mb-8"
             />
-            <div className="flex mb-4 space-x-1 items-center font-bold text-yellow-400">
-               <Input className="w-1/4"/>
-               <Input className="w-1/4"/>
-               <Input className="w-1/4"/>
-               <Input className="w-1/4"/>
+            <div className="space-y-4">
+               <div className="flex space-x-1 items-center font-bold text-yellow-400">
+                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
+                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
+                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
+                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
+               </div>
+               <Input className="w-full"/>
+               <Input className="w-full"/>
             </div>
          </form>
       </div>
