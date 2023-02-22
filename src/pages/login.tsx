@@ -10,11 +10,23 @@ const LoginPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <div className="flex space-x-1 items-center font-bold text-yellow-400">
-                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
-                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
-                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
-                  <Input className="w-1/4 text-center" placeholder="XXXX"/>
+               <div className="flex space-x-2 items-center font-bold text-yellow-400">
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400" 
+                     placeholder="XXXX"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400" 
+                     placeholder="XXXX"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400" 
+                     placeholder="XXXX"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400" 
+                     placeholder="XXXX"
+                  />
                </div>
                <Input className="w-full"/>
                <Input className="w-full"/>
