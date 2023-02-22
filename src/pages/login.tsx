@@ -10,26 +10,26 @@ const LoginPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <div className="flex space-x-2 items-center font-bold text-yellow-400">
+               <div className="flex text-sm space-x-2 items-center font-semibold text-yellow-400">
                   <Input 
-                     className="w-1/4 text-center text-yellow-400" 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                   />
                   <Input 
-                     className="w-1/4 text-center text-yellow-400" 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                   />
                   <Input 
-                     className="w-1/4 text-center text-yellow-400" 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                   />
                   <Input 
-                     className="w-1/4 text-center text-yellow-400" 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                   />
                </div>
                <Input className="w-full"/>
-               <Input className="w-full"/>
+               <Input className="w-full" type={"password"}/>
             </div>
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
                Login
