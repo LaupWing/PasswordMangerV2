@@ -31,6 +31,9 @@ const LoginPage = () => {
                <Input className="w-full"/>
                <Input className="w-full"/>
             </div>
+            <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
+               Login
+            </button>
          </form>
       </div>
    )
