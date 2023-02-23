@@ -13,8 +13,6 @@ export default function Home() {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
-         {/* {time_left.minutes}
-         {time_left.seconds} */}
          <Sidenav />
       </>
    )
