@@ -1,21 +1,7 @@
 import Head from "next/head"
-import { Inter } from "@next/font/google"
 import Sidenav from "~/components/Global/Sidenav"
-import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { incrementTimer } from "~/slices/authSlice"
-import { useEffect } from "react"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
-   const dispatch = useAppDispatch()
-   const {time_left, timer} = useAppSelector(state => state.auth)
-   useEffect(() =>{
-      setInterval(() => {
-         console.log("dispatching")
-         dispatch(incrementTimer())
-      }, 1000)
-   },[])
    return (
       <>
          <Head>
@@ -27,7 +13,6 @@ export default function Home() {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
-         {timer}
          {/* {time_left.minutes}
          {time_left.seconds} */}
          <Sidenav />
