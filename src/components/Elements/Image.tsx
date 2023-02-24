@@ -11,11 +11,12 @@ export const Image:FC<HTMLImageElement> = ({
    const styles = clsx(
       missingClass(className, "w-") && "w-10",
       missingClass(className, "h-") && "h-10",
+      "rounded-md mr-2 bg-white object-contain"
    )
 
    return (
       <img 
-         className={"rounded-md mr-2 bg-white object-contain " + className}
+         className={styles}
          src={logo} 
          alt="Logo of website" 
       />
