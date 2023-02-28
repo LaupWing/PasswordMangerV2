@@ -21,6 +21,7 @@ const LoginPage = () => {
       const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
       try{
          await dispatch(login(email, password, secretKey))
+         console.log("Success")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
       }
