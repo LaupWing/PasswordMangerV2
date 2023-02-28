@@ -57,7 +57,7 @@ export const login =
          await checkSecretKey(secretKey, user.user.uid)
 
          dispatch(setExperTime(user))
-         // dispatch(startTimer())
+         dispatch(incrementTimer())
       }catch(e){
          auth.signOut()
          throw e

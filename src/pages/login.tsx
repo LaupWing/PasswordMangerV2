@@ -1,9 +1,20 @@
+import { SyntheticEvent } from "react"
 import { Input } from "~/components/Elements"
+import { useAppDispatch } from "~/redux/hooks"
 
 const LoginPage = () => {
+   const dispatch = useAppDispatch()
+
+   const submitHandler = (e:SyntheticEvent) =>{
+      e.preventDefault()
+   }
+
    return (
       <div className="flex items-center flex-1">
-         <form className="w-64 mx-auto flex flex-col items-center text-white text-sm">
+         <form 
+            className="w-64 mx-auto flex flex-col items-center text-white text-sm"
+            onSubmit={submitHandler}
+         >
             <img 
                src="/assets/logo.png" 
                alt="logo" 
