@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react"
 import { Input } from "~/components/Elements"
 import { useAppDispatch } from "~/redux/hooks"
+import { login } from "~/slices/authSlice"
 
 const LoginPage = () => {
    const dispatch = useAppDispatch()
@@ -8,10 +9,13 @@ const LoginPage = () => {
    const [secretKey2, setSecretKey2] = useState("")
    const [secretKey3, setSecretKey3] = useState("")
    const [secretKey4, setSecretKey4] = useState("")
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
 
    const submitHandler = (e:SyntheticEvent) =>{
       e.preventDefault()
       const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
+      dispatch(login(email, password, secretKey))
    }
 
    return (
@@ -51,11 +55,13 @@ const LoginPage = () => {
                <Input 
                   className="w-full" 
                   placeholder="Email"
+                  onChange={e => setEmail(e.target.value)}
                />
                <Input 
                   className="w-full" 
                   placeholder="Password" 
                   type={"password"}
+                  onChange={e => setPassword(e.target.value)}
                />
             </div>
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">

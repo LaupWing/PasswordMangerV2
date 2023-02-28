@@ -60,7 +60,7 @@ export const login =
          dispatch(incrementTimer())
       }catch(e){
          auth.signOut()
-         throw e
+         throw new Error(e as any)
       }
    }
 
