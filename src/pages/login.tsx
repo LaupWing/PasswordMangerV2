@@ -1,12 +1,17 @@
-import { SyntheticEvent } from "react"
+import { SyntheticEvent, useState } from "react"
 import { Input } from "~/components/Elements"
 import { useAppDispatch } from "~/redux/hooks"
 
 const LoginPage = () => {
    const dispatch = useAppDispatch()
+   const [secretKey1, setSecretKey1] = useState("")
+   const [secretKey2, setSecretKey2] = useState("")
+   const [secretKey3, setSecretKey3] = useState("")
+   const [secretKey4, setSecretKey4] = useState("")
 
    const submitHandler = (e:SyntheticEvent) =>{
       e.preventDefault()
+      const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
    }
 
    return (
@@ -25,22 +30,33 @@ const LoginPage = () => {
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
+                     onChange={(e) => setSecretKey1(e.target.value)}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
+                     onChange={(e) => setSecretKey2(e.target.value)}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
+                     onChange={(e) => setSecretKey3(e.target.value)}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
+                     onChange={(e) => setSecretKey4(e.target.value)}
                   />
                </div>
-               <Input className="w-full"/>
-               <Input className="w-full" type={"password"}/>
+               <Input 
+                  className="w-full" 
+                  placeholder="Email"
+               />
+               <Input 
+                  className="w-full" 
+                  placeholder="Password" 
+                  type={"password"}
+               />
             </div>
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
                Login
