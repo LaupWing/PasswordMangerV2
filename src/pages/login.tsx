@@ -12,10 +12,14 @@ const LoginPage = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
 
-   const submitHandler = (e:SyntheticEvent) =>{
+   const submitHandler = async (e:SyntheticEvent) =>{
       e.preventDefault()
       const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
-      dispatch(login(email, password, secretKey))
+      try{
+         await dispatch(login(email, password, secretKey))
+      }catch(e: any){
+         console.log(e.message)
+      }
    }
 
    return (
