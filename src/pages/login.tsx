@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react"
 import { ColorRing } from "react-loader-spinner"
-import { Input } from "~/components/Elements"
+import { IconLoading, Input } from "~/components/Elements"
 import { useAppDispatch } from "~/redux/hooks"
 import { login } from "~/slices/authSlice"
 
@@ -13,15 +13,18 @@ const LoginPage = () => {
    const [email, setEmail] = useState("")
    const [error, setError] = useState("")
    const [password, setPassword] = useState("")
+   const [loading, setLoading] = useState(false)
 
    const submitHandler = async (e:SyntheticEvent) =>{
       e.preventDefault()
+      setLoading(true)
       const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
       try{
          await dispatch(login(email, password, secretKey))
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
       }
+      setLoading(false)
    }
 
    return (
@@ -71,20 +74,15 @@ const LoginPage = () => {
                />
             </div>
             {error && (
-               <p className="text-red-500 mt-2">
+               <p className="text-red-500 mt-2 text-center">
                   {error}
                </p>
             )}
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
-               <ColorRing
-                  visible={true}
-                  height="40"
-                  width="40"
-                  ariaLabel="blocks-loading"
-                  wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
-                  colors={["#ffc107", "#1e1e1e", "#455a64", "#404040", "#2563eb"]}
-               />
+               {loading 
+                  ? <IconLoading width={40} height={40}/>
+                  : "Submit"
+               }
             </button>
          </form>
       </div>
