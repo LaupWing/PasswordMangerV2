@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react"
+import { ColorRing } from "react-loader-spinner"
 import { Input } from "~/components/Elements"
 import { useAppDispatch } from "~/redux/hooks"
 import { login } from "~/slices/authSlice"
@@ -75,7 +76,15 @@ const LoginPage = () => {
                </p>
             )}
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
-               Login
+               <ColorRing
+                  visible={true}
+                  height="40"
+                  width="40"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={["#ffc107", "#1e1e1e", "#455a64", "#404040", "#2563eb"]}
+               />
             </button>
          </form>
       </div>
