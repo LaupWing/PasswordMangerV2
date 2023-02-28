@@ -10,6 +10,7 @@ const LoginPage = () => {
    const [secretKey3, setSecretKey3] = useState("")
    const [secretKey4, setSecretKey4] = useState("")
    const [email, setEmail] = useState("")
+   const [error, setError] = useState("")
    const [password, setPassword] = useState("")
 
    const submitHandler = async (e:SyntheticEvent) =>{
@@ -18,7 +19,7 @@ const LoginPage = () => {
       try{
          await dispatch(login(email, password, secretKey))
       }catch(e: any){
-         console.log(e.message)
+         setError(e.message.replace("Error: ", ""))
       }
    }
 
@@ -68,6 +69,11 @@ const LoginPage = () => {
                   onChange={e => setPassword(e.target.value)}
                />
             </div>
+            {error && (
+               <p className="text-red-500 mt-2">
+                  {error}
+               </p>
+            )}
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
                Login
             </button>
