@@ -1,8 +1,10 @@
 import type { IconType } from "react-icons"
+import type { FC } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { BsGridFill } from "react-icons/bs"
 import { AiFillStar } from "react-icons/ai"
 import { HiUsers } from "react-icons/hi"
+import { ColorRing } from "react-loader-spinner"
 
 export const IconEye:IconType = (props) => {
    return (
@@ -31,5 +33,27 @@ export const IconFavorite:IconType = (props) => {
 export const IconUsers:IconType = (props) => {
    return (
       <HiUsers {...props}/>
+   )
+} 
+
+interface IconLoadingProps {
+   width: number
+   height: number
+}
+
+export const IconLoading:FC<IconLoadingProps> = ({
+   width,
+   height
+}) => {
+   return (
+      <ColorRing
+         visible={true}
+         height={height}
+         width={width}
+         ariaLabel="blocks-loading"
+         wrapperStyle={{}}
+         wrapperClass="blocks-wrapper"
+         colors={["#ffc107", "#1e1e1e", "#455a64", "#404040", "#2563eb"]}
+      />
    )
 } 
