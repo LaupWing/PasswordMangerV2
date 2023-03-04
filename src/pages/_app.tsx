@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export default function App({ Component, pageProps }: AppProps) {
    const [loaded, setLoaded] = useState(false)
-   onAuthStateChanged(auth, (user) => {
+   onAuthStateChanged(auth, () => {
       setLoaded(true)
    })
    if(!loaded){

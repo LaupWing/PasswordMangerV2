@@ -1,10 +1,14 @@
+import { useRouter } from "next/router"
 import { FC, PropsWithChildren } from "react"
-import { useAppSelector } from "~/redux/hooks"
+import { auth } from "~/firebase"
 
 export const Protected:FC<PropsWithChildren> = ({children}) => {
-   const {time_left} = useAppSelector(state => state.auth)
-   
-   console.log(time_left)
+   const router = useRouter()
+
+   if(!auth.currentUser){
+      router.replace("/login")
+      return null
+   }
    return (
       <>
          {children}
