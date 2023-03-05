@@ -56,7 +56,7 @@ export const login =
          await setPersistence(auth, browserSessionPersistence)
          const user = await signInWithEmailAndPassword(auth, email, password)
          await checkSecretKey(secretKey, user.user.uid)
-
+         localStorage.setItem('secret_key', secretKey)
          dispatch(setExperTime(user))
          // dispatch(incrementTimer())
       }catch(e){
