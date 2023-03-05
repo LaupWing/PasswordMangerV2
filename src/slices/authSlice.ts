@@ -11,7 +11,8 @@ interface AuthState {
    time_left: {
       minutes: number,
       seconds: number
-   }
+   },
+   secret_key: string
 }
 
 const initialState:AuthState = {
@@ -21,7 +22,8 @@ const initialState:AuthState = {
    time_left: {
       minutes: 0,
       seconds: 0
-   }
+   },
+   secret_key: localStorage.getItem("secret_key") || ""
 }
 
 export const authSlice = createSlice({
