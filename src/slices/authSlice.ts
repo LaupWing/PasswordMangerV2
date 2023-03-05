@@ -32,7 +32,7 @@ export const authSlice = createSlice({
    reducers: {
       setExperTime: (state, action: PayloadAction<UserCredential>) => {
          const lastSignInTime = new Date(action.payload.user.metadata.lastSignInTime!)
-         console.log(Math.floor(Number(lastSignInTime) + ((60 * 30)*1000)))
+         
          state.expire_time = Math.floor(Number(lastSignInTime) + ((60 * 30)*1000))  
       },
       incrementTimer: (state) => {
