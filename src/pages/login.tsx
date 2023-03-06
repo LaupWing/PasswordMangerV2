@@ -45,6 +45,7 @@ const LoginPage = () => {
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
+                     value={secretKey1}
                      onChange={(e) => setSecretKey1(e.target.value)}
                   />
                   <Input 
