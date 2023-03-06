@@ -23,7 +23,7 @@ const initialState:AuthState = {
       minutes: 0,
       seconds: 0
    },
-   secret_key: localStorage.getItem("secret_key") || ""
+   secret_key: typeof window !== "undefined" && localStorage.getItem("secret_key") || ""
 }
 
 export const authSlice = createSlice({
