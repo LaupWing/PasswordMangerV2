@@ -1,5 +1,5 @@
-import { FormEvent, SyntheticEvent, useState } from "react"
-import { ColorRing } from "react-loader-spinner"
+import { useRouter } from "next/router"
+import { FormEvent, useState } from "react"
 import { FormElements } from "types"
 import { IconLoading, Input } from "~/components/Elements"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
@@ -9,6 +9,7 @@ const LoginPage = () => {
    const dispatch = useAppDispatch()
    const { secret_key } = useAppSelector(state => state.auth)
    const [error, setError] = useState("")
+   const router = useRouter()
    const [loading, setLoading] = useState(false)
 
    const submitHandler = async (e:FormEvent<HTMLFormElement>) =>{
@@ -34,7 +35,7 @@ const LoginPage = () => {
             elements.password.value, 
             secret_key
          ))
-         console.log("Success")
+         await router.replace("/")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
       }
@@ -53,7 +54,7 @@ const LoginPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <div className="flex text-sm space-x-2 items-center font-semibold text-yellow-400">
+               <div className="flex text-sm space-x-2 items-center text-yellow-400">
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
