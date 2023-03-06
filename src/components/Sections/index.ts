@@ -1,1 +1,1 @@
-export { WebsitesList } from "./WebsitesList/WebsitesList"
+export { Websites } from "./Websites/Websites"
