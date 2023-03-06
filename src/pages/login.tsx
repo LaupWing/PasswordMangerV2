@@ -1,5 +1,6 @@
 import { FormEvent, SyntheticEvent, useState } from "react"
 import { ColorRing } from "react-loader-spinner"
+import { FormElements } from "types"
 import { IconLoading, Input } from "~/components/Elements"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { login } from "~/slices/authSlice"
@@ -12,7 +13,12 @@ const LoginPage = () => {
 
    const submitHandler = async (e:FormEvent<HTMLFormElement>) =>{
       e.preventDefault()
-      const elements = e.currentTarget.elements as FormEle
+      const elements = e.currentTarget.elements as FormElements<
+         "secret_key_1" |
+         "secret_key_2" |
+         "secret_key_3" |
+         "secret_key_4" 
+      >
       // setLoading(true)
       // const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
       // try{
