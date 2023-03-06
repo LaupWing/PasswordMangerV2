@@ -1,35 +1,35 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
 
-interface AuthState {
+interface PasswordsState {
    passwords: any
 }
 
-const initialState:AuthState = {
+const initialState:PasswordsState = {
    passwords: []
 }
 
-export const authSlice = createSlice({
+export const passwordsSlice = createSlice({
    name: "auth",
    initialState,
    reducers: {
-      setExperTime: (state, action: PayloadAction<any>) => {
+      setPasswords: (state, action: PayloadAction<any>) => {
+         state.passwords = action.payload
       },
    },
 })
 
-export const { setExperTime } = authSlice.actions
+export const { setPasswords } = passwordsSlice.actions
 
 
 export const fetchPasswords = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       if(!snapshot.empty){
-         console.log(snapshot.docs.map(x => x.data()))
+         dispatch(setPasswords(snapshot.docs.map(x => x.data())))
       }
    }
 
-export default authSlice.reducer
+export default passwordsSlice.reducer

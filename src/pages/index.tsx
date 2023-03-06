@@ -2,11 +2,12 @@ import Head from "next/head"
 import { useEffect, useState } from "react"
 import { Protected } from "~/components/Global/Protected"
 import Sidenav from "~/components/Global/Sidenav"
-import { useAppDispatch } from "~/redux/hooks"
-import { fetchPasswords } from "~/slices/authSlice"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
+import { fetchPasswords } from "~/slices/passwordsSlice"
 
 export default function Home() {
    const dispatch = useAppDispatch()
+   const {passwords} = useAppSelector(state => state.passwords)  
    const [loaded, setLoaded] = useState(false)
 
    useEffect(() => {
@@ -19,7 +20,6 @@ export default function Home() {
    if(!loaded){
       return null
    }
-   console.log("loaded")
 
    return (
       <Protected>

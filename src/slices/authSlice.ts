@@ -78,12 +78,4 @@ export const getUser =
 
    }
 
-export const fetchPasswords = 
-   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
-      const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
-      if(!snapshot.empty){
-         console.log(snapshot.docs.map(x => x.data()))
-      }
-   }
-
 export default authSlice.reducer
