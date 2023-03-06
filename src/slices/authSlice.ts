@@ -1,6 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
-import { auth } from "~/firebase"
+import { collection, getDocs } from "firebase/firestore"
+import { auth, db } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
 
@@ -77,9 +78,12 @@ export const getUser =
 
    }
 
-export const getPasswords = 
+export const fetchPasswords = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
-      
+      const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
+      if(!snapshot.empty){
+         console.log(snapshot.docs.map(x => x.data()))
+      }
    }
 
 export default authSlice.reducer

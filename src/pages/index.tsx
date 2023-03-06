@@ -1,10 +1,26 @@
 import Head from "next/head"
+import { useEffect, useState } from "react"
 import { Protected } from "~/components/Global/Protected"
 import Sidenav from "~/components/Global/Sidenav"
-import { auth } from "~/firebase"
+import { useAppDispatch } from "~/redux/hooks"
+import { fetchPasswords } from "~/slices/authSlice"
 
 export default function Home() {
-   console.log(auth.currentUser)
+   const dispatch = useAppDispatch()
+   const [loaded, setLoaded] = useState(false)
+
+   useEffect(() => {
+      (async () =>{
+         await dispatch(fetchPasswords())
+         setLoaded(true)
+      })()
+   },[])
+
+   if(!loaded){
+      return null
+   }
+   console.log("loaded")
+
    return (
       <Protected>
          <Head>
