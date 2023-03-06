@@ -7,25 +7,19 @@ import { login } from "~/slices/authSlice"
 const LoginPage = () => {
    const dispatch = useAppDispatch()
    const { secret_key } = useAppSelector(state => state.auth)
-   const [secretKey1, setSecretKey1] = useState(secret_key.split("-")[0] || "")
-   const [secretKey2, setSecretKey2] = useState(secret_key.split("-")[1] || "")
-   const [secretKey3, setSecretKey3] = useState(secret_key.split("-")[2] || "")
-   const [secretKey4, setSecretKey4] = useState(secret_key.split("-")[3] || "")
-   const [email, setEmail] = useState("")
    const [error, setError] = useState("")
-   const [password, setPassword] = useState("")
    const [loading, setLoading] = useState(false)
 
    const submitHandler = async (e:SyntheticEvent) =>{
       e.preventDefault()
-      setLoading(true)
-      const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
-      try{
-         await dispatch(login(email, password, secretKey))
-         console.log("Success")
-      }catch(e: any){
-         setError(e.message.replace("Error: ", ""))
-      }
+      // setLoading(true)
+      // const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
+      // try{
+      //    await dispatch(login(email, password, secretKey))
+      //    console.log("Success")
+      // }catch(e: any){
+      //    setError(e.message.replace("Error: ", ""))
+      // }
       setLoading(false)
    }
 
@@ -45,35 +39,34 @@ const LoginPage = () => {
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
-                     value={secretKey1}
-                     onChange={(e) => setSecretKey1(e.target.value)}
+                     defaultValue={secret_key.split("-")[0] || ""}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
-                     onChange={(e) => setSecretKey2(e.target.value)}
+                     defaultValue={secret_key.split("-")[1] || ""}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
-                     onChange={(e) => setSecretKey3(e.target.value)}
+                     defaultValue={secret_key.split("-")[2] || ""}
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
-                     onChange={(e) => setSecretKey4(e.target.value)}
+                     defaultValue={secret_key.split("-")[3] || ""}
                   />
                </div>
                <Input 
                   className="w-full" 
                   placeholder="Email"
-                  onChange={e => setEmail(e.target.value)}
-               />
+                  defaultValue={""}
+                  />
                <Input 
                   className="w-full" 
                   placeholder="Password" 
                   type={"password"}
-                  onChange={e => setPassword(e.target.value)}
+                  defaultValue={""}
                />
             </div>
             {error && (
