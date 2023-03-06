@@ -77,4 +77,9 @@ export const getUser =
 
    }
 
+export const getPasswords = 
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+      
+   }
+
 export default authSlice.reducer

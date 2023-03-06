@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { Protected } from "~/components/Global/Protected"
 import Sidenav from "~/components/Global/Sidenav"
@@ -20,14 +19,4 @@ export default function Home() {
          <Sidenav />
       </Protected>
    )
-}
-
-
-export const getServerSideProps:GetServerSideProps = async ({req}) => {
-   console.log(auth.currentUser)
-   return {
-      props:{
-
-      }
-   }
 }
