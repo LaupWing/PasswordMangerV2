@@ -1,15 +1,16 @@
 import { SyntheticEvent, useState } from "react"
 import { ColorRing } from "react-loader-spinner"
 import { IconLoading, Input } from "~/components/Elements"
-import { useAppDispatch } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { login } from "~/slices/authSlice"
 
 const LoginPage = () => {
    const dispatch = useAppDispatch()
-   const [secretKey1, setSecretKey1] = useState("")
-   const [secretKey2, setSecretKey2] = useState("")
-   const [secretKey3, setSecretKey3] = useState("")
-   const [secretKey4, setSecretKey4] = useState("")
+   const { secret_key } = useAppSelector(state => state.auth)
+   const [secretKey1, setSecretKey1] = useState(secret_key.split("-")[0] || "")
+   const [secretKey2, setSecretKey2] = useState(secret_key.split("-")[1] || "")
+   const [secretKey3, setSecretKey3] = useState(secret_key.split("-")[2] || "")
+   const [secretKey4, setSecretKey4] = useState(secret_key.split("-")[3] || "")
    const [email, setEmail] = useState("")
    const [error, setError] = useState("")
    const [password, setPassword] = useState("")
