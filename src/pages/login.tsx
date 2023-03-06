@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { FormEvent, useState } from "react"
 import { FormElements } from "types"
 import { IconLoading, Input } from "~/components/Elements"
+import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { login } from "~/slices/authSlice"
 
@@ -11,6 +12,11 @@ const LoginPage = () => {
    const [error, setError] = useState("")
    const router = useRouter()
    const [loading, setLoading] = useState(false)
+
+   if(auth.currentUser){
+      router.replace("/")
+      return null
+   }
 
    const submitHandler = async (e:FormEvent<HTMLFormElement>) =>{
       e.preventDefault()
