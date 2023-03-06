@@ -2,12 +2,12 @@ import Head from "next/head"
 import { useEffect, useState } from "react"
 import { Protected } from "~/components/Global/Protected"
 import Sidenav from "~/components/Global/Sidenav"
+import Topnav from "~/components/Global/Topnav"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { fetchPasswords } from "~/slices/passwordsSlice"
 
 export default function Home() {
    const dispatch = useAppDispatch()
-   const {passwords} = useAppSelector(state => state.passwords)  
    const [loaded, setLoaded] = useState(false)
 
    useEffect(() => {
@@ -33,6 +33,9 @@ export default function Home() {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <Sidenav />
+         <div className="flex flex-col flex-1 w-screen lg:w-auto relative">
+            <Topnav/>
+         </div>
       </Protected>
    )
 }
