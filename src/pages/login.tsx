@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react"
+import { FormEvent, SyntheticEvent, useState } from "react"
 import { ColorRing } from "react-loader-spinner"
 import { IconLoading, Input } from "~/components/Elements"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
@@ -10,8 +10,9 @@ const LoginPage = () => {
    const [error, setError] = useState("")
    const [loading, setLoading] = useState(false)
 
-   const submitHandler = async (e:SyntheticEvent) =>{
+   const submitHandler = async (e:FormEvent<HTMLFormElement>) =>{
       e.preventDefault()
+      const elements = e.currentTarget.elements as FormEle
       // setLoading(true)
       // const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
       // try{
@@ -40,21 +41,25 @@ const LoginPage = () => {
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                      defaultValue={secret_key.split("-")[0] || ""}
+                     name="secret_key_1"
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                      defaultValue={secret_key.split("-")[1] || ""}
+                     name="secret_key_2"
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                      defaultValue={secret_key.split("-")[2] || ""}
+                     name="secret_key_3"
                   />
                   <Input 
                      className="w-1/4 text-center text-yellow-400 px-0" 
                      placeholder="XXXX"
                      defaultValue={secret_key.split("-")[3] || ""}
+                     name="secret_key_4"
                   />
                </div>
                <Input 
