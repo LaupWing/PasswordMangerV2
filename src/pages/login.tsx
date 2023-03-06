@@ -17,16 +17,24 @@ const LoginPage = () => {
          "secret_key_1" |
          "secret_key_2" |
          "secret_key_3" |
-         "secret_key_4" 
+         "secret_key_4" |
+         "email" |
+         "password"
       >
-      // setLoading(true)
-      // const secretKey = [secretKey1, secretKey2, secretKey3, secretKey4].join("-")
-      // try{
-      //    await dispatch(login(email, password, secretKey))
-      //    console.log("Success")
-      // }catch(e: any){
-      //    setError(e.message.replace("Error: ", ""))
-      // }
+      setLoading(true)
+      const secret_key = [
+         elements.secret_key_1.value, 
+         elements.secret_key_2.value, 
+         elements.secret_key_3.value, 
+         elements.secret_key_4.value
+      ].join("-")
+      console.log(secret_key)
+      try{
+         // await dispatch(login(email, password, secretKey))
+         console.log("Success")
+      }catch(e: any){
+         setError(e.message.replace("Error: ", ""))
+      }
       setLoading(false)
    }
 
@@ -72,12 +80,14 @@ const LoginPage = () => {
                   className="w-full" 
                   placeholder="Email"
                   defaultValue={""}
-                  />
+                  name="email"
+               />
                <Input 
                   className="w-full" 
                   placeholder="Password" 
                   type={"password"}
                   defaultValue={""}
+                  name="password"
                />
             </div>
             {error && (
