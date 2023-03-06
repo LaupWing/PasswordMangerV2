@@ -28,9 +28,12 @@ const LoginPage = () => {
          elements.secret_key_3.value, 
          elements.secret_key_4.value
       ].join("-")
-      console.log(secret_key)
       try{
-         // await dispatch(login(email, password, secretKey))
+         await dispatch(login(
+            elements.email.value, 
+            elements.password.value, 
+            secret_key
+         ))
          console.log("Success")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))

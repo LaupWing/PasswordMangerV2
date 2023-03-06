@@ -4,7 +4,7 @@ import { auth } from "~/firebase"
 
 export const Protected:FC<PropsWithChildren> = ({children}) => {
    const router = useRouter()
-
+   console.log(auth.currentUser)
    if(!auth.currentUser){
       router.replace("/login")
       return null
