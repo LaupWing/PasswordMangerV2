@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons"
 import type { FC } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import { BsGridFill } from "react-icons/bs"
+import { BsGridFill, BsSearch } from "react-icons/bs"
 import { AiFillStar } from "react-icons/ai"
 import { HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
@@ -15,6 +15,12 @@ export const IconEye:IconType = (props) => {
 export const IconEyeSlash:IconType = (props) => {
    return (
       <FaEyeSlash {...props}/>
+   )
+} 
+
+export const IconSearch:IconType = (props) => {
+   return (
+      <BsSearch {...props}/>
    )
 } 
 
