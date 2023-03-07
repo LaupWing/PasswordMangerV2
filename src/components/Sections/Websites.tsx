@@ -5,5 +5,9 @@ export const Websites = () => {
 }
 
 const WebsiteItem = () => {
-   
+   return (
+      <li className="w-full flex items-center my-2 p-3 cursor-pointer rounded-md">
+         
+      </li>
+   )
 }
