@@ -25,6 +25,10 @@ const WebsiteItem:FC<{
    return (
       <li className="w-full flex items-center my-2 p-3 cursor-pointer rounded-md">
          <ImageContainer src={password.url}/>
+         <div>
+            <h2 className="text-base font-bold tracking-wider">{password.name}</h2>
+            <p className="text-xs text-gray-400">{password.username}</p>
+         </div>
       </li>
    )
 }
