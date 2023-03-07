@@ -5,7 +5,13 @@ export const DetailContent = () => {
 }
 
 const Directories = () => {}
-const Info = () => {}
+const Info = () => {
+   return (
+      <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
+
+      </div>
+   )
+}
 
 interface InfoFieldProps {
    is_password?: boolean
