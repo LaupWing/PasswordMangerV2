@@ -1,3 +1,9 @@
+import { Protected } from "./Protected"
+
 export const Layout = () => {
-   return <div>Layout</div>
+   return (
+      <Protected>
+         
+      </Protected>
+   )
 }
