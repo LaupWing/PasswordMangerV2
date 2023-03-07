@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Protected } from "~/components/Global/Protected"
 import Sidenav from "~/components/Global/Sidenav"
 import Topnav from "~/components/Global/Topnav"
+import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { fetchPasswords } from "~/slices/passwordsSlice"
 
@@ -12,7 +13,9 @@ export default function Home() {
 
    useEffect(() => {
       (async () =>{
-         await dispatch(fetchPasswords())
+         if(auth.currentUser){
+            await dispatch(fetchPasswords())
+         }
          setLoaded(true)
       })()
    },[])
