@@ -4,5 +4,6 @@ export interface PasswordType {
    name: string
    password: string
    url: string
-   username
+   username: string
+   directories: string[]
 } 
