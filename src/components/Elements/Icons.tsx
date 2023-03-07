@@ -2,6 +2,7 @@ import type { IconType } from "react-icons"
 import type { FC } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { BsGridFill, BsSearch } from "react-icons/bs"
+import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
 import { HiUsers } from "react-icons/hi"
@@ -16,6 +17,12 @@ export const IconEye:IconType = (props) => {
 export const IconEdit:IconType = (props) => {
    return (
       <MdOutlineEdit {...props}/>
+   )
+} 
+
+export const IconTrashcan:IconType = (props) => {
+   return (
+      <BiTrash {...props}/>
    )
 } 
 
