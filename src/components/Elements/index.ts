@@ -1,3 +1,3 @@
 export * from "./Icons"
 export { Input } from "./Input"
-export { Image } from "./Image"
+export { ImageContainer } from "./ImageContainer"

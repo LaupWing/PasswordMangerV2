@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { FC } from "react"
 import { missingClass } from "~/lib/utils"
 
-export const Image:FC<HTMLImageElement> = ({
+export const ImageContainer:FC<HTMLImageElement> = ({
    className = "",
    src
 }) => {
