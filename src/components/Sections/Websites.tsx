@@ -42,6 +42,7 @@ const AddWebsiteForm:FC = () => {
             <input 
                type="text" 
                className="bg-main-tertiare text-sm flex-1 outline-none ml-2"
+               placeholder="Zoeken in alle"
             />
          </div>
          <button
