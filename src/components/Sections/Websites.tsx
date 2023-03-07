@@ -7,7 +7,7 @@ export const Websites = () => {
    const { passwords } = useAppSelector(state => state.passwords)
    
    return (
-      <div className="h-full md:border-r-2 w-full md:w-80 border-black p-3 pt-6 flex flex-col">
+      <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
          <AddWebsiteForm />
          <ul className="text-white text-sm w-full overflow-y-auto">
             {passwords.map(password => (
