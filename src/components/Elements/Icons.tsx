@@ -2,6 +2,7 @@ import type { IconType } from "react-icons"
 import type { FC } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { BsGridFill, BsSearch } from "react-icons/bs"
+import { MdOutlineEdit } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
 import { HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
@@ -9,6 +10,12 @@ import { ColorRing } from "react-loader-spinner"
 export const IconEye:IconType = (props) => {
    return (
       <FaEye {...props}/>
+   )
+} 
+
+export const IconEdit:IconType = (props) => {
+   return (
+      <MdOutlineEdit {...props}/>
    )
 } 
 
