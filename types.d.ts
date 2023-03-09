@@ -1,6 +1,6 @@
 export type FormElements<U extends string> = HTMLFormControlsCollection & Record<U, HTMLInputElement>
 
-export interface PasswordType {
+export interface AccountType {
    name: string
    password: string
    url: string
