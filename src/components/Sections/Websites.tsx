@@ -22,7 +22,7 @@ export const Websites = () => {
 
 const WebsiteItem:FC<{
    account: AccountType
-}> = ({account}) => {
+}> = ({ account }) => {
    return (
       <li className="w-full flex items-center my-2 p-3 cursor-pointer rounded-md">
          <ImageContainer src={account.url}/>
