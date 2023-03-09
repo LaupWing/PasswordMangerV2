@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import copy from "copy-to-clipboard"
 import { FC, PropsWithChildren, useState } from "react"
 import { AccountType } from "types"
 import { IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
@@ -58,7 +59,10 @@ const Info:FC<{account: AccountType}> = ({
                show_password={show_password}
                setShowPassword={setShowPassword}
             />
-            <IconDuplicate className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"/>
+            <IconDuplicate 
+               className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"
+               onClick={() => copy()}
+            />
          </InfoField>
          <InfoField
             label="website"
