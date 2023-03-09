@@ -1,15 +1,15 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { collection, getDocs } from "firebase/firestore"
-import { PasswordType } from "types"
+import { AccountType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
 
 interface PasswordsState {
-   passwords: PasswordType[]
+   accounts: AccountType[]
 }
 
 const initialState:PasswordsState = {
-   passwords: []
+   accounts: []
 }
 
 export const passwordsSlice = createSlice({
@@ -17,7 +17,7 @@ export const passwordsSlice = createSlice({
    initialState,
    reducers: {
       setPasswords: (state, action: PayloadAction<any>) => {
-         state.passwords = action.payload
+         state.accounts = action.payload
       },
    },
 })

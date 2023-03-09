@@ -1,18 +1,18 @@
 import { FC } from "react"
-import { PasswordType } from "types"
+import { AccountType } from "types"
 import { useAppSelector } from "~/redux/hooks"
 import { IconSearch, ImageContainer } from "~/components/Elements"
 
 export const Websites = () => {
-   const { passwords } = useAppSelector(state => state.passwords)
+   const { accounts } = useAppSelector(state => state.accounts)
    
    return (
       <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
          <AddWebsiteForm />
          <ul className="text-white text-sm w-full overflow-y-auto">
-            {passwords.map(password => (
+            {accounts.map(account => (
                <WebsiteItem
-                  password={password}
+                  account={account}
                />
             ))}
          </ul>
@@ -21,14 +21,14 @@ export const Websites = () => {
 }
 
 const WebsiteItem:FC<{
-   password: PasswordType
-}> = ({password}) => {
+   account: AccountType
+}> = ({account}) => {
    return (
       <li className="w-full flex items-center my-2 p-3 cursor-pointer rounded-md">
-         <ImageContainer src={password.url}/>
+         <ImageContainer src={account.url}/>
          <div>
-            <h2 className="text-base font-bold tracking-wider">{password.name}</h2>
-            <p className="text-xs text-gray-400">{password.username}</p>
+            <h2 className="text-base font-bold tracking-wider">{account.name}</h2>
+            <p className="text-xs text-gray-400">{account.username}</p>
          </div>
       </li>
    )

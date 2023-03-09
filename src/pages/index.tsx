@@ -4,7 +4,7 @@ import { Layout } from "~/components/Global/Layout"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
-import { fetchPasswords } from "~/slices/passwordsSlice"
+import { fetchPasswords } from "~/slices/accountsSlice"
 
 export default function Home() {
    const dispatch = useAppDispatch()

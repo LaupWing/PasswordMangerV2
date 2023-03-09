@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authSlice from "~/slices/authSlice"
-import passwordsSlice from "~/slices/passwordsSlice"
+import accountsSlice from "~/slices/accountsSlice"
 
 export const store = configureStore({
    reducer: {
       auth: authSlice,
-      passwords: passwordsSlice
+      accounts: accountsSlice
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false
