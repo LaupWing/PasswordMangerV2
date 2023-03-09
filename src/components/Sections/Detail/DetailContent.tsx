@@ -1,7 +1,13 @@
 import { FC } from "react"
 
 export const DetailContent = () => {
-   return <div>DetailContent</div>
+   return (
+      <div className="flex flex-col items-start min-h-0">
+         <div className="flex">
+            
+         </div>
+      </div>
+   )
 }
 
 const Directories = () => {}
