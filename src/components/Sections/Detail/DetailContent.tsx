@@ -61,7 +61,7 @@ const Info:FC<{account: AccountType}> = ({
             />
             <IconDuplicate 
                className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"
-               onClick={() => copy()}
+               onClick={() => copy("")}
             />
          </InfoField>
          <InfoField
