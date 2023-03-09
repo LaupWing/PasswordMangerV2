@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { FC, useState } from "react"
+import { FC, PropsWithChildren, useState } from "react"
 import { AccountType } from "types"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
@@ -28,12 +28,15 @@ export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
                ({ account.directories.length })
             </span>
          </div>
+
       </div>
    )
 }
 
 const Directories = () => {}
 const Info = () => {
+   const [show_password, setShowPassword] = useState(false)
+
    return (
       <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
 
@@ -41,20 +44,50 @@ const Info = () => {
    )
 }
 
-interface InfoFieldProps {
+interface InfoFieldProps extends PropsWithChildren {
    is_password?: boolean
    show_password?: boolean
    value: string
    label: string
 }
-const InfoField:FC<InfoFieldProps> = () => {
+const InfoField:FC<InfoFieldProps> = ({
+   is_password,
+   show_password,
+   value,
+   label,
+   children
+}) => {
+   const [show_icons, setShowIcons] = useState(false)
+
    return (
       <div 
          className="py-4 px-3 rounded-md hover:bg-main-secondary text-sm flex items-center 
          justify-between overflow-hidden select-none"
-         // onMouseOver={() => }
+         onMouseOver={() => setShowIcons(true)}
+         onMouseOut={() => setShowIcons(false)}
       >
-
+         <div>
+            <h2 className="text-accent-grey font-bold tracking-wider capitalize mb-1 select-none">
+               { label }
+            </h2>
+            {is_password ? (
+               <input 
+                  value={value}
+                  type={show_password ? "text" : "password"} 
+                  className="text-white bg-transparent pointer-events-none"
+               />
+            ) : (
+               <p className="text-white">
+                  { value }
+               </p>
+            )}
+            <div className={clsx(
+               "text-white flex items-center transform duration-200",
+               show_icons ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+            )}>
+               { children }
+            </div>
+         </div>
       </div>
    )
 }
