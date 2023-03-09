@@ -5,7 +5,7 @@ import { BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
-import { HiOutlineDuplicate, HiUsers } from "react-icons/hi"
+import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
 
 export const IconEye:IconType = (props) => {
@@ -23,6 +23,12 @@ export const IconEdit:IconType = (props) => {
 export const IconDuplicate:IconType = (props) => {
    return (
       <HiOutlineDuplicate {...props}/>
+   )
+} 
+
+export const IconLink:IconType = (props) => {
+   return (
+      <HiOutlineExternalLink {...props}/>
    )
 } 
 

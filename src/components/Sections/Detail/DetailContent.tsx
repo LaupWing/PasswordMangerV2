@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { FC, PropsWithChildren, useState } from "react"
 import { AccountType } from "types"
+import { IconDuplicate, TogglePassword } from "~/components/Elements"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
    const [show_info, setShowInfo] = useState(false)
@@ -34,12 +35,37 @@ export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
 }
 
 const Directories = () => {}
-const Info = () => {
+const Info:FC<{account: AccountType}> = ({
+   account
+}) => {
    const [show_password, setShowPassword] = useState(false)
 
    return (
       <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
+         <InfoField
+            label="username"
+            value={account.username}
+         >
+            <IconDuplicate className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"/>
+         </InfoField>
+         <InfoField
+            label="password"
+            value={account.password}
+            show_password={show_password}
+            is_password
+         >
+            <TogglePassword 
+               show_password={show_password}
+               setShowPassword={setShowPassword}
+            />
+            <IconDuplicate className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"/>
+         </InfoField>
+         <InfoField
+            label="website"
+            value={account.url}
+         >
 
+         </InfoField>
       </div>
    )
 }
