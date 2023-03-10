@@ -1,9 +1,10 @@
 import clsx from "clsx"
 import copy from "copy-to-clipboard"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useState } from "react"
 import { AccountType } from "types"
-import { IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
+import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
    const [show_info, setShowInfo] = useState(false)
@@ -39,6 +40,7 @@ export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
 const Directories:FC<{account: AccountType}> = ({
    account
 }) => {
+   const router = useRouter()
    return (
       <div className="py-6 border-y-2 flex flex-col border-main-tertiare w-full overflow-y-auto">
          {account.directories.length === 0 ?  (
@@ -50,10 +52,13 @@ const Directories:FC<{account: AccountType}> = ({
                {account.directories.map((directory, i) => (
                   <Link 
                      href={`/directories/${directory}`}
-                     className="py-1 px-2 my-1 text-main-tertiare hover:bg-main-tertiare hover:text-white rounded capitalize flex items-center"
+                     className={clsx(
+                        "py-1 px-2 my-1 text-main-tertiare hover:bg-main-tertiare hover:text-white rounded capitalize flex items-center",
+                        router.pathname === `/directories/${directory}` && "bg-blue-600 text-white"
+                     )}
                      key={i}
                   >
-                     
+                     <IconDirectory className="w-5 mr-1"/> {directory}
                   </Link>
                ))}
             </>
