@@ -2,6 +2,9 @@ import { FC } from "react"
 import { AccountType } from "types"
 import { useAppSelector } from "~/redux/hooks"
 import { IconSearch, ImageContainer } from "~/components/Elements"
+import Link from "next/link"
+import clsx from "clsx"
+import { useRouter } from "next/router"
 
 export const Websites = () => {
    const { accounts } = useAppSelector(state => state.accounts)
@@ -23,14 +26,24 @@ export const Websites = () => {
 const WebsiteItem:FC<{
    account: AccountType
 }> = ({ account }) => {
+   const router = useRouter()
+   console.log(account)
    return (
-      <li className="w-full flex items-center my-2 p-3 cursor-pointer rounded-md">
-         <ImageContainer src={account.url}/>
-         <div>
-            <h2 className="text-base font-bold tracking-wider">{account.name}</h2>
-            <p className="text-xs text-gray-400">{account.username}</p>
-         </div>
-      </li>
+      <Link 
+         href={`/all/${account.name}`}
+         className={clsx(
+            router.asPath === `/all/${account.name}` && "bg-blue-600",
+            "flex rounded-md"
+         )}
+      >
+         <li className="w-full flex items-center my-2 p-3">
+            <ImageContainer src={account.url}/>
+            <div>
+               <h2 className="text-base font-bold tracking-wider">{account.name}</h2>
+               <p className="text-xs text-gray-400">{account.username}</p>
+            </div>
+         </li>
+      </Link>
    )
 }
 
