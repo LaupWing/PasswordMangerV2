@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import copy from "copy-to-clipboard"
+import Link from "next/link"
 import { FC, PropsWithChildren, useState } from "react"
 import { AccountType } from "types"
 import { IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
@@ -35,7 +36,32 @@ export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
    )
 }
 
-const Directories = () => {}
+const Directories:FC<{account: AccountType}> = ({
+   account
+}) => {
+   return (
+      <div className="py-6 border-y-2 flex flex-col border-main-tertiare w-full overflow-y-auto">
+         {account.directories.length === 0 ?  (
+            <p className="py-1 px-2 text-main-tertiare">
+               Not associated with any directories!
+            </p>
+         ): (
+            <>
+               {account.directories.map((directory, i) => (
+                  <Link 
+                     href={`/directories/${directory}`}
+                     className="py-1 px-2 my-1 text-main-tertiare hover:bg-main-tertiare hover:text-white rounded capitalize flex items-center"
+                     key={i}
+                  >
+                     
+                  </Link>
+               ))}
+            </>
+         )}
+      </div>
+   )
+}
+
 const Info:FC<{account: AccountType}> = ({
    account
 }) => {
