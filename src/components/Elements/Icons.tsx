@@ -5,6 +5,7 @@ import { BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
+import { GoFileDirectory } from "react-icons/go"
 import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
 
@@ -35,6 +36,12 @@ export const IconLink:IconType = (props) => {
 export const IconTrashcan:IconType = (props) => {
    return (
       <BiTrash {...props}/>
+   )
+} 
+
+export const IconDirectory:IconType = (props) => {
+   return (
+      <GoFileDirectory {...props}/>
    )
 } 
 
