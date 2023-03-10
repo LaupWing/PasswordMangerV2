@@ -9,6 +9,7 @@ export const DetailHeader:FC<{account: AccountType}> = ({
       <header className="py-6 text-white flex">
          <ImageContainer
             src={account.url}
+            className="h-12 w-12"
          />
          <div className="ml-4">
             <h2 className="text-2xl font-semibold tracking-wide">

@@ -9,11 +9,11 @@ export const DetailActions = () => {
             Terug
          </button>
          <button className={action_btn_styles}>
-            <IconEdit className="w-4 mr-2"/>
+            <IconEdit size={18} className="w-5 mr-2"/>
             Bewerk
          </button>
          <button className={action_btn_styles}>
-            <IconTrashcan className="w-4 mr-2"/>
+            <IconTrashcan size={18} className="w-5 mr-2"/>
             Verwijder
          </button>
       </div>

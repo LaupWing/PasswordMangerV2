@@ -151,12 +151,12 @@ const InfoField:FC<InfoFieldProps> = ({
                   { value }
                </p>
             )}
-            <div className={clsx(
-               "text-white flex items-center transform duration-200",
-               show_icons ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-            )}>
-               { children }
-            </div>
+         </div>
+         <div className={clsx(
+            "text-white flex items-center transform duration-200",
+            show_icons ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+         )}>
+            { children }
          </div>
       </div>
    )
