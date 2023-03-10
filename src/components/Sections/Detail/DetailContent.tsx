@@ -7,7 +7,7 @@ import { AccountType } from "types"
 import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
-   const [show_info, setShowInfo] = useState(false)
+   const [show_info, setShowInfo] = useState(true)
 
    return (
       <div className="flex flex-col items-start min-h-0">
@@ -32,7 +32,15 @@ export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
                ({ account.directories.length })
             </span>
          </div>
-
+         {show_info ? (
+            <Info
+               account={account}
+            />
+         ): (
+            <Directories
+               account={account}
+            />
+         )}
       </div>
    )
 }
