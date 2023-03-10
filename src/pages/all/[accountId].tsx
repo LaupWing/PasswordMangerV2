@@ -1,15 +1,18 @@
 import { NextPage } from "next"
 import Head from "next/head"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { Layout } from "~/components/Global/Layout"
-import { Websites } from "~/components/Sections"
+import { Detail, Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
-import { useAppDispatch } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { fetchPasswords } from "~/slices/accountsSlice"
 
 const AccountDetail:NextPage = () => {
    const dispatch = useAppDispatch()
+   const { accounts } = useAppSelector(state => state.accounts)
    const [loaded, setLoaded] = useState(false)
+   const router = useRouter()
 
    useEffect(() => {
       (async () =>{
@@ -23,6 +26,7 @@ const AccountDetail:NextPage = () => {
    if(!loaded){
       return null
    }
+   const active = accounts.find(x => x.id === router.query.accountId)
    return (
       <Layout>
          <Head>
@@ -35,6 +39,7 @@ const AccountDetail:NextPage = () => {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <Websites />
+         <Detail account={active!}/>
       </Layout>
    )
 }

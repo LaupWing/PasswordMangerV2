@@ -6,7 +6,7 @@ import Link from "next/link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
 
-export const Websites = () => {
+export const Websites:FC = () => {
    const { accounts } = useAppSelector(state => state.accounts)
    
    return (
