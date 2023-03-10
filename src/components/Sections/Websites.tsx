@@ -34,10 +34,10 @@ const WebsiteItem:FC<{
          href={`/all/${account.id}`}
          className={clsx(
             router.asPath === `/all/${account.id}` && "bg-blue-600",
-            "flex rounded-md"
+            "flex rounded-md my-2 p-3"
          )}
       >
-         <li className="w-full flex items-center my-2 p-3">
+         <li className="w-full flex items-center">
             <ImageContainer src={account.url}/>
             <div>
                <h2 className="text-base font-bold tracking-wider">{account.name}</h2>

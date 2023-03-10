@@ -21,6 +21,7 @@ const Sidenav = () => {
                <IconStarFill className="w-5 mr-1"/>
                Favoriete
             </SidenavLink>
+            <li className="p-1 mt-2 text-white text-opacity-30 uppercase tracking-widest font-bold">Mappen</li>
          </ul>
       </div>
    )

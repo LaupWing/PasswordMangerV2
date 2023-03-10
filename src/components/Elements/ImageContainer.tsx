@@ -16,7 +16,8 @@ export const ImageContainer:FC<ImageContainerProps> = ({
    const styles = clsx(
       missingClass(className, "w-") && "w-10",
       missingClass(className, "h-") && "h-10",
-      "rounded-md mr-2 bg-white object-contain"
+      "rounded-md mr-2 bg-white object-contain",
+      className
    )
 
    return (
