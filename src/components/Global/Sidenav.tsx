@@ -36,7 +36,8 @@ const SidenavLink:FC<SidenavLinkProps> = ({ children, href }) => {
    const baseStyles = "w-48 p-2 py-1 rounded-md flex items-center"
    const styles = clsx(
       baseStyles,
-      router.pathname === href && "bg-blue-600"
+      router.pathname === href && "bg-blue-600",
+      href === "/" && router.asPath.includes("all") && "bg-blue-600"
    )
 
    return (
