@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
-import { AiFillStar } from "react-icons/ai"
+import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import { GoFileDirectory } from "react-icons/go"
 import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
@@ -18,6 +18,18 @@ export const IconEye:IconType = (props) => {
 export const IconEdit:IconType = (props) => {
    return (
       <MdOutlineEdit {...props}/>
+   )
+} 
+
+export const IconStarFill:IconType = (props) => {
+   return (
+      <AiFillStar {...props}/>
+   )
+} 
+
+export const IconStarOutline:IconType = (props) => {
+   return (
+      <AiOutlineStar {...props}/>
    )
 } 
 
@@ -61,13 +73,7 @@ export const IconItems:IconType = (props) => {
    return (
       <BsGridFill {...props}/>
    )
-} 
-
-export const IconFavorite:IconType = (props) => {
-   return (
-      <AiFillStar {...props}/>
-   )
-} 
+}  
 
 export const IconUsers:IconType = (props) => {
    return (
