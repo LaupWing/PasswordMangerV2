@@ -1,9 +1,28 @@
 import { NextPage } from "next"
 import Head from "next/head"
+import { useEffect, useState } from "react"
 import { Layout } from "~/components/Global/Layout"
 import { Websites } from "~/components/Sections"
+import { auth } from "~/firebase"
+import { useAppDispatch } from "~/redux/hooks"
+import { fetchPasswords } from "~/slices/accountsSlice"
 
 const AccountDetail:NextPage = () => {
+   const dispatch = useAppDispatch()
+   const [loaded, setLoaded] = useState(false)
+
+   useEffect(() => {
+      (async () =>{
+         if(auth.currentUser){
+            await dispatch(fetchPasswords())
+         }
+         setLoaded(true)
+      })()
+   },[])
+
+   if(!loaded){
+      return null
+   }
    return (
       <Layout>
          <Head>
