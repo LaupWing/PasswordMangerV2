@@ -16,6 +16,7 @@ export const Websites = () => {
             {accounts.map(account => (
                <WebsiteItem
                   account={account}
+                  key={account.id}
                />
             ))}
          </ul>
@@ -27,10 +28,10 @@ const WebsiteItem:FC<{
    account: AccountType
 }> = ({ account }) => {
    const router = useRouter()
-   console.log(account)
+   
    return (
       <Link 
-         href={`/all/${account.name}`}
+         href={`/all/${account.id}`}
          className={clsx(
             router.asPath === `/all/${account.name}` && "bg-blue-600",
             "flex rounded-md"

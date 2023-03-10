@@ -3,6 +3,7 @@ export type FormElements<U extends string> = HTMLFormControlsCollection & Record
 export interface AccountType {
    name: string
    password: string
+   id: string
    url: string
    username: string
    directories: string[]
