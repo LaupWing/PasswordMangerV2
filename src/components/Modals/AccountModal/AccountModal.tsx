@@ -1,6 +1,12 @@
 import { useState } from "react"
+import { AccountType } from "types"
 import { IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
+
+interface AccountModalProps {
+   is_new: boolean
+   account: AccountType
+}
 
 export const AccountModal = () => {
    const [loading, setLoading] = useState(false)
@@ -15,6 +21,9 @@ export const AccountModal = () => {
                   <IconLoading width={10} height={10}/>
                </div>
             )}
+            <header className="bg-main-secondary text-white flex-col">
+
+            </header>
          </form>
       </Backdrop>
    )
