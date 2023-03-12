@@ -5,7 +5,7 @@ import { Backdrop } from "~/components/Global"
 
 interface AccountModalProps {
    is_new?: boolean
-   account: AccountType
+   account?: AccountType
 }
 
 export const AccountModal:FC<AccountModalProps> = ({

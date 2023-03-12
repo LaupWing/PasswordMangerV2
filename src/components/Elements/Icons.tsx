@@ -4,10 +4,17 @@ import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
+import { IoClose } from "react-icons/io5"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import { GoFileDirectory } from "react-icons/go"
 import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
+
+export const IconClose:IconType = (props) => {
+   return (
+      <IoClose {...props}/>
+   )
+} 
 
 export const IconEye:IconType = (props) => {
    return (
