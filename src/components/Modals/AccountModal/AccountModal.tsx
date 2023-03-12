@@ -1,6 +1,7 @@
+import clsx from "clsx"
 import { FC, useState } from "react"
 import { AccountType } from "types"
-import { IconLoading } from "~/components/Elements"
+import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 
 interface AccountModalProps {
@@ -13,6 +14,10 @@ export const AccountModal:FC<AccountModalProps> = ({
    account
 }) => {
    const [loading, setLoading] = useState(false)
+   const [show_main_info, setShowMainInfo] = useState(true)
+
+   const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
+
    return (
       <Backdrop className="p-2 items-start flex-col">
          <form 
@@ -32,7 +37,19 @@ export const AccountModal:FC<AccountModalProps> = ({
                         : "Account bewerken"
                      }
                   </h2>
-                  
+                  <IconClose size={24} />
+               </div>
+               <div className="flex px-2 select-none">
+                  <span 
+                     className={clsx(tab_style, show_main_info ? "bg-main-tertiare text-white" : 'text-black')}
+                  >
+                     info
+                  </span>
+                  <span
+                     className={clsx(tab_style, !show_main_info ? "bg-main-tertiare text-white" : 'text-black')}
+                  >
+                     Mappen
+                  </span>
                </div>
             </header>
          </form>
