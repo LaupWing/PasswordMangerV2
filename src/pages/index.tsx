@@ -6,6 +6,7 @@ import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
 import { fetchPasswords } from "~/slices/accountsSlice"
 import { toast } from "react-hot-toast"
+import { notify } from "~/components/Global/Notify"
 
 export default function Home() {
    const dispatch = useAppDispatch()
@@ -18,7 +19,7 @@ export default function Home() {
          }
          setLoaded(true)
       })()
-      toast(<div className="bg-main-tertiare p-2 rounded shadow border-2 border-black flex select-none">eT est</div>)
+      notify("success", "Upda vte!", "Text is guepadte")
    },[])
 
    if(!loaded){

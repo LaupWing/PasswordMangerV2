@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { FC } from "react"
+import { toast } from "react-hot-toast"
 
 export type NotifyType = "success" | "favorite" | "deleted" 
 
@@ -55,6 +56,14 @@ export const Notify:FC<NotifyProps> = ({
          </div>
       </div>
    )
+}
+
+export const notify = (type: NotifyType, title: string, text: string) => {
+   toast(<Notify 
+      type={type}
+      title={title}
+      text={text}
+   />)
 }
 
 const Star = () => (

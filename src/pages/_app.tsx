@@ -30,7 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
                   margin: 0,
                   padding: 0,
                   background: "transparent",
-                  boxShadow: "none"
+                  boxShadow: "none",
+                  maxWidth: "900px"
                },
                duration: 1000000000
             }}
