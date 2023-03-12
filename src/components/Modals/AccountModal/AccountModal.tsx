@@ -1,9 +1,9 @@
-import Backdrop from "~/components/Global/Backdrop"
+import { Backdrop } from "~/components/Global/Backdrop"
 
 const AccountModal = () => {
    return (
       <Backdrop>
-         
+
       </Backdrop>
    )
 }

@@ -5,7 +5,7 @@ interface BackdropProps extends PropsWithChildren {
    className?: string
 }
 
-const Backdrop:FC<BackdropProps> = ({
+export const Backdrop:FC<BackdropProps> = ({
    children,
    className = ""
 }) => {
@@ -18,4 +18,3 @@ const Backdrop:FC<BackdropProps> = ({
       </div>
    )
 }
-export default Backdrop

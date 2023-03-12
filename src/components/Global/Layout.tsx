@@ -1,5 +1,4 @@
 import type { FC, PropsWithChildren } from "react"
-import { useEffect } from "react"
 import { Protected } from "./Protected"
 import Sidenav from "./Sidenav"
 import Topnav from "./Topnav"
