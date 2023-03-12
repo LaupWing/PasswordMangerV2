@@ -10,7 +10,9 @@ interface NotifyProps {
 }
 
 export const Notify:FC<NotifyProps> = ({
-   type
+   type,
+   title,
+   text
 }) => {
    let typeObj
    switch(type){
@@ -39,7 +41,18 @@ export const Notify:FC<NotifyProps> = ({
             "bg-main-tertiare p-2 rounded shadow border-2 border-black flex select-none", 
             typeObj.color
       )}>
-         
+         {typeObj.icon()}
+         <div className="flex flex-col flex-1">
+            <h1 className="uppercase text-xs font-bold tracking-widest mb-0.5">
+               {title}
+            </h1>
+            <p
+               className="text-base text-white"
+               dangerouslySetInnerHTML={{
+                  __html: text
+               }}
+            ></p>
+         </div>
       </div>
    )
 }
