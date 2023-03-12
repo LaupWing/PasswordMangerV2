@@ -18,7 +18,7 @@ export default function Home() {
          }
          setLoaded(true)
       })()
-      toast(<div>Test</div>)
+      toast(<div className="bg-main-tertiare p-2 rounded shadow border-2 border-black flex select-none">eT est</div>)
    },[])
 
    if(!loaded){

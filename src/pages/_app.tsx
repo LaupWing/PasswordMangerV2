@@ -22,11 +22,15 @@ export default function App({ Component, pageProps }: AppProps) {
          </div>
          <Toaster
             containerStyle={{
-               padding: 0
+               padding: 0,
+               margin: 0
             }}
             toastOptions={{
                style: {
-                  padding: 0
+                  margin: 0,
+                  padding: 0,
+                  background: "transparent",
+                  boxShadow: "none"
                },
                duration: 1000000000
             }}
