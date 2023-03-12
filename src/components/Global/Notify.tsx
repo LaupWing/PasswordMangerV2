@@ -1,7 +1,47 @@
-export const Notify = () => {
-  return (
-    <div>Notify</div>
-  )
+import clsx from "clsx"
+import { FC } from "react"
+
+export type NotifyType = "success" | "favorite" | "deleted" 
+
+interface NotifyProps {
+   title: string
+   text: string
+   type: NotifyType
+}
+
+export const Notify:FC<NotifyProps> = ({
+   type
+}) => {
+   let typeObj
+   switch(type){
+      case "deleted":
+         typeObj = {
+            color: "text-yellow-400",
+            icon: Delete
+         }
+         break
+      case "favorite":
+         typeObj = {
+            color: "text-yellow-400",
+            icon: Star
+         }
+         break
+      case "success":
+         typeObj = {
+            color: "text-yellow-400",
+            icon: Checkmark
+         }
+         break
+   }
+   return (
+      <div className={
+         clsx(
+            "bg-main-tertiare p-2 rounded shadow border-2 border-black flex select-none", 
+            typeObj.color
+      )}>
+         
+      </div>
+   )
 }
 
 const Star = () => (
