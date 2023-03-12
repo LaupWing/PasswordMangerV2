@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { Layout } from "~/components/Global"
+import { notify } from "~/components/Global/Toast"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
@@ -17,6 +18,7 @@ export default function Home() {
          }
          setLoaded(true)
       })()
+      notify("test", "success")
    },[])
 
    if(!loaded){
