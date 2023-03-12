@@ -6,7 +6,6 @@ import { store } from "~/redux/store"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "~/firebase"
 import { useState } from "react"
-import { ToastContainer } from "react-toastify"
 
 export default function App({ Component, pageProps }: AppProps) {
    const [loaded, setLoaded] = useState(false)
@@ -18,7 +17,6 @@ export default function App({ Component, pageProps }: AppProps) {
    }
    return  (
       <Provider store={store}>
-         <ToastContainer />
          <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
             <Component {...pageProps} />
          </div>
