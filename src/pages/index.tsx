@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useEffect, useState } from "react"
-import { Layout } from "~/components/Global/Layout"
+import { Layout } from "~/components/Global"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
