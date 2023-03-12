@@ -42,11 +42,13 @@ export const AccountModal:FC<AccountModalProps> = ({
                <div className="flex px-2 select-none">
                   <span 
                      className={clsx(tab_style, show_main_info ? "bg-main-tertiare text-white" : 'text-black')}
+                     onClick={() => setShowMainInfo(true)}
                   >
                      info
                   </span>
                   <span
                      className={clsx(tab_style, !show_main_info ? "bg-main-tertiare text-white" : 'text-black')}
+                     onClick={() => setShowMainInfo(false)}
                   >
                      Mappen
                   </span>
