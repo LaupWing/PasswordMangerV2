@@ -5,12 +5,14 @@ import { IconSearch, ImageContainer } from "~/components/Elements"
 import Link from "next/link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
+import { AccountModal } from "~/components/Modals"
 
 export const Websites:FC = () => {
    const { accounts } = useAppSelector(state => state.accounts)
    
    return (
       <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
+         <AccountModal />
          <AddWebsiteForm />
          <ul className="text-white text-sm w-full overflow-y-auto">
             {accounts.map(account => (

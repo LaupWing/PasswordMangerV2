@@ -2,8 +2,7 @@ import { useState } from "react"
 import { IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 
-
-const AccountModal = () => {
+export const AccountModal = () => {
    const [loading, setLoading] = useState(false)
    return (
       <Backdrop className="p-2 items-start flex-col">
@@ -20,4 +19,3 @@ const AccountModal = () => {
       </Backdrop>
    )
 }
-export default AccountModal
