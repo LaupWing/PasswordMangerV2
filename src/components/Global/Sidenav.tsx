@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { FC, PropsWithChildren } from "react"
 import { IconStarFill, IconItems } from "~/components/Elements"
 
-const Sidenav = () => {
+export const Sidenav = () => {
    return (
       <div className="bg-main-secondary p-4 border-r-2 border-black">
          <img 
@@ -26,7 +26,6 @@ const Sidenav = () => {
       </div>
    )
 }
-export default Sidenav
 
 interface SidenavLinkProps extends PropsWithChildren {
    href: string

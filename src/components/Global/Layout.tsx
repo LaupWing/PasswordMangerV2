@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from "react"
 import { Protected } from "./Protected"
-import Sidenav from "./Sidenav"
+import { Sidenav } from "~/components/Global"
 import Topnav from "./Topnav"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
