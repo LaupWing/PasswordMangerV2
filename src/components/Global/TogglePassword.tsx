@@ -6,7 +6,7 @@ interface TogglePasswordProps {
    setShowPassword: Dispatch<SetStateAction<boolean>>
 }
 
-const TogglePassword:FC<TogglePasswordProps> = ({
+export const TogglePassword:FC<TogglePasswordProps> = ({
    showPassword,
    setShowPassword
 }) => {
@@ -26,4 +26,3 @@ const TogglePassword:FC<TogglePasswordProps> = ({
       </div>
    )
 }
-export default TogglePassword
