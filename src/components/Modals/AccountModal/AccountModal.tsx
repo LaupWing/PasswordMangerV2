@@ -1,14 +1,17 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 import { AccountType } from "types"
 import { IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 
 interface AccountModalProps {
-   is_new: boolean
+   is_new?: boolean
    account: AccountType
 }
 
-export const AccountModal = () => {
+export const AccountModal:FC<AccountModalProps> = ({
+   is_new,
+   account
+}) => {
    const [loading, setLoading] = useState(false)
    return (
       <Backdrop className="p-2 items-start flex-col">
@@ -22,7 +25,15 @@ export const AccountModal = () => {
                </div>
             )}
             <header className="bg-main-secondary text-white flex-col">
-
+               <div className="flex justify-between p-4 pb-2">
+                  <h2 className="text-lg">
+                     {is_new 
+                        ? "Account aanmaken"
+                        : "Account bewerken"
+                     }
+                  </h2>
+                  
+               </div>
             </header>
          </form>
       </Backdrop>
