@@ -28,6 +28,7 @@ const toastOptions: ToastOptions = {
 }
 
 export const notify = (message: string, type: ToastType) => {
-   toast(<ToastUI message={message} type={type}/>, toastOptions)
+   console.log("heh")
+   toast(<ToastUI message={message} type={type}/>)
 }
  
