@@ -1,11 +1,11 @@
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { Layout } from "~/components/Global"
-import { notify } from "~/components/Global/Toast"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
 import { fetchPasswords } from "~/slices/accountsSlice"
+import { toast } from "react-hot-toast"
 
 export default function Home() {
    const dispatch = useAppDispatch()
@@ -18,7 +18,7 @@ export default function Home() {
          }
          setLoaded(true)
       })()
-      notify("test", "success")
+      toast(<div>Test</div>)
    },[])
 
    if(!loaded){

@@ -2,13 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.Toastify__toast {
-   border-radius: 4px;
-   padding: 0px;
- }
- 
-.Toastify__toast-container {
-   width: min(400px, 100vw);
-   padding: 0;
-}

@@ -1,11 +1,11 @@
 import "~/styles/globals.css"
-import "react-toastify/dist/ReactToastify.css"
 import type { AppProps } from "next/app"
 import { Provider } from "react-redux"
 import { store } from "~/redux/store"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "~/firebase"
 import { useState } from "react"
+import { Toaster } from "react-hot-toast"
 
 export default function App({ Component, pageProps }: AppProps) {
    const [loaded, setLoaded] = useState(false)
@@ -20,6 +20,17 @@ export default function App({ Component, pageProps }: AppProps) {
          <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
             <Component {...pageProps} />
          </div>
+         <Toaster
+            containerStyle={{
+               padding: 0
+            }}
+            toastOptions={{
+               style: {
+                  padding: 0
+               },
+               duration: 1000000000
+            }}
+         />
       </Provider>
    )
 }
