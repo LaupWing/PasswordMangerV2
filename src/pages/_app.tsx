@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   boxShadow: "none",
                   maxWidth: "900px"
                },
-               duration: 1000000000
+               duration: 5000,
             }}
          />
       </Provider>

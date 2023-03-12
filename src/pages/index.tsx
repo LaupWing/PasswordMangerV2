@@ -19,7 +19,7 @@ export default function Home() {
          }
          setLoaded(true)
       })()
-      notify("success", "Upda vte!", "Text is guepadte")
+      notify("success", "Updatef", "Text is gupadeee")
    },[])
 
    if(!loaded){
