@@ -7,6 +7,7 @@ import { MdOutlineEdit } from "react-icons/md"
 import { IoClose } from "react-icons/io5"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import { GoFileDirectory } from "react-icons/go"
+import { FiChevronDown } from "react-icons/fi"
 import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
 
@@ -19,6 +20,12 @@ export const IconClose:IconType = (props) => {
 export const IconEye:IconType = (props) => {
    return (
       <FaEye {...props}/>
+   )
+} 
+
+export const IconChevron:IconType = (props) => {
+   return (
+      <FiChevronDown {...props}/>
    )
 } 
 
