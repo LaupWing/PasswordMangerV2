@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons"
 import type { FC } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import { BsGridFill, BsSearch } from "react-icons/bs"
+import { BsCheck, BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { IoClose } from "react-icons/io5"
@@ -86,6 +86,12 @@ export const IconSearch:IconType = (props) => {
 export const IconItems:IconType = (props) => {
    return (
       <BsGridFill {...props}/>
+   )
+}  
+
+export const IconCheckmark:IconType = (props) => {
+   return (
+      <BsCheck {...props}/>
    )
 }  
 
