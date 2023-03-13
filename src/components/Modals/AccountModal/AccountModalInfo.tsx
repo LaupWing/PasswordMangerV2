@@ -68,6 +68,12 @@ export const MainInfo:FC<MainInfoProps> = ({
                   })}
                />
             )}
+            <button
+               className="text-xs uppercase tracking-wider px-2 bg-blue-600 rounded-full text-white py-0.5 hover:bg-blue-700"
+               type="button"
+            >
+
+            </button>
          </div>
       </div>
    )
