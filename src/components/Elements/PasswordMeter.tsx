@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { PasswordMeter as _PasswordMeter } from "password-meter"
+import clsx from "clsx"
 
 interface PasswordMeterProps {
    password: string
@@ -11,7 +12,14 @@ export const PasswordMeter:FC<PasswordMeterProps> = ({
    const bars = 5
 
    return (
-      <div>PasswordMeter</div>
+      <div className="flex">
+         {new Array(bars).map(bar => (
+            <Bar
+               index={bar}
+               password={password}
+            />
+         ))}
+      </div>
    )
 }
 
@@ -44,8 +52,10 @@ const Bar:FC<BarProps> = ({
    }
 
    return (
-      <div className="h-1 w-10 mr-2 duration-200">
-
+      <div className={clsx(
+         "h-1 w-10 mr-2 duration-200",
+         strength()
+      )}>
       </div>
    )
 }
