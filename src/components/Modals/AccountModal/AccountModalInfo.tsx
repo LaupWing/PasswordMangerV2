@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { AccountType } from "types"
-import { Input, PasswordMeter, TogglePassword } from "~/components/Elements"
+import { Input, PasswordMeter, PasswordOptions, TogglePassword } from "~/components/Elements"
 
 interface MainInfoProps {
    edit_account: AccountType
@@ -87,6 +87,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
             className="my-2"
             password={edit_account.password}
          />
+         <PasswordOptions />
       </div>
    )
 }
