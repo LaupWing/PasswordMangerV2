@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { useState } from "react"
-import { IconChevron } from "~/components/Elements"
+import { Checkbox, IconChevron } from "~/components/Elements"
 
 export const PasswordOptions = () => {
    const [show, setShow] = useState(true)
@@ -28,7 +28,10 @@ export const PasswordOptions = () => {
                type="number" 
                className="p-1 w-12 bg-main-tertiare rounded text-white tracking-widest my-1 focus:outline-none focus:ring-2 focus:border-blue-600"
             />
-            <input type="checkbox" className="w-5 h-5 text-white bg-blue-600" />
+            <Checkbox
+               checked
+               label="Test"
+            />
          </div>
       </div>
    )
