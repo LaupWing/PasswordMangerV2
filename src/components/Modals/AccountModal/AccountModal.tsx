@@ -15,6 +15,7 @@ export const AccountModal:FC<AccountModalProps> = ({
 }) => {
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(true)
+   const [editAccount, setEditAccount] = useState(account)
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
 
