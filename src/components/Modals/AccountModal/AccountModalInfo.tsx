@@ -1,14 +1,14 @@
 import { FC, useState } from "react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { AccountType } from "types"
-import { Input } from "~/components/Elements"
+import { Input, PasswordMeter } from "~/components/Elements"
 
 interface MainInfoProps {
    edit_account: AccountType
    setEditAccount: (account: AccountType) => void
 }
 
-export const MainInfo:FC<MainInfoProps> = ({
+export const AccountModalInfo:FC<MainInfoProps> = ({
    edit_account,
    setEditAccount
 }) => {
@@ -78,6 +78,10 @@ export const MainInfo:FC<MainInfoProps> = ({
                {small_screen ? "g": "genereren"}
             </button>
          </div>
+         <PasswordMeter 
+            className="my-2"
+            password={edit_account.password}
+         />
       </div>
    )
 }

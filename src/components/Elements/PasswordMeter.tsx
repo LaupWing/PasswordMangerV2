@@ -4,15 +4,17 @@ import clsx from "clsx"
 
 interface PasswordMeterProps {
    password: string
+   className?: string
 }
 
 export const PasswordMeter:FC<PasswordMeterProps> = ({
-   password
+   password,
+   className = ""
 }) => {
    const bars = 5
 
    return (
-      <div className="flex">
+      <div className={clsx("flex", className)}>
          {new Array(bars).map(bar => (
             <Bar
                index={bar}
