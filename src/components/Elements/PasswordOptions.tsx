@@ -1,4 +1,6 @@
+import clsx from "clsx"
 import { useState } from "react"
+import { IconChevron } from "~/components/Elements"
 
 export const PasswordOptions = () => {
    const [show, setShow] = useState(false)
@@ -10,8 +12,19 @@ export const PasswordOptions = () => {
             onClick={() => setShow(_show => !_show)}
          >
             wachtwoord opties
-            {/* <Icon */}
+            <IconChevron
+               className={clsx(
+                  "w-5 text-white ml-auto transform duration-200",
+                  show ? "rotate-180" : "rotate-0"
+               )}
+            />
          </button>
+         <div className={clsx(
+            "flex flex-col duration-500",
+            show ? "max-h-96 p-2" : "max-h-0 p-0"
+         )}>
+
+         </div>
       </div>
    )
 }
