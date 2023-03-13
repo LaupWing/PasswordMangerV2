@@ -9,7 +9,7 @@ export const PasswordOptions = () => {
       <div className="flex flex-col w-56 duration-500 border-2 overflow-hidden border-main-tertiare rounded-md flex-shrink-0">
          <button 
             type="button"
-            className="bg-main-tertiare text-white text-xs font-bold tracking-widest uppercase p-1 px-5 flex items-center cursor-pointer select-none"
+            className="bg-main-tertiare text-white text-xs font-bold tracking-widest uppercase p-1 px-5 flex items-center cursor-pointer select-none text-left"
             onClick={() => setShow(_show => !_show)}
          >
             wachtwoord opties
@@ -18,6 +18,7 @@ export const PasswordOptions = () => {
                   "w-5 text-white ml-auto transform duration-200",
                   show ? "rotate-180" : "rotate-0"
                )}
+               size={22}
             />
          </button>
          <div className={clsx(
