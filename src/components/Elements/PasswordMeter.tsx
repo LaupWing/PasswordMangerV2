@@ -12,12 +12,12 @@ export const PasswordMeter:FC<PasswordMeterProps> = ({
    className = ""
 }) => {
    const bars = 5
-
    return (
       <div className={clsx("flex", className)}>
-         {new Array(bars).map(bar => (
+         {[...new Array(bars)].map((bar, i) => (
             <Bar
-               index={bar}
+               index={i + 1}
+               key={i}
                password={password}
             />
          ))}
@@ -33,6 +33,7 @@ const Bar:FC<BarProps> = ({
    password,
    index
 }) => {
+   console.log("bar")
    const strength = () => {
       const {percent} = new _PasswordMeter().getResult(password) 
       if(index  === 1 && (percent >= 5 && percent <= 20)){
@@ -50,7 +51,7 @@ const Bar:FC<BarProps> = ({
       if(index  <= 5 && (percent > 80 && percent <= 100)){
          return "bg-green-400"
       }
-      return 'bg-black-lightest'
+      return "bg-main-tertiare"
    }
 
    return (
