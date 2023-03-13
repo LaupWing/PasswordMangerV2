@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import useWindowSize from "react-use/lib/useWindowSize"
 import { AccountType } from "types"
 import { Input } from "~/components/Elements"
 
@@ -12,6 +13,8 @@ export const MainInfo:FC<MainInfoProps> = ({
    setEditAccount
 }) => {
    const [show_password, setShowPassword] = useState(false)
+   const { width } = useWindowSize()
+   const small_screen = width < 420
 
    return (
       <div className="p-4 text-sm border-b-2 border-t-2 py-6 border-black flex flex-col overflow-y-auto">
@@ -72,7 +75,7 @@ export const MainInfo:FC<MainInfoProps> = ({
                className="text-xs uppercase tracking-wider px-2 bg-blue-600 rounded-full text-white py-0.5 hover:bg-blue-700"
                type="button"
             >
-
+               {small_screen ? "g": "genereren"}
             </button>
          </div>
       </div>
