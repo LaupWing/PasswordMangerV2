@@ -46,7 +46,28 @@ export const MainInfo:FC<MainInfoProps> = ({
             })}
          />
          <div className="flex items-center">
-
+            {show_password ? (
+               <Input 
+                  placeholder="Wachtwoord"
+                  autoComplete="off"
+                  className="sm:w-72 w-60 w-30"
+                  onChange={e => setEditAccount({
+                     ...edit_account,
+                     password: e.target.value
+                  })}
+               />
+            ) : (
+               <Input 
+                  placeholder="Wachtwoord"
+                  autoComplete="off"
+                  type={"password"}
+                  className="sm:w-72 w-60 w-30"
+                  onChange={e => setEditAccount({
+                     ...edit_account,
+                     password: e.target.value
+                  })}
+               />
+            )}
          </div>
       </div>
    )
