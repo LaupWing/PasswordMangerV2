@@ -11,7 +11,7 @@ export const Backdrop:FC<BackdropProps> = ({
 }) => {
    return (
       <div className={clsx(
-         "flex fixed inset-0 z-50 bg-black/70",
+         "flex fixed inset-0 z-50 bg-black/60",
          className
       )}>
          { children }

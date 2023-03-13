@@ -60,6 +60,11 @@ export const AccountModal:FC<AccountModalProps> = ({
                edit_account={edit_account!}
                setEditAccount={setEditAccount}
             />
+            <div className="flex items-center p-4">
+               <button className="bg-blue-600 uppercase text-white font-bold ml-auto py-1.5 px-4 rounded text-sm tracking-widest hover:bg-blue-700">
+                  Opslaan
+               </button>
+            </div>
          </form>
       </Backdrop>
    )

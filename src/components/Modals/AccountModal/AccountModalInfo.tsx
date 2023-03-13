@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { AccountType } from "types"
-import { Input, PasswordMeter } from "~/components/Elements"
+import { Input, PasswordMeter, TogglePassword } from "~/components/Elements"
 
 interface MainInfoProps {
    edit_account: AccountType
@@ -71,6 +71,11 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                   })}
                />
             )}
+            <TogglePassword 
+               setShowPassword={setShowPassword}
+               show_password={show_password}
+               className="mx-2"
+            />
             <button
                className="text-xs uppercase tracking-wider px-2 bg-blue-600 rounded-full text-white py-0.5 hover:bg-blue-700"
                type="button"
