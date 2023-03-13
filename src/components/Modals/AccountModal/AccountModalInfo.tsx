@@ -25,6 +25,24 @@ export const MainInfo:FC<MainInfoProps> = ({
                })}
             />
          </div>
+         <Input 
+            placeholder="Naam"
+            autoComplete="off"
+            className="sm:w-72 w-60 w-30 mb-6"
+            onChange={e => setEditAccount({
+               ...edit_account,
+               name: e.target.value
+            })}
+         />
+         <Input 
+            placeholder="Gebruikersnaam"
+            autoComplete="off"
+            className="sm:w-72 w-60 w-30 mb-6"
+            onChange={e => setEditAccount({
+               ...edit_account,
+               username: e.target.value
+            })}
+         />
       </div>
    )
 }
