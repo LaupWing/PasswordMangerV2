@@ -12,12 +12,17 @@ export const Checkbox:FC<CheckboxProps> = ({
    label,
    onChange
 }) => {
+   console.log(checked)
    return (
-      <label className="relative text-sm my-1 flex items-center cursor-pointer select-none">
+      <label htmlFor={`checkbox-${label}`} className="relative text-sm my-1 flex items-center cursor-pointer select-none">
          <input 
-            type="checbox" 
+            type="checkbox" 
+            name={`checkbox-${label}`}
+            id={`checkbox-${label}`}
             className="sr-only"
-            onChange={(e) => onChange(e.target.checked)}
+            onChange={(e) => {
+               onChange(e.target.checked)
+            }}
          />
          <span
             id="checkmark"

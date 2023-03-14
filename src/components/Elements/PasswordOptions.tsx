@@ -1,8 +1,21 @@
 import clsx from "clsx"
-import { useState } from "react"
+import { FC, useState } from "react"
 import { Checkbox, IconChevron } from "~/components/Elements"
 
-export const PasswordOptions = () => {
+interface PasswordOptionsProps {
+   checkboxes: {
+      value: string
+      label: string
+   }[]
+   actives: string[]
+   setOptions: (value: string, state: boolean) => void
+}
+
+export const PasswordOptions:FC<PasswordOptionsProps> = ({
+   checkboxes,
+   actives,
+   setOptions
+}) => {
    const [show, setShow] = useState(true)
 
    return (
@@ -29,21 +42,17 @@ export const PasswordOptions = () => {
                type="number" 
                className="p-1 w-12 bg-main-tertiare rounded text-white tracking-widest my-1 focus:outline-none focus:ring-2 focus:border-blue-600"
             />
-            <Checkbox
-               checked
-               label="Nummers"
-               onChange={() => {}}
-            />
-            <Checkbox
-               checked
-               label="Symbolen"
-               onChange={() => {}}
-            />
-            <Checkbox
-               checked
-               label="Hoofdletters"
-               onChange={() => {}}
-            />
+            {checkboxes.map(c => (
+               <Checkbox
+                  checked={!!actives.find(a => a === c.value)}
+                  label={c.label}
+                  key={c.label}
+                  onChange={(state) => {
+                     console.log(state)
+                     setOptions(c.label, state)
+                  }}
+               />
+            ))}
          </div>
       </div>
    )

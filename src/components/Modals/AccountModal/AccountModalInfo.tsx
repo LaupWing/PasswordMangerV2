@@ -110,7 +110,11 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
             className="my-2"
             password={edit_account.password}
          />
-         <PasswordOptions />
+         <PasswordOptions 
+            checkboxes={checkboxes}
+            actives={password_options}
+            setOptions={editPasswordOptions}
+         />
       </div>
    )
 }
