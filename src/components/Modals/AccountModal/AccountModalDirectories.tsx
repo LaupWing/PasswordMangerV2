@@ -1,13 +1,27 @@
 import { Listbox, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useState, Fragment } from "react"
-import { IconCheckmark, IconChevron, Input } from "~/components/Elements"
+import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
 
 export const AccountModalDirectories = () => {
    return (
       <div className="flex flex-col space-y-4">
-         <div className="border-2 relative mt-2 border-main-tertiare w-72 rounded p-2">
+         <div className="border-2 relative mt-2 border-main-tertiare w-[345px] rounded p-3">
             <h2 className="uppercase text-xs text-main-tertiare font-bold tracking-wider absolute top-0 transform -translate-y-1/2 bg-main-primary px-1.5">Toegevoegd aan</h2>
+            <div className="flex flex-col space-y-2">
+               <div className="flex items-center flex-1 justify-between">
+                  <span className="flex w-72 text-white/60 px-1">
+                     Test
+                  </span>
+                  <IconTrashcan className="text-white" size={20} />
+               </div>
+               <div className="flex items-center flex-1 justify-between">
+                  <span className="flex w-72 text-white/60 px-1">
+                     Test
+                  </span>
+                  <IconTrashcan className="text-white" size={20} />
+               </div>
+            </div>
          </div>
          <div className="flex flex-col space-y-4">
             <DirectoryDropdown/>
