@@ -1,3 +1,4 @@
+import { generate } from "generate-password"
 import { FC, useState } from "react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { AccountType } from "types"
@@ -39,6 +40,18 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
    }
    const [password_length, setPasswordLength] = useState(20)
 
+   const generatePassword = () => {
+      const options_exists = (val: string) => !!password_options.find(x => x === val)
+      setEditAccount({
+         ...edit_account,
+         password: generate({
+            length: password_length,
+            numbers: options_exists("numbers"),
+            symbols: options_exists("symbols"),
+            uppercase: options_exists("uppercase"),
+         })
+      })
+   }
 
    return (
       <div className="p-4 text-sm border-b-2 border-t-2 py-6 border-black flex flex-col overflow-y-auto">
@@ -103,6 +116,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
             <button
                className="text-xs uppercase tracking-wider px-2 bg-blue-600 rounded-full text-white py-0.5 hover:bg-blue-700"
                type="button"
+               onClick={generatePassword}
             >
                {small_screen ? "g": "genereren"}
             </button>
