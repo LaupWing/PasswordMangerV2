@@ -33,7 +33,6 @@ const Bar:FC<BarProps> = ({
    password,
    index
 }) => {
-   console.log("bar")
    const strength = () => {
       const {percent} = new _PasswordMeter().getResult(password) 
       if(index  === 1 && (percent >= 5 && percent <= 20)){

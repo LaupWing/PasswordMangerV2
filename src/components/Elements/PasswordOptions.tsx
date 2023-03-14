@@ -48,8 +48,7 @@ export const PasswordOptions:FC<PasswordOptionsProps> = ({
                   label={c.label}
                   key={c.label}
                   onChange={(state) => {
-                     console.log(state)
-                     setOptions(c.label, state)
+                     setOptions(c.value, state)
                   }}
                />
             ))}

@@ -20,9 +20,8 @@ export const Checkbox:FC<CheckboxProps> = ({
             name={`checkbox-${label}`}
             id={`checkbox-${label}`}
             className="sr-only"
-            onChange={(e) => {
-               onChange(e.target.checked)
-            }}
+            onChange={(e) => onChange(e.target.checked)}
+            checked={checked}
          />
          <span
             id="checkmark"
