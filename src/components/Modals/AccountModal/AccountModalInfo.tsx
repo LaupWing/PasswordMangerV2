@@ -65,6 +65,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                   ...edit_account,
                   url: e.target.value
                })}
+               value={edit_account.url}
             />
          </div>
          <Input 
@@ -75,6 +76,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                ...edit_account,
                name: e.target.value
             })}
+            value={edit_account.name}
          />
          <Input 
             placeholder="Gebruikersnaam"
@@ -84,6 +86,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                ...edit_account,
                username: e.target.value
             })}
+            value={edit_account.username}
          />
          <div className="flex items-center">
             {show_password ? (
@@ -95,6 +98,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                      ...edit_account,
                      password: e.target.value
                   })}
+                  value={edit_account.password}
                />
             ) : (
                <Input 
@@ -106,6 +110,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
                      ...edit_account,
                      password: e.target.value
                   })}
+                  value={edit_account.password}
                />
             )}
             <TogglePassword 
