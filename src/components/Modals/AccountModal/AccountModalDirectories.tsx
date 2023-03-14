@@ -1,12 +1,20 @@
 import { Listbox, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useState, Fragment } from "react"
-import { IconCheckmark, IconChevron } from "~/components/Elements"
+import { IconCheckmark, IconChevron, Input } from "~/components/Elements"
 
 export const AccountModalDirectories = () => {
    return (
       <div className="flex flex-col">
-         <DirectoryDropdown/>
+         <div className="flex flex-col space-y-4">
+            <DirectoryDropdown/>
+            <div className="flex">
+               <Input className="w-72" placeholder="Nieuwe Map" />
+               <button className="w-12 rounded ml-2 text-white bg-blue-600">
+                  +
+               </button>
+            </div>
+         </div>
       </div>
    )
 }
@@ -28,30 +36,35 @@ const DirectoryDropdown = () => {
    const [selected, setSelected] = useState(directories[0])
    
    return (
-      <div className="w-72 text-white">
+      <div className="text-white">
          <Listbox 
             value={selected} 
             onChange={setSelected}
          >
             <div className="relative mt-1">
-               <Listbox.Button 
-                  className="relative w-full cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
-               >
-                  <span className="block truncate">{selected}</span>
-                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  <IconChevron
-                     className="h-5 w-5 text-gray-400"
-                     aria-hidden="true"
-                  />
-                  </span>
-               </Listbox.Button>
+               <div className="flex">
+                  <Listbox.Button 
+                     className="relative w-72 cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
+                  >
+                     <span className="block truncate">{selected}</span>
+                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                     <IconChevron
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                     />
+                     </span>
+                  </Listbox.Button>
+                  <button className="w-12 rounded ml-2 text-white bg-blue-600">
+                     +
+                  </button>
+               </div>
                <Transition
                   as={Fragment}
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                >
-                  <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-main-tertiare divide-y divide-main-secondary/40 text-base shadow-lg sm:text-sm">
+                  <Listbox.Options className="absolute w-72 mt-1 max-h-60 overflow-auto rounded-md bg-main-tertiare divide-y divide-main-secondary/40 text-base shadow-lg sm:text-sm">
                   {directories.map((directory, index) => (
                      <Listbox.Option
                         key={index}
