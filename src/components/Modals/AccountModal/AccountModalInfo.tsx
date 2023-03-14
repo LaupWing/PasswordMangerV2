@@ -54,7 +54,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
    }
 
    return (
-      <div className="text-sm py-2 flex flex-col overflow-y-auto">
+      <div className="text-sm py-2 flex flex-col">
          <div className="flex items-center sm:w-72 w-60 mb-6">
             <p className="mr-0.5 text-main-tertiare font-bold tracking-wider">www.</p>
             <Input 
