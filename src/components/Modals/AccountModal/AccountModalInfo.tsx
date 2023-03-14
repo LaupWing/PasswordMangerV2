@@ -116,6 +116,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
             actives={password_options}
             setOptions={editPasswordOptions}
             setPasswordLength={setPasswordLength}
+            password_length={password_length}
          />
       </div>
    )

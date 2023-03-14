@@ -10,13 +10,15 @@ interface PasswordOptionsProps {
    actives: string[]
    setOptions: (value: string, state: boolean) => void
    setPasswordLength: (length: number) => void
+   password_length: number
 }
 
 export const PasswordOptions:FC<PasswordOptionsProps> = ({
    checkboxes,
    actives,
    setOptions,
-   setPasswordLength
+   setPasswordLength,
+   password_length
 }) => {
    const [show, setShow] = useState(false)
 
@@ -44,6 +46,7 @@ export const PasswordOptions:FC<PasswordOptionsProps> = ({
                type="number" 
                className="p-1 w-12 bg-main-tertiare rounded text-white tracking-widest my-1 focus:outline-none focus:ring-2 focus:border-blue-600"
                onChange={(e) => setPasswordLength(Number(e.target.value))}
+               value={password_length}
             />
             {checkboxes.map(c => (
                <Checkbox
