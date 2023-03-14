@@ -9,7 +9,7 @@ export const PasswordOptions = () => {
       <div className="flex flex-col w-56 duration-500 border-2 overflow-hidden border-main-tertiare rounded-md flex-shrink-0">
          <button 
             type="button"
-            className="bg-main-tertiare text-white text-xs font-bold tracking-widest uppercase p-1 px-5 flex items-center cursor-pointer select-none text-left"
+            className="bg-main-tertiare text-white text-xs font-bold tracking-widest uppercase p-1 px-1.5 flex items-center cursor-pointer select-none text-left"
             onClick={() => setShow(_show => !_show)}
          >
             wachtwoord opties
@@ -31,7 +31,15 @@ export const PasswordOptions = () => {
             />
             <Checkbox
                checked
-               label="Test"
+               label="Nummers"
+            />
+            <Checkbox
+               checked
+               label="Symbolen"
+            />
+            <Checkbox
+               checked
+               label="Hoofdletters"
             />
          </div>
       </div>
