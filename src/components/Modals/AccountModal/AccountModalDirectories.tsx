@@ -26,7 +26,7 @@ const DirectoryDropdown = () => {
    //    { id: 5, name: 'Katelyn Rohan', unavailable: false },
    // ]
    const [selected, setSelected] = useState(directories[0])
-   console.log(selected)
+   
    return (
       <div className="w-72 text-white">
          <Listbox 
@@ -75,7 +75,6 @@ const DirectoryDropdown = () => {
                      >
                         {({ selected }) => (
                         <>
-                           {console.log(selected)}
                            <span
                               className={`block truncate ${
                               selected ? 'font-medium' : 'font-normal'
