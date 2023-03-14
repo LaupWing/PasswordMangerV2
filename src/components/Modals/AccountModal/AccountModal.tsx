@@ -3,6 +3,7 @@ import { FC, FormEvent, useState } from "react"
 import { AccountType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
+import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
 interface AccountModalProps {
@@ -15,7 +16,7 @@ export const AccountModal:FC<AccountModalProps> = ({
    account
 }) => {
    const [loading, setLoading] = useState(false)
-   const [show_main_info, setShowMainInfo] = useState(true)
+   const [show_main_info, setShowMainInfo] = useState(false)
    const [edit_account, setEditAccount] = useState(account)
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
@@ -29,7 +30,7 @@ export const AccountModal:FC<AccountModalProps> = ({
       <Backdrop className="p-2 items-start flex-col">
          <form 
             autoComplete="off"
-            className="w-full max-w-xl border-2 border-black bg-main-primary mx-auto rounded overflow-hidden flex flex-col relative min-h-0 mt-[10vh]" 
+            className="w-full max-w-xl border-2 border-black bg-main-primary mx-auto rounded  flex flex-col relative min-h-0 mt-[10vh]" 
             onSubmit={handleSubmit}
          >
             {loading && (
@@ -63,10 +64,14 @@ export const AccountModal:FC<AccountModalProps> = ({
                </div>
             </header>
             <div className="p-4 border-y-2 border-black">
-               <AccountModalInfo 
-                  edit_account={edit_account!}
-                  setEditAccount={setEditAccount}
-               />
+               {show_main_info ? (
+                  <AccountModalInfo 
+                     edit_account={edit_account!}
+                     setEditAccount={setEditAccount}
+                  />
+               ) :(
+                  <AccountModalDirectories/>
+               )}
             </div>
             <div className="flex items-center p-4">
                <button className="bg-blue-600 uppercase text-white font-bold ml-auto py-1.5 px-4 rounded text-sm tracking-widest hover:bg-blue-700">
