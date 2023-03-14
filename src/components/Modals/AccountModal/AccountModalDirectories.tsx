@@ -14,14 +14,19 @@ export const AccountModalDirectories = () => {
 
 const DirectoryDropdown = () => {
    const directories = [
-      { id: 1, name: 'Durward Reynolds', unavailable: false },
-      { id: 2, name: 'Kenton Towne', unavailable: false },
-      { id: 3, name: 'Therese Wunsch', unavailable: false },
-      { id: 4, name: 'Benedict Kessler', unavailable: true },
-      { id: 5, name: 'Katelyn Rohan', unavailable: false },
+      "test1",
+      "test2",
+      "test3",
    ]
+   // const directories = [
+   //    { id: 1, name: 'Durward Reynolds', unavailable: false },
+   //    { id: 2, name: 'Kenton Towne', unavailable: false },
+   //    { id: 3, name: 'Therese Wunsch', unavailable: false },
+   //    { id: 4, name: 'Benedict Kessler', unavailable: true },
+   //    { id: 5, name: 'Katelyn Rohan', unavailable: false },
+   // ]
    const [selected, setSelected] = useState(directories[0])
-
+   console.log(selected)
    return (
       <div className="w-72 text-white">
          <Listbox 
@@ -32,7 +37,7 @@ const DirectoryDropdown = () => {
                <Listbox.Button 
                   className="relative w-full cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
                >
-                  <span className="block truncate">{selected.name}</span>
+                  <span className="block truncate">{selected}</span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <IconChevron
                      className="h-5 w-5 text-gray-400"
@@ -53,24 +58,30 @@ const DirectoryDropdown = () => {
                         className={({ active }) =>
                            clsx(
                               "relative cursor-default select-none py-2 pl-10 pr-4",
-                              directory.unavailable 
-                                 ? "text-gray-300 bg-gray-100"
-                                 : active 
-                                    ? "bg-blue-100 text-amber-900" 
+                              active 
+                                    ? "bg-blue-100 text-blue-900" 
                                     : "text-gray-900"
                            )
+                           // clsx(
+                           //    "relative cursor-default select-none py-2 pl-10 pr-4",
+                           //    directory.unavailable 
+                           //       ? "text-gray-300 bg-gray-200"
+                           //       : active 
+                           //          ? "bg-blue-100 text-blue-900" 
+                           //          : "text-gray-900"
+                           // )
                         }
                         value={directory}
-                        disabled={directory.unavailable}
                      >
                         {({ selected }) => (
                         <>
+                           {console.log(selected)}
                            <span
                               className={`block truncate ${
                               selected ? 'font-medium' : 'font-normal'
                               }`}
                            >
-                              {directory.name}
+                              {directory}
                            </span>
                            {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
