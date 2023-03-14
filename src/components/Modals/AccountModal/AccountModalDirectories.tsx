@@ -1,9 +1,17 @@
 import { Listbox, Transition } from "@headlessui/react"
 import clsx from "clsx"
-import { useState, Fragment } from "react"
+import { useState, Fragment, FC } from "react"
 import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
 
-export const AccountModalDirectories = () => {
+interface AccountModalDirectoriesProps {
+   setDirectories: () => void
+   directories: string[]
+}
+
+export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
+   directories,
+   setDirectories
+}) => {
    return (
       <div className="flex flex-col space-y-4">
          <div className="border-2 relative mt-2 border-main-tertiare w-[345px] rounded p-3">

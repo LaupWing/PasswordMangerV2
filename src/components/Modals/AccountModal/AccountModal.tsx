@@ -72,7 +72,8 @@ export const AccountModal:FC<AccountModalProps> = ({
                   />
                ) :(
                   <AccountModalDirectories
-                     
+                     directories={directories}
+                     setDirectories={()=> setDirectories}
                   />
                )}
             </div>
