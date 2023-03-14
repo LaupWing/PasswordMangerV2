@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import { PasswordMeter as _PasswordMeter } from "password-meter"
 import clsx from "clsx"
 
@@ -7,7 +7,7 @@ interface PasswordMeterProps {
    className?: string
 }
 
-export const PasswordMeter:FC<PasswordMeterProps> = ({
+export const PasswordMeter:FC<PasswordMeterProps> = memo(({
    password,
    className = ""
 }) => {
@@ -23,7 +23,7 @@ export const PasswordMeter:FC<PasswordMeterProps> = ({
          ))}
       </div>
    )
-}
+})
 
 interface BarProps {
    index: number
