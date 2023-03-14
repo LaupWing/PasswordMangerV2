@@ -37,6 +37,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
          setPasswordOptions(prev => [...prev, value])
       }
    }
+   const [password_length, setPasswordLength] = useState(20)
 
 
    return (
@@ -114,6 +115,7 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
             checkboxes={checkboxes}
             actives={password_options}
             setOptions={editPasswordOptions}
+            setPasswordLength={setPasswordLength}
          />
       </div>
    )
