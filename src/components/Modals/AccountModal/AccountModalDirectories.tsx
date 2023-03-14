@@ -55,6 +55,7 @@ const DirectoryDropdown = () => {
                         }`
                         }
                         value={person}
+                        disabled={person.unavailable}
                      >
                         {({ selected }) => (
                         <>
