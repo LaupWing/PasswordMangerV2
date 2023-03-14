@@ -18,6 +18,7 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(false)
    const [edit_account, setEditAccount] = useState(account)
+   const [directories, setDirectories] = useState([])
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
 
@@ -30,7 +31,7 @@ export const AccountModal:FC<AccountModalProps> = ({
       <Backdrop className="p-2 items-start flex-col">
          <form 
             autoComplete="off"
-            className="w-full max-w-xl border-2 border-black bg-main-primary mx-auto rounded  flex flex-col relative min-h-0 mt-[10vh]" 
+            className="w-full max-w-xl border-2 border-black bg-main-primary mx-auto rounded  flex flex-col relative min-h-0 mt-[10vh]"
             onSubmit={handleSubmit}
          >
             {loading && (
@@ -70,7 +71,9 @@ export const AccountModal:FC<AccountModalProps> = ({
                      setEditAccount={setEditAccount}
                   />
                ) :(
-                  <AccountModalDirectories/>
+                  <AccountModalDirectories
+                     
+                  />
                )}
             </div>
             <div className="flex items-center p-4">

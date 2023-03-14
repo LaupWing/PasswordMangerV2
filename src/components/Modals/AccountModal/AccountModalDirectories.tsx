@@ -13,7 +13,10 @@ export const AccountModalDirectories = () => {
                   <span className="flex w-72 text-white/60 px-1">
                      Test
                   </span>
-                  <IconTrashcan className="text-white cursor-pointer hover:text-red-500" size={20} />
+                  <IconTrashcan 
+                     className="text-white cursor-pointer hover:text-red-500" 
+                     size={20} 
+                  />
                </div>
                <div className="flex items-center flex-1 justify-between">
                   <span className="flex w-72 text-white/60 px-1">
