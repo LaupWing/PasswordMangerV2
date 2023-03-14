@@ -5,7 +5,10 @@ import { IconCheckmark, IconChevron, Input } from "~/components/Elements"
 
 export const AccountModalDirectories = () => {
    return (
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-4">
+         <div className="border-2 relative mt-2 border-main-tertiare w-72 rounded p-2">
+            <h2 className="uppercase text-xs text-main-tertiare font-bold tracking-wider absolute top-0 transform -translate-y-1/2 bg-main-primary px-1.5">Toegevoegd aan</h2>
+         </div>
          <div className="flex flex-col space-y-4">
             <DirectoryDropdown/>
             <div className="flex">
