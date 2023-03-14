@@ -15,6 +15,29 @@ export const AccountModalInfo:FC<MainInfoProps> = ({
    const [show_password, setShowPassword] = useState(false)
    const { width } = useWindowSize()
    const small_screen = width < 420
+   const [password_options, setPasswordOptions] = useState(["numbers", "symbols", "uppercase"]) 
+   const checkboxes = [
+      {
+         value: "numbers",
+         label: "Nummers"
+      },
+      {
+         value: "symbols",
+         label: "Symbolen"
+      },
+      {
+         value: "uppercase",
+         label: "Hoofdletters"
+      },
+   ]
+   const editPasswordOptions = (value: string, add: boolean) => {
+      if(!add){
+         setPasswordOptions(prev => prev.filter(x => x !== value))
+      }else{
+         setPasswordOptions(prev => [...prev, value])
+      }
+   }
+
 
    return (
       <div className="p-4 text-sm border-b-2 border-t-2 py-6 border-black flex flex-col overflow-y-auto">

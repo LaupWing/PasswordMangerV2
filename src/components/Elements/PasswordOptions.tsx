@@ -32,14 +32,17 @@ export const PasswordOptions = () => {
             <Checkbox
                checked
                label="Nummers"
+               onChange={() => {}}
             />
             <Checkbox
                checked
                label="Symbolen"
+               onChange={() => {}}
             />
             <Checkbox
                checked
                label="Hoofdletters"
+               onChange={() => {}}
             />
          </div>
       </div>

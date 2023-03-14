@@ -5,16 +5,19 @@ import { IconCheckmark } from "./Icons"
 interface CheckboxProps {
    checked: boolean
    label: string
+   onChange: (e: boolean) => void
 }
 export const Checkbox:FC<CheckboxProps> = ({
    checked,
-   label
+   label,
+   onChange
 }) => {
    return (
       <label className="relative text-sm my-1 flex items-center cursor-pointer select-none">
          <input 
             type="checbox" 
             className="sr-only"
+            onChange={(e) => onChange(e.target.checked)}
          />
          <span
             id="checkmark"
