@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { addDoc, collection, getDocs, setDoc } from "firebase/firestore"
+import { addDoc, collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore"
 import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
@@ -31,13 +31,14 @@ export const { setPasswords, setDirectories } = passwordsSlice.actions
 
 
 export const fetchPasswords = 
-   () => async () => {
+   () => async (dispatch: Dispatch) => {
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         return snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
+         dispatch(setPasswords(
+            snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
+         ))
       }
-      return []
    }
 
 export const fetchDirectories = 
@@ -48,6 +49,15 @@ export const fetchDirectories =
          dispatch(setDirectories(snapshot.docs.map(x => ({...x.data(), id: x.id}) as DirectoryType)))
       }
    }
+   
+
+export const toggleFavorite = 
+   (id: string, is_favorite: boolean) => async (dispatch: Dispatch) => {
+      await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
+         is_favorite
+      })
+   }
+
 export const postDirectories = 
    (directories: DirectoryType[]) => async () => {
       const proxy = directories.map(async x => {

@@ -29,7 +29,7 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [show_main_info, setShowMainInfo] = useState(true)
    const { decryptString } = new StringCrypto()
    const { master_key } = useAppSelector(state => state.auth)
-   const parsed_password = decryptString(
+   const parsed_password = is_new ? "" : decryptString(
       account.password,
       master_key
    ) 

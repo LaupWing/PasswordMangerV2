@@ -11,12 +11,12 @@ import { fetchPasswords } from "~/slices/accountsSlice"
 export default function Home() {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
-   const [accounts, setAccounts] = useState<AccountType[]>([])
+   const { accounts } = useAppSelector(state => state.accounts)
    
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            setAccounts(await dispatch(fetchPasswords()))
+            await dispatch(fetchPasswords())
          }
          setLoaded(true)
       })()

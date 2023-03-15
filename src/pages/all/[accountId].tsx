@@ -12,13 +12,13 @@ import { fetchPasswords } from "~/slices/accountsSlice"
 const AccountDetail:NextPage = () => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
-   const [accounts, setAccounts] = useState<AccountType[]>([])
    const router = useRouter()
+   const { accounts } = useAppSelector(state => state.accounts)
 
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            setAccounts(await dispatch(fetchPasswords()))
+            await dispatch(fetchPasswords())
          }
          setLoaded(true)
       })()
