@@ -52,7 +52,11 @@ export const AccountModal:FC<AccountModalProps> = ({
       ))
       if(is_new){
          dispatch(createAccount({
-            ...edit_account,
+            is_favorite: edit_account.is_favorite,
+            name: edit_account.name,
+            password: edit_account.password,
+            url: edit_account.url,
+            username: edit_account.username,
             directories: [
                ...new_directories,
                ...directories.map(x => x.id)
