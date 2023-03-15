@@ -1,48 +1,50 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { collection, getDocs } from "firebase/firestore"
-import { AccountType } from "types"
+import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
 
 interface PasswordsState {
    accounts: AccountType[]
+   directories: DirectoryType[]
 }
 
 const initialState:PasswordsState = {
-   accounts: []
+   accounts: [],
+   directories: []
 }
 
 export const passwordsSlice = createSlice({
    name: "auth",
    initialState,
    reducers: {
-      setPasswords: (state, action: PayloadAction<any>) => {
+      setPasswords: (state, action: PayloadAction<AccountType[]>) => {
          state.accounts = action.payload
       },
-      setDirectories: (state, action) => {
-         
+      setDirectories: (state, action: PayloadAction<DirectoryType[]>) => {
+         state.directories = action.payload
       }
    },
 })
 
-export const { setPasswords } = passwordsSlice.actions
+export const { setPasswords, setDirectories } = passwordsSlice.actions
 
 
 export const fetchPasswords = 
-   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+   () => async (dispatch: Dispatch) => {
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         dispatch(setPasswords(snapshot.docs.map(x => ({...x.data(), id: x.id}))))
+         dispatch(setPasswords(snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)))
       }
    }
 
 export const fetchDirectories = 
-   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+   () => async (dispatch: Dispatch) => {
       const snapshot = await getDocs(collection(db, "directories", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         console.log(snapshot.docs.map(x => ({...x.data(), id: x.id})))
+         dispatch(setDirectories(snapshot.docs.map(x => ({...x.data(), id: x.id}) as DirectoryType)))
       }
    }
 
