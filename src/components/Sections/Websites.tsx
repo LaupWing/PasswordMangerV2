@@ -10,10 +10,8 @@ import { AccountModal } from "~/components/Modals"
 export const Websites:FC = () => {
    const { accounts } = useAppSelector(state => state.accounts)
    const [showModal, setShowModal] = useState<false|AccountType>(false)
-   const [is_new, setIsNew] = useState(false)
 
    const addNew = () => {
-      setIsNew(true)
       setShowModal({
          directories: [],
          id: "",
@@ -28,7 +26,7 @@ export const Websites:FC = () => {
       <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
          {showModal && <AccountModal 
             account={showModal}
-            is_new={is_new}
+            is_new={true}
             close={() => setShowModal(false)}
          />}
          <AddWebsiteForm 
