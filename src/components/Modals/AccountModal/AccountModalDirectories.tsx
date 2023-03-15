@@ -2,6 +2,7 @@ import { Listbox, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useState, Fragment, FC } from "react"
 import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
+import { useAppSelector } from "~/redux/hooks"
 
 interface AccountModalDirectoriesProps {
    addDirectory: (is_new: boolean, value: string) => void
@@ -62,19 +63,12 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
    )
 }
 
+// interface DirectoryDropdownProps {
+//    in_directories: 
+// }
+
 const DirectoryDropdown = () => {
-   const directories = [
-      "test1",
-      "test2",
-      "test3",
-   ]
-   // const directories = [
-   //    { id: 1, name: 'Durward Reynolds', unavailable: false },
-   //    { id: 2, name: 'Kenton Towne', unavailable: false },
-   //    { id: 3, name: 'Therese Wunsch', unavailable: false },
-   //    { id: 4, name: 'Benedict Kessler', unavailable: true },
-   //    { id: 5, name: 'Katelyn Rohan', unavailable: false },
-   // ]
+   const directories = useAppSelector(state => state.accounts.directories).map(x=> x.name)
    const [selected, setSelected] = useState(directories[0])
    
    return (
