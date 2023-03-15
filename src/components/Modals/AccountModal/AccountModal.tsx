@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { FC, FormEvent, useState } from "react"
-import { AccountType } from "types"
+import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 import { AccountModalDirectories } from "./AccountModalDirectories"
@@ -11,6 +11,10 @@ interface AccountModalProps {
    account?: AccountType
 }
 
+export interface DirectoryExtended extends DirectoryType {
+   is_new: boolean
+}
+
 export const AccountModal:FC<AccountModalProps> = ({
    is_new,
    account
@@ -18,10 +22,7 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(false)
    const [edit_account, setEditAccount] = useState(account)
-   const [directories, setDirectories] = useState<{
-      is_new: boolean,
-      value: string
-   }[]>([])
+   const [directories, setDirectories] = useState<DirectoryExtended[]>([])
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
 
@@ -76,13 +77,13 @@ export const AccountModal:FC<AccountModalProps> = ({
                ) :(
                   <AccountModalDirectories
                      directories={directories}
-                     removeDirectory={(value)=>{
-                        setDirectories([...directories].filter(x => x.value !== value))
+                     removeDirectory={(name)=>{
+                        setDirectories([...directories].filter(x => x.name !== name))
                      }}
-                     addDirectory={(is_new, value) => {
+                     addDirectory={(is_new, name) => {
                         setDirectories([...directories, {
                            is_new,
-                           value
+                           name
                         }])
                      }}
                   />

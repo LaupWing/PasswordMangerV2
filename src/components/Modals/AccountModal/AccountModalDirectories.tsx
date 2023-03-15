@@ -3,14 +3,12 @@ import clsx from "clsx"
 import { useState, Fragment, FC } from "react"
 import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
 import { useAppSelector } from "~/redux/hooks"
+import { DirectoryExtended } from "./AccountModal"
 
 interface AccountModalDirectoriesProps {
-   addDirectory: (is_new: boolean, value: string) => void
-   removeDirectory: (value: string) => void
-   directories: {
-      is_new: boolean,
-      value: string
-   }[]
+   addDirectory: (is_new: boolean, name: string) => void
+   removeDirectory: (name: string) => void
+   directories: DirectoryExtended[]
 }
 
 export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
@@ -28,19 +26,21 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
                {directories.map(directory => (
                   <div className="flex items-center flex-1 justify-between">
                      <span className="flex w-72 text-white/60 px-1">
-                        {directory.value}
+                        {directory.name}
                      </span>
                      <IconTrashcan 
                         className="text-white cursor-pointer hover:text-red-500" 
                         size={20} 
-                        onClick={() => removeDirectory(directory.value)}
+                        onClick={() => removeDirectory(directory.name)}
                      />
                   </div>
                ))}
             </div>
          </div>
          <div className="flex flex-col space-y-4">
-            <DirectoryDropdown/>
+            <DirectoryDropdown
+               in_directories={directories}
+            />
             <div className="flex">
                <Input 
                   className="w-72"
@@ -63,11 +63,11 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
    )
 }
 
-// interface DirectoryDropdownProps {
-//    in_directories: 
-// }
+interface DirectoryDropdownProps {
+   in_directories: DirectoryExtended[] 
+}
 
-const DirectoryDropdown = () => {
+const DirectoryDropdown:FC<DirectoryDropdownProps> = () => {
    const directories = useAppSelector(state => state.accounts.directories).map(x=> x.name)
    const [selected, setSelected] = useState(directories[0])
    
