@@ -17,6 +17,8 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
    addDirectory,
    removeDirectory
 }) => {
+   const [new_directory, setNewDirectory] = useState("")
+
    return (
       <div className="flex flex-col space-y-4">
          <div className="border-2 relative mt-2 border-main-tertiare w-[345px] rounded p-3">
@@ -30,6 +32,7 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
                      <IconTrashcan 
                         className="text-white cursor-pointer hover:text-red-500" 
                         size={20} 
+                        onClick={() => removeDirectory(directory.value)}
                      />
                   </div>
                ))}
@@ -38,8 +41,19 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
          <div className="flex flex-col space-y-4">
             <DirectoryDropdown/>
             <div className="flex">
-               <Input className="w-72" placeholder="Nieuwe Map" />
-               <button className="w-12 rounded ml-2 text-white bg-blue-600">
+               <Input 
+                  className="w-72"
+                  placeholder="Nieuwe Map" 
+                  value={new_directory}
+                  onChange={e => setNewDirectory(e.target.value)}
+               />
+               <button 
+                  className="w-12 rounded ml-2 text-white bg-blue-600"
+                  onClick={() => {
+                     addDirectory(true, new_directory)
+                     setNewDirectory("")
+                  }}
+               >
                   +
                </button>
             </div>
