@@ -1,6 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
+import StringCrypto from "string-crypto"
 import { auth, db } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
@@ -47,20 +48,29 @@ export const authSlice = createSlice({
             seconds
          }
       },
+      setKeys: (state, action: PayloadAction<{secret: string, secret_key: string}>) => {
+         const { decryptString } = new StringCrypto()
+         const { secret, secret_key } = action.payload
+         console.log(decryptString(secret, secret_key))
+      }
    },
 })
 
-export const { setExperTime, incrementTimer } = authSlice.actions
+export const { setExperTime, incrementTimer, setKeys } = authSlice.actions
 
 export const login = 
-   (email: string, password: string, secretKey: string) => 
+   (email: string, password: string, secret_key: string) => 
    async (dispatch: Dispatch) => {
       try{
          await setPersistence(auth, browserSessionPersistence)
          const user = await signInWithEmailAndPassword(auth, email, password)
-         await checkSecretKey(secretKey, user.user.uid)
-         localStorage.setItem('secret_key', secretKey)
+         const secret = await checkSecretKey(secret_key, user.user.uid)
+         localStorage.setItem('secret_key', secret_key)
          dispatch(setExperTime(user))
+         dispatch(setKeys({
+            secret,
+            secret_key
+         }))
          // dispatch(incrementTimer())
       }catch(e){
          auth.signOut()

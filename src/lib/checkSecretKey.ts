@@ -12,4 +12,5 @@ export default async (secretKey: string, userId: string) => {
    if(containsNonLatinCodepoints(masterKey)){
       throw new Error("Invalid secret key")
    }
+   return secret
 }
