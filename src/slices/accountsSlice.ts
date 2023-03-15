@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { collection, getDocs } from "firebase/firestore"
+import { addDoc, collection, getDocs, setDoc } from "firebase/firestore"
 import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
@@ -46,6 +46,17 @@ export const fetchDirectories =
       if(!snapshot.empty){
          dispatch(setDirectories(snapshot.docs.map(x => ({...x.data(), id: x.id}) as DirectoryType)))
       }
+   }
+export const postDirectories = 
+   (directories: DirectoryType[]) => async () => {
+      const proxy = directories.map(async x => {
+         const snapshot = await addDoc(collection(db, "directories", auth.currentUser?.uid!, "collection"), {
+            name: x.name
+         })
+         return snapshot.id
+      })
+      const newDirectories = await Promise.all(proxy)
+      console.log(newDirectories)
    }
 
 export default passwordsSlice.reducer

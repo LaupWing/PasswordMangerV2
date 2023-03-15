@@ -3,6 +3,8 @@ import { FC, FormEvent, useState } from "react"
 import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
+import { useAppDispatch } from "~/redux/hooks"
+import { postDirectories } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
@@ -24,13 +26,21 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [show_main_info, setShowMainInfo] = useState(false)
    const [edit_account, setEditAccount] = useState(account)
    const [directories, setDirectories] = useState<DirectoryExtended[]>([])
+   const dispatch = useAppDispatch()
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
 
-   const handleSubmit = (e: FormEvent) => {
+   const handleSubmit = async (e: FormEvent) => {
       e.preventDefault()
+      
       console.log(edit_account)
-      console.log(directories)
+      const new_directories = await dispatch(postDirectories(directories
+         .filter(x => x.is_new)
+         .map(x => ({
+            name: x.name
+         }))
+      ))
+      console.log(new_directories)
    }
 
    return (
