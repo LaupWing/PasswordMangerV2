@@ -29,6 +29,7 @@ export const Sidenav = () => {
                <SidenavLink 
                   href={`directory/${directory.id}`}
                   className="justify-between"
+                  key={directory.id}
                >
                   {directory.name}
 
