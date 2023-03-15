@@ -30,8 +30,13 @@ export const passwordsSlice = createSlice({
                ...x,
                is_favorite: action.payload.is_favorite
             }) : ({...x}))
-         console.log(state.accounts)
-      }
+      },
+      updateAccount: (state, action: PayloadAction<{id: string, updates: AccountType}>) => {
+         state.accounts = state.accounts.map(x => 
+            x.id === action.payload.id ? ({
+               ...action.payload.updates
+            }) : ({...x}))
+      },
    },
 })
 
@@ -56,6 +61,13 @@ export const fetchDirectories =
       if(!snapshot.empty){
          dispatch(setDirectories(snapshot.docs.map(x => ({...x.data(), id: x.id}) as DirectoryType)))
       }
+   }
+
+export const patchAccount =
+   (id: string, updates: AccountType) => async (dispatch: Dispatch) => {
+      await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
+         ...updates
+      })
    }
    
 
