@@ -52,6 +52,10 @@ export const AccountModal:FC<AccountModalProps> = ({
             name: x.name
          }))
       ))
+      console.log([
+         ...new_directories,
+         ...directories.map(x => x.id)
+      ])
       setLoading(false)
       console.log(new_directories)
    }
