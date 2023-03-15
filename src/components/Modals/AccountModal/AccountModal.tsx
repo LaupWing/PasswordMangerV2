@@ -1,16 +1,17 @@
 import clsx from "clsx"
 import { FC, FormEvent, useState } from "react"
+import StringCrypto from "string-crypto"
 import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
-import { useAppDispatch } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { postDirectories } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
 interface AccountModalProps {
    is_new?: boolean
-   account?: AccountType
+   account: AccountType
    close: () => void
 }
 
@@ -26,7 +27,16 @@ export const AccountModal:FC<AccountModalProps> = ({
 }) => {
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(true)
-   const [edit_account, setEditAccount] = useState(account)
+   const { decryptString } = new StringCrypto()
+   const { master_key } = useAppSelector(state => state.auth)
+   const parsed_password = decryptString(
+      account.password,
+      master_key
+   ) 
+   const [edit_account, setEditAccount] = useState({
+      ...account,
+      password: parsed_password
+   })
    const [directories, setDirectories] = useState<DirectoryExtended[]>([])
    const dispatch = useAppDispatch()
 
