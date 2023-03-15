@@ -66,11 +66,11 @@ export const AccountModal:FC<AccountModalProps> = ({
                   ...new_directories,
                   ...directories.map(x => x.id)
                ] as string[],
-               is_favorite: account.is_favorite,
-               name: account.name,
-               password: account.password,
-               url: account.url,
-               username: account.username
+               is_favorite: edit_account.is_favorite,
+               name: edit_account.name,
+               password: edit_account.password,
+               url: edit_account.url,
+               username: edit_account.username
             }
          }))
       }
