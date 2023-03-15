@@ -9,7 +9,7 @@ export const Detail:FC<{account: AccountType}> = ({
    account
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
-   console.log(account)
+   
    return (
       <>
          {showModal && <AccountModal 

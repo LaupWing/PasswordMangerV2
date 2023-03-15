@@ -1,3 +1,6 @@
+import StringCrypto from "string-crypto"
+import { useAppSelector } from "~/redux/hooks"
+
 export const missingClass = (string?: string, prefix?: string) => {
    if(!string){
       return true
@@ -9,6 +12,12 @@ export const missingClass = (string?: string, prefix?: string) => {
 export const encryptPassword = () => {
 
 }
-export const decryptPassword = () => {
-
+export const decryptPassword = (password: string) => {
+   const { decryptString } = new StringCrypto()
+   const { master_key } = useAppSelector(state => state.auth)
+   const parsed_password = decryptString(
+      password,
+      master_key
+   )
+   return parsed_password
 }

@@ -7,6 +7,7 @@ import StringCrypto from "string-crypto"
 import { AccountType } from "types"
 import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
 import { notify } from "~/components/Global/Notify"
+import { decryptPassword } from "~/lib/utils"
 import { useAppSelector } from "~/redux/hooks"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
@@ -82,12 +83,7 @@ const Info:FC<{account: AccountType}> = ({
    account
 }) => {
    const [show_password, setShowPassword] = useState(false)
-   const { decryptString } = new StringCrypto()
-   const { master_key } = useAppSelector(state => state.auth)
-   const parsed_password = decryptString(
-      account.password,
-      master_key
-   ) 
+   const parsed_password = decryptPassword(account.password)
 
    return (
       <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
