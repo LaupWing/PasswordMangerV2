@@ -56,6 +56,7 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
                      addDirectory(true, new_directory)
                      setNewDirectory("")
                   }}
+                  type="button"
                >
                   +
                </button>
@@ -75,7 +76,7 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
    in_directories
 }) => {
    const directories = useAppSelector(state => state.accounts.directories)
-   const [selected, setSelected] = useState(directories[0])
+   const [selected, setSelected] = useState<DirectoryType|null>(directories[0])
    
    return (
       <div className="text-white">
@@ -86,9 +87,10 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
             <div className="relative mt-1">
                <div className="flex">
                   <Listbox.Button 
+                     type="button"
                      className="relative w-72 cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
                   >
-                     <span className="block truncate h-5">{selected.name}</span>
+                     <span className="block truncate h-5">{selected?.name || ""}</span>
                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                      <IconChevron
                         className="h-5 w-5 text-gray-400"
@@ -99,11 +101,13 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                   <button 
                      className="w-12 rounded ml-2 text-white bg-blue-600"
                      onClick={() => {
-                        if(selected.name === ""){
+                        if(!selected){
                            return
                         }
                         addDirectory(false, selected.name, selected.id)
+                        setSelected(null)
                      }}
+                     type="button"
                   >
                      +
                   </button>

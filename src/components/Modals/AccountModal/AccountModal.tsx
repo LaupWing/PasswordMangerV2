@@ -30,6 +30,7 @@ export const AccountModal:FC<AccountModalProps> = ({
    const handleSubmit = (e: FormEvent) => {
       e.preventDefault()
       console.log(edit_account)
+      console.log(directories)
    }
 
    return (
