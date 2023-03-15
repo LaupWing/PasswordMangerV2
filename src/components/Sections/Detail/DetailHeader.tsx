@@ -1,10 +1,14 @@
 import { FC } from "react"
 import { AccountType } from "types"
 import { IconStarFill, IconStarOutline, ImageContainer } from "~/components/Elements"
+import { notify } from "~/components/Global/Notify"
+import { useAppDispatch } from "~/redux/hooks"
+import { toggleFavorite } from "~/slices/accountsSlice"
 
 export const DetailHeader:FC<{account: AccountType}> = ({
    account
 }) => {
+   const dispatch = useAppDispatch()
    return (
       <header className="py-6 text-white flex">
          <ImageContainer
@@ -21,9 +25,20 @@ export const DetailHeader:FC<{account: AccountType}> = ({
             <p className="text-accent-grey">Login</p>
          </div>
          {account.is_favorite ? (
-            <IconStarOutline className="ml-auto my-auto" size={50} />
+            <IconStarOutline 
+               className="ml-auto my-auto" 
+               size={50} 
+               onClick={async () => {
+                  await dispatch(toggleFavorite(account.id, true))
+                  notify("favorite", "Favoriete", "Toegevoegd aan favoriete")
+               }}
+               />
          ) : (
-            <IconStarFill className="ml-auto my-auto text-yellow-500" size={50} />
+            <IconStarFill 
+               className="ml-auto my-auto text-yellow-500" 
+               size={50} 
+               onClick={() => dispatch(toggleFavorite(account.id, false))}
+            />
          )}
       </header>
    )

@@ -23,11 +23,19 @@ export const passwordsSlice = createSlice({
       },
       setDirectories: (state, action: PayloadAction<DirectoryType[]>) => {
          state.directories = action.payload
+      },
+      setFavorite: (state, action: PayloadAction<{id: string, is_favorite: boolean}>) => {
+         state.accounts = state.accounts.map(x => 
+            x.id === action.payload.id ? ({
+               ...x,
+               is_favorite: action.payload.is_favorite
+            }) : ({...x}))
+         console.log(state.accounts)
       }
    },
 })
 
-export const { setPasswords, setDirectories } = passwordsSlice.actions
+export const { setPasswords, setDirectories, setFavorite } = passwordsSlice.actions
 
 
 export const fetchPasswords = 
@@ -53,9 +61,15 @@ export const fetchDirectories =
 
 export const toggleFavorite = 
    (id: string, is_favorite: boolean) => async (dispatch: Dispatch) => {
+      console.log(id)
+      console.log(is_favorite)
       await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
          is_favorite
       })
+      dispatch(setFavorite({
+         id,
+         is_favorite
+      }))
    }
 
 export const postDirectories = 
