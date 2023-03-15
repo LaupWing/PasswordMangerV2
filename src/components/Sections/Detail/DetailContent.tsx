@@ -6,6 +6,7 @@ import { FC, PropsWithChildren, useState } from "react"
 import StringCrypto from "string-crypto"
 import { AccountType } from "types"
 import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
+import { notify } from "~/components/Global/Notify"
 import { useAppSelector } from "~/redux/hooks"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
@@ -94,7 +95,13 @@ const Info:FC<{account: AccountType}> = ({
             label="username"
             value={account.username}
          >
-            <IconDuplicate className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"/>
+            <IconDuplicate 
+               className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"
+               onClick={() => {
+                  copy(account.username)
+                  notify("success", "Gekopieërd", "Gebruikersnaam is gekopieërd")
+               }}
+            />
          </InfoField>
          <InfoField
             label="password"
@@ -108,7 +115,10 @@ const Info:FC<{account: AccountType}> = ({
             />
             <IconDuplicate 
                className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"
-               onClick={() => copy("")}
+               onClick={() => {
+                  copy(parsed_password)
+                  notify("success", "Gekopieërd", "Wachtwoord is gekopieërd")
+               }}
             />
          </InfoField>
          <InfoField
@@ -116,7 +126,12 @@ const Info:FC<{account: AccountType}> = ({
             value={account.url}
          >
             <IconLink className="w-5 h-5 mx-1 cursor-pointer hover:text-blue-600"/>
-            <IconDuplicate/>
+            <IconDuplicate
+               onClick={() => {
+                  copy(account.url)
+                  notify("success", "Gekopieërd", "URL is gekopieërd")
+               }}
+            />
          </InfoField>
       </div>
    )
