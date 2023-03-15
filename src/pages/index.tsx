@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import StringCrypto from "string-crypto"
+import { AccountType } from "types"
 import { Layout } from "~/components/Global"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
@@ -11,23 +12,13 @@ export default function Home() {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
    const { decryptString } = new StringCrypto()
-   const accounts = useAppSelector(state => state.accounts.accounts)
-      .map(account => {
-         const { master_key } = useAppSelector(state => state.auth)
-         const parsed_password = decryptString(
-            account.password,
-            master_key
-         ) 
-         return {
-            ...account,
-            password: parsed_password
-         }
-      })
+   const [accounts, setAccounts] = useState<AccountType[]>([])
+   
 
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            await dispatch(fetchPasswords())
+            setAccounts(await dispatch(fetchPasswords()))
          }
          setLoaded(true)
       })()

@@ -31,12 +31,13 @@ export const { setPasswords, setDirectories } = passwordsSlice.actions
 
 
 export const fetchPasswords = 
-   () => async (dispatch: Dispatch) => {
+   () => async () => {
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         dispatch(setPasswords(snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)))
+         return snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
       }
+      return []
    }
 
 export const fetchDirectories = 
