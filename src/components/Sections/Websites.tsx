@@ -7,8 +7,13 @@ import clsx from "clsx"
 import { useRouter } from "next/router"
 import { AccountModal } from "~/components/Modals"
 
-export const Websites:FC = () => {
-   const { accounts } = useAppSelector(state => state.accounts)
+interface WebsitesProps {
+   accounts: AccountType[]
+}
+
+export const Websites:FC<WebsitesProps> = ({
+   accounts
+}) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
 
    const addNew = () => {

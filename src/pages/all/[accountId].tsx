@@ -39,7 +39,7 @@ const AccountDetail:NextPage = () => {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <div className="flex flex-1 min-h-0 relative">
-            <Websites />
+            {/* <Websites /> */}
             <Detail account={active!}/>
          </div>
       </Layout>

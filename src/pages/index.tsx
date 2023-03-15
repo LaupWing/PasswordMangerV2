@@ -5,7 +5,7 @@ import { Layout } from "~/components/Global"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { fetchDirectories, fetchPasswords } from "~/slices/accountsSlice"
+import { fetchPasswords } from "~/slices/accountsSlice"
 
 export default function Home() {
    const dispatch = useAppDispatch()
@@ -48,7 +48,9 @@ export default function Home() {
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
-         <Websites />
+         <Websites 
+            accounts={accounts}
+         />
       </Layout>
    )
 }
