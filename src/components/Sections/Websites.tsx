@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { AccountType } from "types"
 import { useAppSelector } from "~/redux/hooks"
 import { IconSearch, ImageContainer } from "~/components/Elements"
@@ -9,20 +9,30 @@ import { AccountModal } from "~/components/Modals"
 
 export const Websites:FC = () => {
    const { accounts } = useAppSelector(state => state.accounts)
+   const [showModal, setShowModal] = useState<false|AccountType>(false)
+   const [is_new, setIsNew] = useState(false)
+
+   const addNew = () => {
+      setIsNew(true)
+      setShowModal({
+         directories: [],
+         id: "",
+         name: "",
+         password: "",
+         url: "",
+         username: ""
+      })
+   }
    
    return (
       <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
-         {/* <AccountModal 
-            account={{
-               directories: [],
-               id: "",
-               name: "",
-               password: "",
-               url: "",
-               username: ""
-            }}
-         /> */}
-         <AddWebsiteForm />
+         {showModal && <AccountModal 
+            account={showModal}
+            is_new={is_new}
+         />}
+         <AddWebsiteForm 
+            addNew={addNew}
+         />
          <ul className="text-white text-sm w-full overflow-y-auto">
             {accounts.map(account => (
                <WebsiteItem
@@ -59,7 +69,12 @@ const WebsiteItem:FC<{
    )
 }
 
-const AddWebsiteForm:FC = () => {
+interface AddWebsiteFormProps {
+   addNew: () => void
+} 
+const AddWebsiteForm:FC<AddWebsiteFormProps> = ({
+   addNew
+}) => {
    return (
       <div className="mb-4 flex text-accent-grey">
          <div className="bg-main-tertiare rounded flex p-2 flex-1 items-center">
@@ -71,6 +86,7 @@ const AddWebsiteForm:FC = () => {
             />
          </div>
          <button
+            onClick={addNew}
             className="w-12 text-2xl text-white rounded ml-4 bg-blue-600"
          >
             +
