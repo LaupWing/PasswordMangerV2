@@ -55,8 +55,9 @@ export const postDirectories =
          })
          return snapshot.id
       })
-      const newDirectories = await Promise.all(proxy)
-      console.log(newDirectories)
+      const new_directories = await Promise.all(proxy)
+      
+      return new_directories
    }
 
 export default passwordsSlice.reducer
