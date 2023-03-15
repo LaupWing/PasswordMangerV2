@@ -61,8 +61,6 @@ export const fetchDirectories =
 
 export const toggleFavorite = 
    (id: string, is_favorite: boolean) => async (dispatch: Dispatch) => {
-      console.log(id)
-      console.log(is_favorite)
       await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
          is_favorite
       })
