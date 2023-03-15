@@ -40,7 +40,12 @@ export const passwordsSlice = createSlice({
    },
 })
 
-export const { setPasswords, setDirectories, setFavorite } = passwordsSlice.actions
+export const { 
+   setPasswords, 
+   setDirectories, 
+   setFavorite,
+   updateAccount 
+} = passwordsSlice.actions
 
 
 export const fetchPasswords = 
@@ -68,6 +73,7 @@ export const patchAccount =
       await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
          ...updates
       })
+      dispatch(updateAccount({id, updates}))
    }
    
 
