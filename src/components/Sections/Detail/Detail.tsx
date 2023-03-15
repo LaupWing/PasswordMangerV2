@@ -14,7 +14,7 @@ export const Detail:FC<{account: AccountType}> = ({
       <>
          {showModal && <AccountModal 
             account={showModal}
-            is_new={true}
+            is_new={false}
             close={() => setShowModal(false)}
          />}
          <div className="flex-1 items-start p-4 pt-6 max-w-5xl flex flex-col">

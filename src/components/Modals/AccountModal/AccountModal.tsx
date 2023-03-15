@@ -4,6 +4,7 @@ import StringCrypto from "string-crypto"
 import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
+import { decryptPassword } from "~/lib/utils"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { postDirectories } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
@@ -27,11 +28,8 @@ export const AccountModal:FC<AccountModalProps> = ({
 }) => {
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(true)
-   const { decryptString } = new StringCrypto()
-   const { master_key } = useAppSelector(state => state.auth)
-   const parsed_password = is_new ? "" : decryptString(
-      account.password,
-      master_key
+   const parsed_password = is_new ? "" : decryptPassword(
+      account.password
    ) 
    const [edit_account, setEditAccount] = useState({
       ...account,
