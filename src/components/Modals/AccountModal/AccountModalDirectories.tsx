@@ -4,13 +4,18 @@ import { useState, Fragment, FC } from "react"
 import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
 
 interface AccountModalDirectoriesProps {
-   setDirectories: () => void
-   directories: string[]
+   addDirectory: (is_new: boolean, value: string) => void
+   removeDirectory: (value: string) => void
+   directories: {
+      is_new: boolean,
+      value: string
+   }[]
 }
 
 export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
    directories,
-   setDirectories
+   addDirectory,
+   removeDirectory
 }) => {
    return (
       <div className="flex flex-col space-y-4">
@@ -20,7 +25,7 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
                {directories.map(directory => (
                   <div className="flex items-center flex-1 justify-between">
                      <span className="flex w-72 text-white/60 px-1">
-                        {directory}
+                        {directory.value}
                      </span>
                      <IconTrashcan 
                         className="text-white cursor-pointer hover:text-red-500" 

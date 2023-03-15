@@ -18,7 +18,10 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(false)
    const [edit_account, setEditAccount] = useState(account)
-   const [directories, setDirectories] = useState([])
+   const [directories, setDirectories] = useState<{
+      is_new: boolean,
+      value: string
+   }[]>([])
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
 
@@ -73,7 +76,15 @@ export const AccountModal:FC<AccountModalProps> = ({
                ) :(
                   <AccountModalDirectories
                      directories={directories}
-                     setDirectories={()=> setDirectories}
+                     removeDirectory={(value)=>{
+                        setDirectories([...directories].filter(x => x.value !== value))
+                     }}
+                     addDirectory={(is_new, value) => {
+                        setDirectories([...directories, {
+                           is_new,
+                           value
+                        }])
+                     }}
                   />
                )}
             </div>
