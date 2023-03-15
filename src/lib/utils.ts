@@ -5,3 +5,10 @@ export const missingClass = (string?: string, prefix?: string) => {
    const regex = new RegExp(` ?${prefix}`, "g")
    return string.match(regex) === null
 }
+
+export const encryptPassword = () => {
+
+}
+export const decryptPassword = () => {
+
+}
