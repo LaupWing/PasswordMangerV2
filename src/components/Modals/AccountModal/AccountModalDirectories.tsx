@@ -87,7 +87,7 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                   <Listbox.Button 
                      className="relative w-72 cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
                   >
-                     <span className="block truncate">{selected}</span>
+                     <span className="block truncate h-5">{selected}</span>
                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                      <IconChevron
                         className="h-5 w-5 text-gray-400"
@@ -98,7 +98,11 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                   <button 
                      className="w-12 rounded ml-2 text-white bg-blue-600"
                      onClick={() => {
+                        if(selected === ""){
+                           return
+                        }
                         addDirectory(false, selected)
+                        setSelected("")
                      }}
                   >
                      +
@@ -112,48 +116,65 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                >
                   <Listbox.Options className="absolute w-72 mt-1 max-h-60 overflow-auto rounded-md bg-main-tertiare divide-y divide-main-secondary/40 text-base shadow-lg sm:text-sm">
                   {directories.map((directory, index) => (
-                     <Listbox.Option
+                     <DirectoryDropdownItem
+                        directory={directory}
+                        index={index}
+                        in_directories={in_directories}
                         key={index}
-                        className={({ active }) =>
-                           clsx(
-                              "relative cursor-default select-none py-2 pl-10 pr-4",
-                              active 
-                                    ? "bg-blue-100/5 text-white" 
-                                    : "text-white"
-                           )
-                           // clsx(
-                           //    "relative cursor-default select-none py-2 pl-10 pr-4",
-                           //    directory.unavailable 
-                           //       ? "text-gray-300 bg-gray-200"
-                           //       : active 
-                           //          ? "bg-blue-100 text-blue-900" 
-                           //          : "text-gray-900"
-                           // )
-                        }
-                        value={directory}
-                     >
-                        {({ selected }) => (
-                        <>
-                           <span
-                              className={`block truncate ${
-                              selected ? 'font-medium' : 'font-normal'
-                              }`}
-                           >
-                              {directory}
-                           </span>
-                           {selected ? (
-                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                 <IconCheckmark className="h-5 w-5" aria-hidden="true" />
-                              </span>
-                           ) : null}
-                        </>
-                        )}
-                     </Listbox.Option>
+                     />
                   ))}
                   </Listbox.Options>
                </Transition>
             </div>
          </Listbox>
       </div>
+   )
+}
+
+interface DirectoryDropdownItemProps {
+   directory: string
+   index: number
+   in_directories: DirectoryExtended[] 
+}
+
+const DirectoryDropdownItem:FC<DirectoryDropdownItemProps> = ({
+   index,
+   directory,
+   in_directories
+}) => {
+   const disable = in_directories.find(x => x.name === directory)
+
+   return (
+      <Listbox.Option
+         key={index}
+         className={({ active }) =>
+            clsx(
+               "relative cursor-default select-none py-2 pl-10 pr-4",
+               disable 
+                  ? "text-gray-500 bg-gray-600/20 cursor-not-allowed"
+                  : active 
+                     ? "bg-blue-100/5 text-white" 
+                     : "text-white"
+            )
+         }
+         value={directory}
+      >
+         {({ selected }) => (
+         <>
+            <span
+               className={`block truncate ${
+               selected ? 'font-medium' : 'font-normal'
+               }`}
+            >
+               {directory}
+            </span>
+            {selected ? (
+               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                  <IconCheckmark className="h-5 w-5" aria-hidden="true" />
+               </span>
+            ) : null}
+         </>
+         )}
+      </Listbox.Option>
    )
 }
