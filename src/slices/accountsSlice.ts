@@ -18,7 +18,7 @@ export const passwordsSlice = createSlice({
    name: "auth",
    initialState,
    reducers: {
-      setPasswords: (state, action: PayloadAction<AccountType[]>) => {
+      setAccounts: (state, action: PayloadAction<AccountType[]>) => {
          state.accounts = action.payload
       },
       setDirectories: (state, action: PayloadAction<DirectoryType[]>) => {
@@ -41,7 +41,7 @@ export const passwordsSlice = createSlice({
 })
 
 export const { 
-   setPasswords, 
+   setAccounts, 
    setDirectories, 
    setFavorite,
    updateAccount 
@@ -53,7 +53,7 @@ export const fetchPasswords =
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         dispatch(setPasswords(
+         dispatch(setAccounts(
             snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
          ))
       }
@@ -74,6 +74,15 @@ export const patchAccount =
          ...updates
       })
       dispatch(updateAccount({id, updates}))
+   }
+   
+export const createAccount =
+   (account: AccountType) => async (dispatch: Dispatch) => {
+      const new_doc = await addDoc(collection(db, "accounts", auth.currentUser?.uid!, "collection"), {
+         ...account
+      })
+      new_doc.id
+      // dispatch(updateAccount({id, updates}))
    }
    
 
