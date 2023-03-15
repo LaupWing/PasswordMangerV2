@@ -29,6 +29,7 @@ export const Websites:FC = () => {
          {showModal && <AccountModal 
             account={showModal}
             is_new={is_new}
+            close={() => setShowModal(false)}
          />}
          <AddWebsiteForm 
             addNew={addNew}

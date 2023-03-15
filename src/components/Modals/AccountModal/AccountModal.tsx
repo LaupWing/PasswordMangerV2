@@ -11,6 +11,7 @@ import { AccountModalInfo } from "./AccountModalInfo"
 interface AccountModalProps {
    is_new?: boolean
    account?: AccountType
+   close: () => void
 }
 
 export interface DirectoryExtended extends Omit<DirectoryType, "id"> {
@@ -20,10 +21,11 @@ export interface DirectoryExtended extends Omit<DirectoryType, "id"> {
 
 export const AccountModal:FC<AccountModalProps> = ({
    is_new,
-   account
+   account,
+   close
 }) => {
    const [loading, setLoading] = useState(false)
-   const [show_main_info, setShowMainInfo] = useState(false)
+   const [show_main_info, setShowMainInfo] = useState(true)
    const [edit_account, setEditAccount] = useState(account)
    const [directories, setDirectories] = useState<DirectoryExtended[]>([])
    const dispatch = useAppDispatch()
@@ -33,13 +35,14 @@ export const AccountModal:FC<AccountModalProps> = ({
    const handleSubmit = async (e: FormEvent) => {
       e.preventDefault()
       
-      console.log(edit_account)
+      setLoading(true)
       const new_directories = await dispatch(postDirectories(directories
          .filter(x => x.is_new)
          .map(x => ({
             name: x.name
          }))
       ))
+      setLoading(false)
       console.log(new_directories)
    }
 
@@ -51,8 +54,8 @@ export const AccountModal:FC<AccountModalProps> = ({
             onSubmit={handleSubmit}
          >
             {loading && (
-               <div className="flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center bg-main-secondary bg-opacity-90">
-                  <IconLoading width={10} height={10}/>
+               <div className="flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center bg-main-secondary bg-opacity-90 z-50">
+                  <IconLoading width={50} height={50}/>
                </div>
             )}
             <header className="bg-main-secondary text-white flex-col">
@@ -63,7 +66,11 @@ export const AccountModal:FC<AccountModalProps> = ({
                         : "Account bewerken"
                      }
                   </h2>
-                  <IconClose size={24} />
+                  <IconClose 
+                     className="cursor-pointer hover:text-blue-600" 
+                     size={24} 
+                     onClick={close}
+                  />
                </div>
                <div className="flex px-2 select-none">
                   <span 
