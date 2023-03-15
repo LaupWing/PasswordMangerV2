@@ -11,8 +11,9 @@ interface AccountModalProps {
    account?: AccountType
 }
 
-export interface DirectoryExtended extends DirectoryType {
+export interface DirectoryExtended extends Omit<DirectoryType, "id"> {
    is_new: boolean
+   id?: string | false
 }
 
 export const AccountModal:FC<AccountModalProps> = ({
@@ -80,10 +81,11 @@ export const AccountModal:FC<AccountModalProps> = ({
                      removeDirectory={(name)=>{
                         setDirectories([...directories].filter(x => x.name !== name))
                      }}
-                     addDirectory={(is_new, name) => {
+                     addDirectory={(is_new, name, id = false) => {
                         setDirectories([...directories, {
                            is_new,
-                           name
+                           name,
+                           id
                         }])
                      }}
                   />
