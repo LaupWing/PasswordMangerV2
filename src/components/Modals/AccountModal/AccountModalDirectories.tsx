@@ -40,6 +40,7 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
          <div className="flex flex-col space-y-4">
             <DirectoryDropdown
                in_directories={directories}
+               addDirectory={addDirectory}
             />
             <div className="flex">
                <Input 
@@ -65,9 +66,13 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
 
 interface DirectoryDropdownProps {
    in_directories: DirectoryExtended[] 
+   addDirectory: (is_new: boolean, name: string) => void
 }
 
-const DirectoryDropdown:FC<DirectoryDropdownProps> = () => {
+const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
+   addDirectory,
+   in_directories
+}) => {
    const directories = useAppSelector(state => state.accounts.directories).map(x=> x.name)
    const [selected, setSelected] = useState(directories[0])
    
@@ -90,7 +95,12 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = () => {
                      />
                      </span>
                   </Listbox.Button>
-                  <button className="w-12 rounded ml-2 text-white bg-blue-600">
+                  <button 
+                     className="w-12 rounded ml-2 text-white bg-blue-600"
+                     onClick={() => {
+                        addDirectory(false, selected)
+                     }}
+                  >
                      +
                   </button>
                </div>
