@@ -37,6 +37,11 @@ export const passwordsSlice = createSlice({
                ...action.payload.updates
             }) : ({...x}))
       },
+      addAccount: (state, action: PayloadAction<AccountType>) => {
+         state.accounts = [...state.accounts, {
+            ...action.payload
+         }]
+      },
    },
 })
 
@@ -44,6 +49,7 @@ export const {
    setAccounts, 
    setDirectories, 
    setFavorite,
+   addAccount,
    updateAccount 
 } = passwordsSlice.actions
 
@@ -81,8 +87,10 @@ export const createAccount =
       const new_doc = await addDoc(collection(db, "accounts", auth.currentUser?.uid!, "collection"), {
          ...account
       })
-      new_doc.id
-      // dispatch(updateAccount({id, updates}))
+      dispatch(addAccount({
+         ...account,
+         id: new_doc.id
+      }))
    }
    
 
