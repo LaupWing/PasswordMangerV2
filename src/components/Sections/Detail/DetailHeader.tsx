@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { AccountType } from "types"
-import { ImageContainer } from "~/components/Elements"
+import { IconStarFill, IconStarOutline, ImageContainer } from "~/components/Elements"
 
 export const DetailHeader:FC<{account: AccountType}> = ({
    account
@@ -20,6 +20,11 @@ export const DetailHeader:FC<{account: AccountType}> = ({
             </h2>
             <p className="text-accent-grey">Login</p>
          </div>
+         {account.is_favorite ? (
+            <IconStarOutline className="ml-auto my-auto" size={50} />
+         ) : (
+            <IconStarFill className="ml-auto my-auto text-yellow-500" size={50} />
+         )}
       </header>
    )
 }

@@ -23,7 +23,8 @@ export const Websites:FC<WebsitesProps> = ({
          name: "",
          password: "",
          url: "",
-         username: ""
+         username: "",
+         is_favorite: false
       })
    }
    

@@ -7,6 +7,7 @@ export interface AccountType {
    url: string
    username: string
    directories: string[]
+   is_favorite: boolean
 } 
 
 export interface DirectoryType {
