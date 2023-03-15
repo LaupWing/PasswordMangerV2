@@ -1,6 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
+import { useRouter } from "next/router"
 import StringCrypto from "string-crypto"
 import { auth, db } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
@@ -15,6 +16,7 @@ interface AuthState {
       seconds: number
    },
    secret_key: string
+   master_key: string
 }
 
 const initialState:AuthState = {
@@ -25,7 +27,8 @@ const initialState:AuthState = {
       minutes: 0,
       seconds: 0
    },
-   secret_key: typeof window !== "undefined" && localStorage.getItem("secret_key") || ""
+   secret_key: typeof window !== "undefined" && localStorage.getItem("secret_key") || "",
+   master_key: ""
 }
 
 export const authSlice = createSlice({
@@ -51,7 +54,9 @@ export const authSlice = createSlice({
       setKeys: (state, action: PayloadAction<{secret: string, secret_key: string}>) => {
          const { decryptString } = new StringCrypto()
          const { secret, secret_key } = action.payload
-         console.log(decryptString(secret, secret_key))
+
+         state.master_key = decryptString(secret, secret_key) 
+         state.secret_key = secret_key
       }
    },
 })
@@ -64,13 +69,8 @@ export const login =
       try{
          await setPersistence(auth, browserSessionPersistence)
          const user = await signInWithEmailAndPassword(auth, email, password)
-         const secret = await checkSecretKey(secret_key, user.user.uid)
          localStorage.setItem('secret_key', secret_key)
          dispatch(setExperTime(user))
-         dispatch(setKeys({
-            secret,
-            secret_key
-         }))
          // dispatch(incrementTimer())
       }catch(e){
          auth.signOut()
@@ -84,8 +84,17 @@ export const logout =
    }
    
 export const getUser = 
-   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
-
+   (secret_key: string) => async (dispatch: Dispatch) => {
+      try{
+         const secret = await checkSecretKey(secret_key, auth.currentUser?.uid!)
+         dispatch(setKeys({
+            secret,
+            secret_key
+         }))
+      }catch(e){
+         auth.signOut()
+         throw new Error(e as any)
+      }
    }
 
 export default authSlice.reducer

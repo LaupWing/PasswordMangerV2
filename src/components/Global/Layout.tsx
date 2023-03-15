@@ -1,17 +1,20 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react"
 import { Protected } from "./Protected"
 import { Sidenav, Topnav } from "~/components/Global"
-import { useAppDispatch } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { auth } from "~/firebase"
 import { fetchDirectories } from "~/slices/accountsSlice"
+import { getUser } from "~/slices/authSlice"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
+   const { secret_key } = useAppSelector(state => state.auth)
 
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
+            await dispatch(getUser(secret_key))
             await dispatch(fetchDirectories())
          }
          setLoaded(true)
