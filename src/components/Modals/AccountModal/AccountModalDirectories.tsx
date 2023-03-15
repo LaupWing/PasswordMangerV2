@@ -1,12 +1,13 @@
 import { Listbox, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useState, Fragment, FC } from "react"
+import { DirectoryType } from "types"
 import { IconCheckmark, IconChevron, IconTrashcan, Input } from "~/components/Elements"
 import { useAppSelector } from "~/redux/hooks"
 import { DirectoryExtended } from "./AccountModal"
 
 interface AccountModalDirectoriesProps {
-   addDirectory: (is_new: boolean, name: string) => void
+   addDirectory: (is_new: boolean, name: string, id?: string | false) => void
    removeDirectory: (name: string) => void
    directories: DirectoryExtended[]
 }
@@ -66,14 +67,14 @@ export const AccountModalDirectories:FC<AccountModalDirectoriesProps> = ({
 
 interface DirectoryDropdownProps {
    in_directories: DirectoryExtended[] 
-   addDirectory: (is_new: boolean, name: string) => void
+   addDirectory: (is_new: boolean, name: string, id?: string | false) => void
 }
 
 const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
    addDirectory,
    in_directories
 }) => {
-   const directories = useAppSelector(state => state.accounts.directories).map(x=> x.name)
+   const directories = useAppSelector(state => state.accounts.directories)
    const [selected, setSelected] = useState(directories[0])
    
    return (
@@ -87,7 +88,7 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                   <Listbox.Button 
                      className="relative w-72 cursor-default rounded bg-main-tertiare py-2 pl-3 pr-10 text-left shadow-md focus-visible:ring-2 ring-blue-600  sm:text-sm"
                   >
-                     <span className="block truncate h-5">{selected}</span>
+                     <span className="block truncate h-5">{selected.name}</span>
                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                      <IconChevron
                         className="h-5 w-5 text-gray-400"
@@ -98,11 +99,10 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
                   <button 
                      className="w-12 rounded ml-2 text-white bg-blue-600"
                      onClick={() => {
-                        if(selected === ""){
+                        if(selected.name === ""){
                            return
                         }
-                        addDirectory(false, selected)
-                        setSelected("")
+                        addDirectory(false, selected.name, selected.id)
                      }}
                   >
                      +
@@ -132,7 +132,7 @@ const DirectoryDropdown:FC<DirectoryDropdownProps> = ({
 }
 
 interface DirectoryDropdownItemProps {
-   directory: string
+   directory: DirectoryType
    index: number
    in_directories: DirectoryExtended[] 
 }
@@ -142,7 +142,7 @@ const DirectoryDropdownItem:FC<DirectoryDropdownItemProps> = ({
    directory,
    in_directories
 }) => {
-   const disable = in_directories.find(x => x.name === directory)
+   const disable = in_directories.find(x => x.id === directory.id)
 
    return (
       <Listbox.Option
@@ -166,7 +166,7 @@ const DirectoryDropdownItem:FC<DirectoryDropdownItemProps> = ({
                selected ? 'font-medium' : 'font-normal'
                }`}
             >
-               {directory}
+               {directory.name}
             </span>
             {selected ? (
                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
