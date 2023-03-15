@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { AccountType } from "types"
 import { Layout } from "~/components/Global"
 import { Detail, Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
@@ -10,14 +11,14 @@ import { fetchPasswords } from "~/slices/accountsSlice"
 
 const AccountDetail:NextPage = () => {
    const dispatch = useAppDispatch()
-   const { accounts } = useAppSelector(state => state.accounts)
    const [loaded, setLoaded] = useState(false)
+   const [accounts, setAccounts] = useState<AccountType[]>([])
    const router = useRouter()
 
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            await dispatch(fetchPasswords())
+            setAccounts(await dispatch(fetchPasswords()))
          }
          setLoaded(true)
       })()
@@ -39,7 +40,7 @@ const AccountDetail:NextPage = () => {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <div className="flex flex-1 min-h-0 relative">
-            {/* <Websites /> */}
+            <Websites accounts={accounts}/>
             <Detail account={active!}/>
          </div>
       </Layout>

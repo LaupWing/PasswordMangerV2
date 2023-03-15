@@ -11,10 +11,8 @@ import { fetchPasswords } from "~/slices/accountsSlice"
 export default function Home() {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
-   const { decryptString } = new StringCrypto()
    const [accounts, setAccounts] = useState<AccountType[]>([])
    
-
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
