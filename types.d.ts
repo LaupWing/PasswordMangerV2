@@ -8,3 +8,8 @@ export interface AccountType {
    username: string
    directories: string[]
 } 
+
+export interface DirectoryType {
+   id?: string
+   name: string
+}

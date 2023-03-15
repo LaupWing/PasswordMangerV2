@@ -19,6 +19,9 @@ export const passwordsSlice = createSlice({
       setPasswords: (state, action: PayloadAction<any>) => {
          state.accounts = action.payload
       },
+      setDirectories: (state, action) => {
+         
+      }
    },
 })
 
@@ -39,7 +42,7 @@ export const fetchDirectories =
       const snapshot = await getDocs(collection(db, "directories", auth.currentUser?.uid!, "collection"))
       
       if(!snapshot.empty){
-         console.log(snapshot)
+         console.log(snapshot.docs.map(x => ({...x.data(), id: x.id})))
       }
    }
 
