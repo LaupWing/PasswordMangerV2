@@ -6,7 +6,7 @@ import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 import { decryptPassword } from "~/lib/utils"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { postDirectories } from "~/slices/accountsSlice"
+import { createAccount, postDirectories, updateAccount } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
@@ -50,12 +50,31 @@ export const AccountModal:FC<AccountModalProps> = ({
             name: x.name
          }))
       ))
-      console.log([
-         ...new_directories,
-         ...directories.map(x => x.id)
-      ])
+      if(is_new){
+         dispatch(createAccount({
+            ...edit_account,
+            directories: [
+               ...new_directories,
+               ...directories.map(x => x.id)
+            ] as string[]
+         }))
+      }else {
+         dispatch(updateAccount({
+            id: account.id!,
+            updates: {
+               directories: [
+                  ...new_directories,
+                  ...directories.map(x => x.id)
+               ] as string[],
+               is_favorite: account.is_favorite,
+               name: account.name,
+               password: account.password,
+               url: account.url,
+               username: account.username
+            }
+         }))
+      }
       setLoading(false)
-      console.log(new_directories)
    }
 
    return (

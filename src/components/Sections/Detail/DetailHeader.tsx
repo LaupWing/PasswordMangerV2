@@ -29,7 +29,7 @@ export const DetailHeader:FC<{account: AccountType}> = ({
                className="ml-auto my-auto text-yellow-500" 
                size={50} 
                onClick={() => {
-                  dispatch(toggleFavorite(account.id, false))
+                  dispatch(toggleFavorite(account.id!, false))
                   notify("favorite", "Favoriete", "Verwijderd uit favoriete")
                }}
             />
@@ -38,7 +38,7 @@ export const DetailHeader:FC<{account: AccountType}> = ({
                className="ml-auto my-auto" 
                size={50} 
                onClick={async () => {
-                  await dispatch(toggleFavorite(account.id, true))
+                  await dispatch(toggleFavorite(account.id!, true))
                   notify("favorite", "Favoriete", "Toegevoegd aan favoriete")
                }}
             />
