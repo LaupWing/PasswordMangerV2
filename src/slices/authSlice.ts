@@ -64,14 +64,12 @@ export const authSlice = createSlice({
 export const { setExperTime, incrementTimer, setKeys } = authSlice.actions
 
 export const login = 
-   (email: string, password: string, secret_key: string) => 
-   async (dispatch: Dispatch) => {
+   (email: string, password: string) => 
+   async () => {
       try{
          await setPersistence(auth, browserSessionPersistence)
-         const user = await signInWithEmailAndPassword(auth, email, password)
-         localStorage.setItem('secret_key', secret_key)
-         dispatch(setExperTime(user))
-         // dispatch(incrementTimer())
+         await signInWithEmailAndPassword(auth, email, password)
+         
       }catch(e){
          auth.signOut()
          throw new Error(e as any)
@@ -86,6 +84,7 @@ export const logout =
 export const getUser = 
    (secret_key: string) => async (dispatch: Dispatch) => {
       try{
+         localStorage.setItem('secret_key', secret_key)
          const secret = await checkSecretKey(secret_key, auth.currentUser?.uid!)
          dispatch(setKeys({
             secret,

@@ -12,7 +12,7 @@ export const Websites:FC = () => {
    
    return (
       <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
-         <AccountModal 
+         {/* <AccountModal 
             account={{
                directories: [],
                id: "",
@@ -21,7 +21,7 @@ export const Websites:FC = () => {
                url: "",
                username: ""
             }}
-         />
+         /> */}
          <AddWebsiteForm />
          <ul className="text-white text-sm w-full overflow-y-auto">
             {accounts.map(account => (

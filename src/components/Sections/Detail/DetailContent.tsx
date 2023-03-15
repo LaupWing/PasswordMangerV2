@@ -3,8 +3,10 @@ import copy from "copy-to-clipboard"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useState } from "react"
+import StringCrypto from "string-crypto"
 import { AccountType } from "types"
 import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
+import { useAppSelector } from "~/redux/hooks"
 
 export const DetailContent:FC<{account: AccountType}> = ({ account }) => {
    const [show_info, setShowInfo] = useState(true)
@@ -79,6 +81,12 @@ const Info:FC<{account: AccountType}> = ({
    account
 }) => {
    const [show_password, setShowPassword] = useState(false)
+   const { decryptString } = new StringCrypto()
+   const { master_key } = useAppSelector(state => state.auth)
+   const parsed_password = decryptString(
+      account.password,
+      master_key
+   ) 
 
    return (
       <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
@@ -90,7 +98,7 @@ const Info:FC<{account: AccountType}> = ({
          </InfoField>
          <InfoField
             label="password"
-            value={account.password}
+            value={parsed_password}
             show_password={show_password}
             is_password
          >
@@ -145,6 +153,7 @@ const InfoField:FC<InfoFieldProps> = ({
                   value={value}
                   type={show_password ? "text" : "password"} 
                   className="text-white bg-transparent pointer-events-none"
+                  readOnly
                />
             ) : (
                <p className="text-white">

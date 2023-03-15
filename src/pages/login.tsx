@@ -4,7 +4,7 @@ import { FormElements } from "types"
 import { IconLoading, Input } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { login } from "~/slices/authSlice"
+import { getUser, login } from "~/slices/authSlice"
 
 const LoginPage = () => {
    const dispatch = useAppDispatch()
@@ -38,7 +38,9 @@ const LoginPage = () => {
       try{
          await dispatch(login(
             elements.email.value, 
-            elements.password.value, 
+            elements.password.value
+         ))
+         await dispatch(getUser(
             secret_key
          ))
          await router.replace("/")
