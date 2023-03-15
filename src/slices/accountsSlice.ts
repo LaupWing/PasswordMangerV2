@@ -34,4 +34,13 @@ export const fetchPasswords =
       }
    }
 
+export const fetchDirectories = 
+   () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+      const snapshot = await getDocs(collection(db, "directories", auth.currentUser?.uid!, "collection"))
+      
+      if(!snapshot.empty){
+         console.log(snapshot)
+      }
+   }
+
 export default passwordsSlice.reducer

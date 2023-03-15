@@ -4,9 +4,7 @@ import { Layout } from "~/components/Global"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch } from "~/redux/hooks"
-import { fetchPasswords } from "~/slices/accountsSlice"
-import { toast } from "react-hot-toast"
-import { notify } from "~/components/Global/Notify"
+import { fetchDirectories, fetchPasswords } from "~/slices/accountsSlice"
 
 export default function Home() {
    const dispatch = useAppDispatch()
@@ -19,7 +17,6 @@ export default function Home() {
          }
          setLoaded(true)
       })()
-      notify("success", "Updatef", "Text is gupadeee")
    },[])
 
    if(!loaded){
