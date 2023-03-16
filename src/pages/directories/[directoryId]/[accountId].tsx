@@ -1,12 +1,15 @@
 import { NextPage } from "next"
 import Head from "next/head"
+import { useRouter } from "next/router"
 import { AccountsDetail } from "~/components/Global"
-import { fetchFavoriteAccounts } from "~/slices/accountsSlice"
+import { fetchFavoriteAccounts, getDirectoryAccounts } from "~/slices/accountsSlice"
 
 const DirectoryDetail:NextPage = () => {
+   const router = useRouter()
+   const id = router!.query!.directoryId as string 
    return (
       <AccountsDetail 
-         dispatchFunction={fetchFavoriteAccounts}
+         dispatchFunction={() => getDirectoryAccounts(id)}
          prefix="favorites"
       >
          <Head>
