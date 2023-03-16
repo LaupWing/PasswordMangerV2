@@ -50,6 +50,9 @@ export const Websites:FC<WebsitesProps> = ({
                   prefix={prefix}
                />
             ))}
+            {accounts.length === 0 &&  (
+               <p className="opacity-30 text-center tracking-wider uppercase text-xs py-6">Nog geen accounts toegevoegd!</p>
+            )}
          </ul>
       </div>
    )
