@@ -13,10 +13,11 @@ const AccountDetail:NextPage = () => {
    const [loaded, setLoaded] = useState(false)
    const router = useRouter()
    const { accounts } = useAppSelector(state => state.accounts)
-
+   console.log(loaded)
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
+            console.log("fetching")
             await dispatch(fetchAccounts())
          }
          setLoaded(true)
