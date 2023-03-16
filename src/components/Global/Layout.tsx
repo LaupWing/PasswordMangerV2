@@ -4,7 +4,7 @@ import { Sidenav, Topnav } from "~/components/Global"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { auth } from "~/firebase"
 import { fetchDirectories } from "~/slices/accountsSlice"
-import { getUser } from "~/slices/authSlice"
+import { getUser, incrementTimer, setExperTime } from "~/slices/authSlice"
 import { useRouter } from "next/router"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
@@ -19,6 +19,10 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
             if(auth.currentUser){
                await dispatch(getUser(secret_key))
                await dispatch(fetchDirectories())
+               dispatch(setExperTime())
+               // setInterval(() => {
+               //    dispatch(incrementTimer())
+               // }, 1000)
             }
          }catch{
             router.replace("/login")
