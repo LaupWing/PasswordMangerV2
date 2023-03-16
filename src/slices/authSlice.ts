@@ -9,7 +9,7 @@ import { store } from "~/redux/store"
 
 interface AuthState {
    expire_time: number
-   interval: () => void
+   interval: ReturnType<typeof setInterval>
    timer: number
    time_left: {
       minutes: number,
@@ -21,7 +21,7 @@ interface AuthState {
 
 const initialState:AuthState = {
    expire_time: 0,
-   interval: () => {},
+   interval: setInterval(()=>{}),
    timer: 0,
    time_left: {
       minutes: 0,
@@ -58,7 +58,8 @@ export const authSlice = createSlice({
          state.master_key = decryptString(secret, secret_key) 
          state.secret_key = secret_key
       },
-      startTimer: (state, action: PayloadAction<() => void>) => {
+      startTimer: (state, action: PayloadAction<ReturnType<typeof setInterval>>) => {
+         clearInterval(state.interval)
          state.interval = action.payload
       }
    },

@@ -20,9 +20,9 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                await dispatch(getUser(secret_key))
                await dispatch(fetchDirectories())
                await dispatch(setExperTime())
-               dispatch(startTimer(setInterval(() => {
-                  dispatch(incrementTimer())
-               }, 1000)))
+               // dispatch(startTimer(setInterval(() => {
+               //    dispatch(incrementTimer())
+               // }, 1000)))
                
             }
          }catch{
