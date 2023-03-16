@@ -43,15 +43,6 @@ export const authSlice = createSlice({
       },
       incrementTimer: (state) => {
          state.timer = state.timer + 1
-         const timeLeft = state.expire_time - state.timer
-         console.log(new Date().getTime())
-         console.log(timeLeft)
-         const minutes = Math.floor(timeLeft / 60)
-         const seconds = Math.floor(timeLeft - minutes * 60)
-         state.time_left = {
-            minutes,
-            seconds
-         }
       },
       setKeys: (state, action: PayloadAction<{secret: string, secret_key: string}>) => {
          const { decryptString } = new StringCrypto()
