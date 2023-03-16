@@ -10,7 +10,7 @@ export default function Directory() {
    return (
       <Accounts 
          dispatchFunction={() => getDirectoryAccounts(id)} 
-         prefix="favorites"
+         prefix={`/directories/${id}`}
          in_directory={id}
       >
          <Head>
