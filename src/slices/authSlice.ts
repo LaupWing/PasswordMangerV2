@@ -1,7 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
-import { useRouter } from "next/router"
 import StringCrypto from "string-crypto"
 import { auth, db } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
@@ -43,7 +42,8 @@ export const authSlice = createSlice({
       incrementTimer: (state) => {
          state.timer = state.timer + 1
          const timeLeft = state.expire_time - state.timer
-
+         console.log(new Date().getTime())
+         console.log(timeLeft)
          const minutes = Math.floor(timeLeft / 60)
          const seconds = Math.floor(timeLeft - minutes * 60)
          state.time_left = {
