@@ -30,7 +30,8 @@ export const AccountModal:FC<AccountModalProps> = ({
    const [show_main_info, setShowMainInfo] = useState(true)
    const { master_key } = useAppSelector(state => state.auth)
    const parsed_password = is_new ? "" : decryptPassword(
-      account.password
+      account.password,
+      master_key
    ) 
    const [edit_account, setEditAccount] = useState({
       ...account,
