@@ -5,12 +5,13 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { incrementTimer, startTimer } from "~/slices/authSlice"
 
 export const Topnav = () => {
-   const { start_time, timer, expire_time } = useAppSelector(state => state.auth)
+   const { timer, expire_time } = useAppSelector(state => state.auth)
    const router = useRouter()
    const dispatch = useAppDispatch()
    const time_left = expire_time - timer
    console.log(timer)
    if(expire_time > time_left){
+
       console.log("expired")
    }
    useEffect(() => {

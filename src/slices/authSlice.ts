@@ -55,9 +55,6 @@ export const authSlice = createSlice({
          clearInterval(state.interval)
          state.interval = action.payload
       },
-      setStartTime: (state) => {
-         state.start_time = new Date().getTime()
-      }
    },
 })
 
@@ -66,7 +63,6 @@ export const {
    incrementTimer, 
    setKeys, 
    startTimer,
-   setStartTime 
 } = authSlice.actions
 
 export const login = 
