@@ -1,11 +1,6 @@
 import { NextPage } from "next"
 import Head from "next/head"
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
 import { AccountsDetail } from "~/components/Global"
-import { Detail, Websites } from "~/components/Sections"
-import { auth } from "~/firebase"
-import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { fetchAccounts } from "~/slices/accountsSlice"
 
 const AccountDetail:NextPage = () => {
