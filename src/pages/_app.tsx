@@ -7,14 +7,25 @@ import { auth } from "~/firebase"
 import { useState } from "react"
 import { Toaster } from "react-hot-toast"
 import { Layout } from "~/components/Global"
+import { useRouter } from "next/router"
 
 export default function App({ Component, pageProps }: AppProps) {
    const [loaded, setLoaded] = useState(false)
+   const router = useRouter()
    onAuthStateChanged(auth, () => {
       setLoaded(true)
    })
    if(!loaded){
       return null
+   }
+   if(router.asPath.includes("login")){
+      return (
+         <Provider store={store}>
+            <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
+               <Component {...pageProps} />
+            </div>
+         </Provider>
+      )
    }
    return  (
       <Provider store={store}>
