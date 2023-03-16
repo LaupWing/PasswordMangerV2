@@ -8,7 +8,6 @@ import { useAppSelector } from "~/redux/hooks"
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
    const router = useRouter()
-   console.log(router.asPath)
    
    return (
       <div className="bg-main-secondary p-4 border-r-2 border-black">
