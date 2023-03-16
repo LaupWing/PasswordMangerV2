@@ -56,7 +56,7 @@ const Directories:FC<{account: AccountType}> = ({
    const { directories } = useAppSelector(state => state.accounts)
    const formatted: DirectoryType[] = directories
       .filter(x => account.directories.find(y => y === x.id))
-   console.log(formatted)
+      
    return (
       <div className="py-6 border-y-2 flex flex-col border-main-tertiare w-full overflow-y-auto">
          {formatted.length === 0 ?  (

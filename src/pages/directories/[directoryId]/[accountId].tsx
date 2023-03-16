@@ -10,7 +10,7 @@ const DirectoryDetail:NextPage = () => {
    return (
       <AccountsDetail 
          dispatchFunction={() => getDirectoryAccounts(id)}
-         prefix={`/directories/${id}`}
+         prefix={`directories/${id}`}
       >
          <Head>
             <title>Favorites</title>
