@@ -9,18 +9,16 @@ export const missingClass = (string?: string, prefix?: string) => {
    return string.match(regex) === null
 }
 
-export const encryptPassword = (password: string) => {
+export const encryptPassword = (password: string, master_key: string) => {
    const { encryptString } = new StringCrypto()
-   const { master_key } = useAppSelector(state => state.auth)
    const parsed_password = encryptString(
       password,
       master_key
    )
    return parsed_password
 }
-export const decryptPassword = (password: string) => {
+export const decryptPassword = (password: string, master_key: string) => {
    const { decryptString } = new StringCrypto()
-   const { master_key } = useAppSelector(state => state.auth)
    const parsed_password = decryptString(
       password,
       master_key

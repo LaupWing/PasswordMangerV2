@@ -4,9 +4,8 @@ import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 import { notify } from "~/components/Global/Notify"
-import { useEncryptPassword } from "~/lib/useEncryption"
-import { decryptPassword } from "~/lib/utils"
-import { useAppDispatch } from "~/redux/hooks"
+import { decryptPassword, encryptPassword } from "~/lib/utils"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { createAccount, postDirectories, patchAccount } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
@@ -29,6 +28,7 @@ export const AccountModal:FC<AccountModalProps> = ({
 }) => {
    const [loading, setLoading] = useState(false)
    const [show_main_info, setShowMainInfo] = useState(true)
+   const { master_key } = useAppSelector(state => state.auth)
    const parsed_password = is_new ? "" : decryptPassword(
       account.password
    ) 
@@ -52,7 +52,7 @@ export const AccountModal:FC<AccountModalProps> = ({
          }))
       ))
       if(is_new){
-         useEncryptPassword(edit_account.password)
+         encryptPassword(edit_account.password, master_key)
          // dispatch(createAccount({
          //    is_favorite: edit_account.is_favorite,
          //    name: edit_account.name,
