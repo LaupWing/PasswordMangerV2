@@ -1,6 +1,5 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
 import { Accounts } from "~/components/Global"
 import { getDirectoryAccounts } from "~/slices/accountsSlice"
 
