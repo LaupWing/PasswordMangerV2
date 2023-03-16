@@ -33,7 +33,7 @@ export const Sidenav = () => {
             <li className="p-1 mt-2 text-white text-opacity-30 uppercase tracking-widest font-bold">Mappen</li>
             {directories.map(directory => (
                <SidenavLink 
-                  href={`directory/${directory.id}`}
+                  href={`/directories/${directory.id}`}
                   className="justify-between"
                   activeCheck={directory.id!}
                   key={directory.id}
