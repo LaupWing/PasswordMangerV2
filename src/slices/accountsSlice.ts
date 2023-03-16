@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
@@ -117,6 +117,34 @@ export const toggleFavorite =
          id,
          is_favorite
       }))
+   }
+
+export const removeFromDirectory = 
+   (id: string, account_id: string) => async (dispatch: Dispatch) => {
+      await deleteDoc(doc(
+         db, 
+         "directories", 
+         auth.currentUser?.uid!, 
+         "collection", 
+         id,
+         "accounts",
+         account_id
+      ))
+   }
+
+export const addToDirectory = 
+   (id: string, account_id: string) => async (dispatch: Dispatch) => {
+      await setDoc(doc(
+         db, 
+         "directories", 
+         auth.currentUser?.uid!, 
+         "collection", 
+         id,
+         "accounts",
+         account_id
+      ), {
+         id: account_id
+      })
    }
 
 export const postDirectories = 
