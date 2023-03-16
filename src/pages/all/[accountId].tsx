@@ -6,7 +6,7 @@ import { Layout } from "~/components/Global"
 import { Detail, Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { fetchPasswords } from "~/slices/accountsSlice"
+import { fetchAccounts } from "~/slices/accountsSlice"
 
 const AccountDetail:NextPage = () => {
    const dispatch = useAppDispatch()
@@ -17,7 +17,7 @@ const AccountDetail:NextPage = () => {
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            await dispatch(fetchPasswords())
+            await dispatch(fetchAccounts())
          }
          setLoaded(true)
       })()

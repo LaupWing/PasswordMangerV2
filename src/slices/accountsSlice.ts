@@ -54,7 +54,18 @@ export const {
 } = passwordsSlice.actions
 
 
-export const fetchPasswords = 
+export const fetchAccounts = 
+   () => async (dispatch: Dispatch) => {
+      const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
+      
+      if(!snapshot.empty){
+         dispatch(setAccounts(
+            snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
+         ))
+      }
+   }
+
+export const fetchFavoriteAccounts = 
    () => async (dispatch: Dispatch) => {
       const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
       
