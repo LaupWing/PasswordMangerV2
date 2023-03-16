@@ -6,9 +6,9 @@ import { Layout } from "~/components/Global"
 import { Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { fetchAccounts } from "~/slices/accountsSlice"
+import { fetchAccounts, fetchFavoriteAccounts } from "~/slices/accountsSlice"
 
-export default function Home() {
+export default function Favorites() {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
    const { accounts } = useAppSelector(state => state.accounts)
@@ -16,7 +16,7 @@ export default function Home() {
    useEffect(() => {
       (async () =>{
          if(auth.currentUser){
-            await dispatch(fetchAccounts())
+            await dispatch(fetchFavoriteAccounts())
          }
          setLoaded(true)
       })()
