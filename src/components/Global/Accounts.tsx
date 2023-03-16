@@ -7,10 +7,12 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 interface AccountsProps {
    children?: ReactNode
    dispatchFunction: (args?: any) => (dispatch: Dispatch) => Promise<void>
+   prefix: string
 }
 export const Accounts:FC<AccountsProps> = ({
    dispatchFunction,
-   children
+   children,
+   prefix
 }) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
@@ -34,7 +36,7 @@ export const Accounts:FC<AccountsProps> = ({
          { children }
          <Websites 
             accounts={accounts}
-            prefix="all"
+            prefix={prefix}
          />
       </>
    )

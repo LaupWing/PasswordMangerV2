@@ -8,11 +8,13 @@ import { Detail, Websites } from "~/components/Sections"
 interface AccountsDetailProps {
    children?: ReactNode
    dispatchFunction: (args?: any) => (dispatch: Dispatch) => Promise<void>
+   prefix: string
 }
 
 export const AccountsDetail:FC<AccountsDetailProps> = ({
    dispatchFunction,
-   children
+   children,
+   prefix
 }) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
@@ -41,7 +43,7 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
          <div className="flex flex-1 min-h-0 relative">
             <Websites 
                accounts={accounts} 
-               prefix="all"
+               prefix={prefix}
             />
             <Detail 
                account={active!}
