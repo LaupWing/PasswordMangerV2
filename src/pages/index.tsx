@@ -39,6 +39,7 @@ export default function Home() {
          </Head>
          <Websites 
             accounts={accounts}
+            prefix="all"
          />
       </>
    )

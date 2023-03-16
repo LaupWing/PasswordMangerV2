@@ -9,10 +9,12 @@ import { AccountModal } from "~/components/Modals"
 
 interface WebsitesProps {
    accounts: AccountType[]
+   prefix: string
 }
 
 export const Websites:FC<WebsitesProps> = ({
-   accounts
+   accounts,
+   prefix
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
 
@@ -43,6 +45,7 @@ export const Websites:FC<WebsitesProps> = ({
                <WebsiteItem
                   account={account}
                   key={account.id}
+                  prefix={prefix}
                />
             ))}
          </ul>
@@ -52,6 +55,7 @@ export const Websites:FC<WebsitesProps> = ({
 
 const WebsiteItem:FC<{
    account: AccountType
+   prefix: string
 }> = ({ account }) => {
    const router = useRouter()
    
