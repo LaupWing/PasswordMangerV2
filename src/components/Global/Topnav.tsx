@@ -8,9 +8,10 @@ export const Topnav = () => {
    const { timer, expire_time, interval, start_time } = useAppSelector(state => state.auth)
    const router = useRouter()
    const dispatch = useAppDispatch()
-   const current_time = start_time + timer
-   const time_left = expire_time - current_time
-   console.log(time_left)
+   const current_time = (start_time / 1000) + timer
+   const time_left = (expire_time/ 1000) - current_time
+   const minutes = time_left /  60 
+   console.log(minutes)
    
    if(expire_time < current_time){
       clearInterval(interval)
