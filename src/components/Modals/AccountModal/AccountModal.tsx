@@ -37,7 +37,14 @@ export const AccountModal:FC<AccountModalProps> = ({
       ...account,
       password: parsed_password
    })
-   const [directories, setDirectories] = useState<DirectoryExtended[]>([])
+   const [directories, setDirectories] = useState<DirectoryExtended[]>(account.directories.map(x => {
+      const { directories } = useAppSelector(state => state.accounts)
+      const directory = directories.find(y => y.id === x) as DirectoryType
+      return {
+         ...directory,
+         is_new: false
+      }
+   }))
    const dispatch = useAppDispatch()
 
    const tab_style = "p-0.5 text-center font-bold rounded-md text-xs tracking-widest border-b-0 uppercase px-3 border-2 border-black rounded-b-none mr-1 cursor-pointer"
