@@ -19,9 +19,13 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
             if(auth.currentUser){
                await dispatch(getUser(secret_key))
                await dispatch(fetchDirectories())
-               await dispatch(setExperTime())
-               dispatch(incrementTimer())
+               dispatch(setExperTime())
                // dispatch(startTimer(setInterval(() => {
+               //    // const { start_time, timer, expire_time } = useAppSelector(state => state.auth)
+               //    // console.log(start_time)
+               //    // console.log(expire_time)
+               //    dispatch(incrementTimer())
+
                // }, 1000)))
                
             }
