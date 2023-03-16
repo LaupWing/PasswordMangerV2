@@ -56,12 +56,12 @@ export const Websites:FC<WebsitesProps> = ({
 const WebsiteItem:FC<{
    account: AccountType
    prefix: string
-}> = ({ account }) => {
+}> = ({ account, prefix }) => {
    const router = useRouter()
    
    return (
       <Link 
-         href={`/all/${account.id}`}
+         href={`/${prefix}/${account.id}`}
          className={clsx(
             router.asPath === `/all/${account.id}` && "bg-blue-600",
             "flex rounded-md my-2 p-3"
