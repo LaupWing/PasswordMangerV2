@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { Layout } from "~/components/Global"
 import { Detail, Websites } from "~/components/Sections"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
@@ -13,7 +12,6 @@ const AccountDetail:NextPage = () => {
    const [loaded, setLoaded] = useState(false)
    const router = useRouter()
    const { accounts } = useAppSelector(state => state.accounts)
-   console.log(loaded)
    useEffect(() => {
       (async () =>{
          if(auth.currentUser && !loaded){
@@ -27,8 +25,6 @@ const AccountDetail:NextPage = () => {
       return null
    }
    const active = accounts.find(x => x.id === router.query.accountId)
-   console.log(active)
-   console.log(accounts)
    if(!active){
       router.replace("/")
       return null
