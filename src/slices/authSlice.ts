@@ -54,6 +54,7 @@ export const authSlice = createSlice({
       startTimer: (state, action: PayloadAction<ReturnType<typeof setInterval>>) => {
          clearInterval(state.interval)
          state.interval = action.payload
+         state.start_time = new Date().getTime()
       },
    },
 })
