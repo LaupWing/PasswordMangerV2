@@ -60,6 +60,14 @@ export const AccountModal:FC<AccountModalProps> = ({
          }))
       ))
       await dispatch(fetchDirectories())
+      
+      const updated_directories = [
+         ...new_directories,
+         ...directories.filter(x => !x.is_new).map(x => x.id)
+      ] as string[]
+      const removed_directories = account.directories.filter(x => !updated_directories.includes(x))
+      const added_directories = updated_directories.filter(x => !account.directories.includes(x))
+
       if(is_new){
          dispatch(createAccount({
             is_favorite: edit_account.is_favorite,
@@ -67,10 +75,7 @@ export const AccountModal:FC<AccountModalProps> = ({
             password: encryptPassword(edit_account.password, master_key),
             url: edit_account.url,
             username: edit_account.username,
-            directories: [
-               ...new_directories,
-               ...directories.map(x => x.id)
-            ] as string[]
+            directories: updated_directories
          }))
          close()
          notify("success", "Toegevoegd", "Account is toegevoegd!")
@@ -78,10 +83,7 @@ export const AccountModal:FC<AccountModalProps> = ({
          dispatch(patchAccount(
             account.id!,
             {
-               directories: [
-                  ...new_directories,
-                  ...directories.filter(x => !x.is_new).map(x => x.id)
-               ] as string[],
+               directories: updated_directories,
                is_favorite: edit_account.is_favorite,
                name: edit_account.name,
                password: encryptPassword(edit_account.password, master_key),
