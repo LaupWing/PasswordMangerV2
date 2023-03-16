@@ -16,8 +16,7 @@ const AccountDetail:NextPage = () => {
    console.log(loaded)
    useEffect(() => {
       (async () =>{
-         if(auth.currentUser){
-            console.log("fetching")
+         if(auth.currentUser && !loaded){
             await dispatch(fetchAccounts())
          }
          setLoaded(true)
@@ -28,6 +27,8 @@ const AccountDetail:NextPage = () => {
       return null
    }
    const active = accounts.find(x => x.id === router.query.accountId)
+   console.log(active)
+   console.log(accounts)
    if(!active){
       router.replace("/")
       return null

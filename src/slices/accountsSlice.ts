@@ -34,7 +34,8 @@ export const passwordsSlice = createSlice({
       updateAccount: (state, action: PayloadAction<{id: string, updates: AccountType}>) => {
          state.accounts = state.accounts.map(x => 
             x.id === action.payload.id ? ({
-               ...action.payload.updates
+               ...action.payload.updates,
+               id: action.payload.id
             }) : ({...x}))
       },
       addAccount: (state, action: PayloadAction<AccountType>) => {
@@ -89,7 +90,7 @@ export const fetchDirectories =
 export const patchAccount =
    (id: string, updates: AccountType) => async (dispatch: Dispatch) => {
       await updateDoc(doc(db, "accounts", auth.currentUser?.uid!, "collection", id), {
-         ...updates
+         ...updates,
       })
       dispatch(updateAccount({id, updates}))
    }
