@@ -83,7 +83,8 @@ const Info:FC<{account: AccountType}> = ({
    account
 }) => {
    const [show_password, setShowPassword] = useState(false)
-   const parsed_password = decryptPassword(account.password)
+   const { master_key } = useAppSelector(state => state.auth)
+   const parsed_password = decryptPassword(account.password, master_key)
 
    return (
       <div className="py-6 border-t-2 border-b-2 border-main-tertiare w-full overflow-y-auto">
