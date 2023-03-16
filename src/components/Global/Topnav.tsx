@@ -8,9 +8,11 @@ export const Topnav = () => {
    const { timer, expire_time, interval, start_time } = useAppSelector(state => state.auth)
    const router = useRouter()
    const dispatch = useAppDispatch()
-   const time_left = start_time + timer
+   const current_time = start_time + timer
+   const time_left = expire_time - current_time
+   console.log(time_left)
    
-   if(expire_time < time_left){
+   if(expire_time < current_time){
       clearInterval(interval)
       auth.signOut()
       router.push("/login")
