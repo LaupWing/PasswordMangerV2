@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
@@ -149,15 +149,33 @@ export const addToDirectory =
 
 export const getDirectoryAccounts = 
    (id: string) => async (dispatch: Dispatch) => {
-      const snapshot = await getDocs(collection(
-         db, 
-         "directories", 
-         auth.currentUser?.uid!, 
-         "collection", 
-         id,
-         "accounts"
-      ))
-      console.log(snapshot)
+      try{
+         const snapshot = await getDocs(collection(
+            db, 
+            "directories", 
+            auth.currentUser?.uid!, 
+            "collection", 
+            id,
+            "accounts"
+         ))
+         const accounts = (await Promise.all(snapshot.docs
+            .map(x => x.id)
+            .map(x => getDoc(doc(
+               db, 
+               "accounts",
+               auth.currentUser?.uid!,
+               "collection",
+               x 
+            )))
+         )).map(x => ({
+            ...x.data(),
+            id: x.id
+         }))
+         console.log(accounts)
+         dispatch(setAccounts(accounts as AccountType[]))
+      }catch(e){
+         throw new Error(e as any)
+      }
    }
 
 export const postDirectories = 

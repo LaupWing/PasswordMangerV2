@@ -23,7 +23,7 @@ export const Accounts:FC<AccountsProps> = ({
             await dispatch(dispatchFunction())
          }
       })()
-   },[])
+   },[dispatchFunction])
 
    return (
       <>
