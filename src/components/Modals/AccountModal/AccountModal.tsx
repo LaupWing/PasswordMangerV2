@@ -4,6 +4,7 @@ import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
 import { notify } from "~/components/Global/Notify"
+import { useEncryptPassword } from "~/lib/useEncryption"
 import { decryptPassword } from "~/lib/utils"
 import { useAppDispatch } from "~/redux/hooks"
 import { createAccount, postDirectories, patchAccount } from "~/slices/accountsSlice"
@@ -51,6 +52,7 @@ export const AccountModal:FC<AccountModalProps> = ({
          }))
       ))
       if(is_new){
+         useEncryptPassword(edit_account.password)
          // dispatch(createAccount({
          //    is_favorite: edit_account.is_favorite,
          //    name: edit_account.name,
