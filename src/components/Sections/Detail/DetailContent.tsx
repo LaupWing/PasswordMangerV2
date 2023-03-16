@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useState } from "react"
 import StringCrypto from "string-crypto"
-import { AccountType } from "types"
+import { AccountType, DirectoryType } from "types"
 import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
 import { notify } from "~/components/Global/Notify"
 import { decryptPassword } from "~/lib/utils"
@@ -53,24 +53,28 @@ const Directories:FC<{account: AccountType}> = ({
    account
 }) => {
    const router = useRouter()
+   const { directories } = useAppSelector(state => state.accounts)
+   const formatted: DirectoryType[] = directories
+      .filter(x => account.directories.find(y => y === x.id))
+   console.log(formatted)
    return (
       <div className="py-6 border-y-2 flex flex-col border-main-tertiare w-full overflow-y-auto">
-         {account.directories.length === 0 ?  (
+         {formatted.length === 0 ?  (
             <p className="py-1 px-2 text-main-tertiare">
                Not associated with any directories!
             </p>
          ): (
             <>
-               {account.directories.map((directory, i) => (
+               {formatted.map((directory, i) => (
                   <Link 
-                     href={`/directories/${directory}`}
+                     href={`/directories/${directory.id}`}
                      className={clsx(
                         "py-1 px-2 my-1 text-main-tertiare hover:bg-main-tertiare hover:text-white rounded capitalize flex items-center",
-                        router.pathname === `/directories/${directory}` && "bg-blue-600 text-white"
+                        router.pathname === `/directories/${directory.id}` && "bg-blue-600 text-white"
                      )}
                      key={i}
                   >
-                     <IconDirectory className="w-5 mr-1"/> {directory}
+                     <IconDirectory className="w-5 mr-1"/> {directory.name}
                   </Link>
                ))}
             </>
