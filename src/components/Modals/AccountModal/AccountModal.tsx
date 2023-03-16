@@ -67,9 +67,9 @@ export const AccountModal:FC<AccountModalProps> = ({
       ] as string[]
       const removed_directories = account.directories.filter(x => !updated_directories.includes(x))
       const added_directories = updated_directories.filter(x => !account.directories.includes(x))
-
+      let id
       if(is_new){
-         dispatch(createAccount({
+         id = await dispatch(createAccount({
             is_favorite: edit_account.is_favorite,
             name: edit_account.name,
             password: encryptPassword(edit_account.password, master_key),
@@ -80,6 +80,7 @@ export const AccountModal:FC<AccountModalProps> = ({
          close()
          notify("success", "Toegevoegd", "Account is toegevoegd!")
       }else {
+         id = account.id!
          dispatch(patchAccount(
             account.id!,
             {

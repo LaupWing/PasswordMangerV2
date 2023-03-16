@@ -104,6 +104,7 @@ export const createAccount =
          ...account,
          id: new_doc.id
       }))
+      return new_doc.id
    }
    
 
