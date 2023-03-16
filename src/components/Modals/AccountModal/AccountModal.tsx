@@ -6,7 +6,7 @@ import { Backdrop } from "~/components/Global"
 import { notify } from "~/components/Global/Notify"
 import { decryptPassword, encryptPassword } from "~/lib/utils"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { createAccount, postDirectories, patchAccount } from "~/slices/accountsSlice"
+import { createAccount, postDirectories, patchAccount, fetchDirectories } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
@@ -59,6 +59,7 @@ export const AccountModal:FC<AccountModalProps> = ({
             name: x.name
          }))
       ))
+      await dispatch(fetchDirectories())
       if(is_new){
          dispatch(createAccount({
             is_favorite: edit_account.is_favorite,
@@ -79,7 +80,7 @@ export const AccountModal:FC<AccountModalProps> = ({
             {
                directories: [
                   ...new_directories,
-                  ...directories.map(x => x.id)
+                  ...directories.filter(x => !x.is_new).map(x => x.id)
                ] as string[],
                is_favorite: edit_account.is_favorite,
                name: edit_account.name,
