@@ -6,7 +6,7 @@ import { Backdrop } from "~/components/Global"
 import { notify } from "~/components/Global/Notify"
 import { decryptPassword, encryptPassword } from "~/lib/utils"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { createAccount, postDirectories, patchAccount, fetchDirectories } from "~/slices/accountsSlice"
+import { createAccount, postDirectories, patchAccount, fetchDirectories, addToDirectory, removeFromDirectory } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
@@ -67,7 +67,7 @@ export const AccountModal:FC<AccountModalProps> = ({
       ] as string[]
       const removed_directories = account.directories.filter(x => !updated_directories.includes(x))
       const added_directories = updated_directories.filter(x => !account.directories.includes(x))
-      let id
+      let id:string
       if(is_new){
          id = await dispatch(createAccount({
             is_favorite: edit_account.is_favorite,
@@ -95,6 +95,12 @@ export const AccountModal:FC<AccountModalProps> = ({
          close()
          notify("success", "Update", "Account is geupdate!")
       }
+      await Promise.all(added_directories.map(async x => {
+         return await dispatch(addToDirectory(x, id))
+      }))
+      await Promise.all(removed_directories.map(async x => {
+         return await dispatch(removeFromDirectory(x, id))
+      }))
       setLoading(false)
    }
 
