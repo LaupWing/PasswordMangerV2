@@ -147,6 +147,19 @@ export const addToDirectory =
       })
    }
 
+export const getDirectoryAccounts = 
+   (id: string) => async (dispatch: Dispatch) => {
+      const snapshot = await getDocs(collection(
+         db, 
+         "directories", 
+         auth.currentUser?.uid!, 
+         "collection", 
+         id,
+         "accounts"
+      ))
+      console.log(snapshot)
+   }
+
 export const postDirectories = 
    (directories: DirectoryType[]) => async () => {
       const proxy = directories.map(async x => {
