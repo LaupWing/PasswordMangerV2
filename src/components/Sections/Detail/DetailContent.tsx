@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useState } from "react"
 import StringCrypto from "string-crypto"
 import { AccountType, DirectoryType } from "types"
-import { IconDirectory, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
+import { IconFolder, IconDuplicate, IconLink, TogglePassword } from "~/components/Elements"
 import { notify } from "~/components/Global/Notify"
 import { decryptPassword } from "~/lib/utils"
 import { useAppSelector } from "~/redux/hooks"
@@ -74,7 +74,7 @@ const Directories:FC<{account: AccountType}> = ({
                      )}
                      key={i}
                   >
-                     <IconDirectory className="w-5 mr-1"/> {directory.name}
+                     <IconFolder className="w-5 mr-1"/> {directory.name}
                   </Link>
                ))}
             </>

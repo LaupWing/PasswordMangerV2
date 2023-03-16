@@ -2,11 +2,13 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren } from "react"
-import { IconStarFill, IconItems, IconDirectory } from "~/components/Elements"
+import { IconStarFill, IconItems, IconFolder, IconFolderOpen } from "~/components/Elements"
 import { useAppSelector } from "~/redux/hooks"
 
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
+   const router = useRouter()
+   console.log(router.asPath)
    
    return (
       <div className="bg-main-secondary p-4 border-r-2 border-black">
@@ -39,8 +41,12 @@ export const Sidenav = () => {
                   key={directory.id}
                >
                   {directory.name}
-
-                  <IconDirectory size={20}/>
+                  {router.asPath === `/directories/${directory.id}` 
+                     ? (
+                        <IconFolderOpen size={20}/>
+                     ): (
+                        <IconFolder size={20}/>
+                     )}
                </SidenavLink>
             ))}
          </ul>

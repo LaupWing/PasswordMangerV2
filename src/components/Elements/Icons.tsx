@@ -5,7 +5,7 @@ import { BsCheck, BsGridFill, BsSearch } from "react-icons/bs"
 import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { IoClose } from "react-icons/io5"
-import { AiFillStar, AiOutlineStar } from "react-icons/ai"
+import { AiFillFolder, AiFillFolderOpen, AiFillStar, AiOutlineStar } from "react-icons/ai"
 import { GoFileDirectory } from "react-icons/go"
 import { FiChevronDown } from "react-icons/fi"
 import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
@@ -65,9 +65,15 @@ export const IconTrashcan:IconType = (props) => {
    )
 } 
 
-export const IconDirectory:IconType = (props) => {
+export const IconFolder:IconType = (props) => {
    return (
-      <GoFileDirectory {...props}/>
+      <AiFillFolder {...props}/>
+   )
+} 
+
+export const IconFolderOpen:IconType = (props) => {
+   return (
+      <AiFillFolderOpen {...props}/>
    )
 } 
 
