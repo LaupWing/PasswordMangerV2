@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { addDoc, collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore"
+import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { AccountType, DirectoryType } from "types"
 import { auth, db } from "~/firebase"
 import { store } from "~/redux/store"
@@ -67,8 +67,9 @@ export const fetchAccounts =
 
 export const fetchFavoriteAccounts = 
    () => async (dispatch: Dispatch) => {
-      const snapshot = await getDocs(collection(db, "accounts", auth.currentUser?.uid!, "collection"))
-      
+      const accounts_ref = collection(db, "accounts", auth.currentUser?.uid!, "collection")
+      const q = query(accounts_ref, where("is_favorite", "==", true))
+      const snapshot = await getDocs(q)
       if(!snapshot.empty){
          dispatch(setAccounts(
             snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
