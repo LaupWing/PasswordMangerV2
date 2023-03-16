@@ -14,6 +14,7 @@ export const Topnav = () => {
       clearInterval(interval)
       auth.signOut()
       router.push("/login")
+      console.log("logout")
    }
    useEffect(() => {
       if(auth.currentUser){
