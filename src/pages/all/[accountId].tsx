@@ -28,6 +28,10 @@ const AccountDetail:NextPage = () => {
       return null
    }
    const active = accounts.find(x => x.id === router.query.accountId)
+   if(!active){
+      router.replace("/")
+      return null
+   }
    return (
       <Layout>
          <Head>

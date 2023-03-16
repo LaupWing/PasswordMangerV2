@@ -6,7 +6,7 @@ import { Backdrop } from "~/components/Global"
 import { notify } from "~/components/Global/Notify"
 import { decryptPassword } from "~/lib/utils"
 import { useAppDispatch } from "~/redux/hooks"
-import { createAccount, postDirectories, updateAccount } from "~/slices/accountsSlice"
+import { createAccount, postDirectories, patchAccount } from "~/slices/accountsSlice"
 import { AccountModalDirectories } from "./AccountModalDirectories"
 import { AccountModalInfo } from "./AccountModalInfo"
 
@@ -65,9 +65,9 @@ export const AccountModal:FC<AccountModalProps> = ({
          close()
          notify("success", "Toegevoegd", "Account is toegevoegd!")
       }else {
-         dispatch(updateAccount({
-            id: account.id!,
-            updates: {
+         dispatch(patchAccount(
+            account.id!,
+            {
                directories: [
                   ...new_directories,
                   ...directories.map(x => x.id)
@@ -78,7 +78,7 @@ export const AccountModal:FC<AccountModalProps> = ({
                url: edit_account.url,
                username: edit_account.username
             }
-         }))
+         ))
          close()
          notify("success", "Update", "Account is geupdate!")
       }
