@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { FC, ReactNode, useEffect, useState } from "react"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
+import { Detail, Websites } from "~/components/Sections"
 
 interface AccountsDetailProps {
    children?: ReactNode
@@ -10,7 +11,8 @@ interface AccountsDetailProps {
 }
 
 export const AccountsDetail:FC<AccountsDetailProps> = ({
-   dispatchFunction
+   dispatchFunction,
+   children
 }) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
@@ -34,6 +36,17 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
       return null
    }
    return (
-      <div>DetailsPage</div>
+      <>
+         { children }
+         <div className="flex flex-1 min-h-0 relative">
+            <Websites 
+               accounts={accounts} 
+               prefix="all"
+            />
+            <Detail 
+               account={active!}
+            />
+         </div>
+      </>
    )
 }
