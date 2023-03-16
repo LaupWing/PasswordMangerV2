@@ -63,7 +63,7 @@ const WebsiteItem:FC<{
       <Link 
          href={`/${prefix}/${account.id}`}
          className={clsx(
-            router.asPath === `/all/${account.id}` && "bg-blue-600",
+            router.asPath === `/${prefix}/${account.id}` && "bg-blue-600",
             "flex rounded-md my-2 p-3"
          )}
       >
