@@ -51,34 +51,34 @@ export const AccountModal:FC<AccountModalProps> = ({
          }))
       ))
       if(is_new){
-         dispatch(createAccount({
-            is_favorite: edit_account.is_favorite,
-            name: edit_account.name,
-            password: edit_account.password,
-            url: edit_account.url,
-            username: edit_account.username,
-            directories: [
-               ...new_directories,
-               ...directories.map(x => x.id)
-            ] as string[]
-         }))
+         // dispatch(createAccount({
+         //    is_favorite: edit_account.is_favorite,
+         //    name: edit_account.name,
+         //    password: edit_account.password,
+         //    url: edit_account.url,
+         //    username: edit_account.username,
+         //    directories: [
+         //       ...new_directories,
+         //       ...directories.map(x => x.id)
+         //    ] as string[]
+         // }))
          close()
          notify("success", "Toegevoegd", "Account is toegevoegd!")
       }else {
-         dispatch(patchAccount(
-            account.id!,
-            {
-               directories: [
-                  ...new_directories,
-                  ...directories.map(x => x.id)
-               ] as string[],
-               is_favorite: edit_account.is_favorite,
-               name: edit_account.name,
-               password: edit_account.password,
-               url: edit_account.url,
-               username: edit_account.username
-            }
-         ))
+         // dispatch(patchAccount(
+         //    account.id!,
+         //    {
+         //       directories: [
+         //          ...new_directories,
+         //          ...directories.map(x => x.id)
+         //       ] as string[],
+         //       is_favorite: edit_account.is_favorite,
+         //       name: edit_account.name,
+         //       password: edit_account.password,
+         //       url: edit_account.url,
+         //       username: edit_account.username
+         //    }
+         // ))
          close()
          notify("success", "Update", "Account is geupdate!")
       }
