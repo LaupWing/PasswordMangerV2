@@ -8,12 +8,14 @@ export const Topnav = () => {
    const { timer, expire_time, interval, start_time } = useAppSelector(state => state.auth)
    const router = useRouter()
    const dispatch = useAppDispatch()
-   const current_time = (start_time / 1000) + timer
-   const time_left = (expire_time/ 1000) - current_time
-   const minutes = time_left /  60 
-   console.log(minutes)
+   const current_time = Math.floor(start_time / 1000) + timer
+   const time_left = Math.floor(expire_time/ 1000) - current_time
+   const minutes = Math.floor(time_left /  60) 
+   const seconds = time_left - (Math.floor(time_left /60) * 60)
+   console.log(expire_time)
+   console.log(current_time)
    
-   if(expire_time < current_time){
+   if((expire_time / 1000) < current_time){
       clearInterval(interval)
       auth.signOut()
       router.push("/login")
