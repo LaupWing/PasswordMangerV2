@@ -22,14 +22,14 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
    const { accounts } = useAppSelector(state => state.accounts)
    useEffect(() => {
       (async () =>{
-         if(auth.currentUser && !loaded){
+         if(auth.currentUser){
             await dispatch(dispatchFunction())
          }
          setLoaded(true)
       })()
    },[])
 
-   if(!loaded){
+   if(!loaded && accounts.length === 0){
       return null
    }
    const active = accounts.find(x => x.id === router.query.accountId)

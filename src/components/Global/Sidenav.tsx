@@ -16,11 +16,17 @@ export const Sidenav = () => {
             className="w-20 mx-auto mb-6"
          />
          <ul className="text-white text-sm flex flex-col space-y-2">
-            <SidenavLink href="/">
+            <SidenavLink 
+               href="/"
+               activeCheck="all"
+            >
                <IconItems className="w-5 mr-1"/>
                Alle Items
             </SidenavLink>
-            <SidenavLink href="/favorites">
+            <SidenavLink 
+               href="/favorites"
+               activeCheck="favorites"
+            >
                <IconStarFill className="w-5 mr-1"/>
                Favoriete
             </SidenavLink>
@@ -29,6 +35,7 @@ export const Sidenav = () => {
                <SidenavLink 
                   href={`directory/${directory.id}`}
                   className="justify-between"
+                  activeCheck={directory.id!}
                   key={directory.id}
                >
                   {directory.name}
@@ -44,15 +51,16 @@ export const Sidenav = () => {
 interface SidenavLinkProps extends PropsWithChildren {
    href: string
    className?: string
+   activeCheck: string
 }
 
-const SidenavLink:FC<SidenavLinkProps> = ({ children, href, className }) => {
+const SidenavLink:FC<SidenavLinkProps> = ({ children, href, className, activeCheck }) => {
    const router = useRouter()
    const baseStyles = "w-48 p-2 py-1 rounded-md flex items-center"
    const styles = clsx(
       baseStyles,
       router.pathname === href && "bg-blue-600",
-      href === "/" && router.asPath.includes("all") && "bg-blue-600",
+      router.asPath.includes(activeCheck) && "bg-blue-600",
       className
    )
 

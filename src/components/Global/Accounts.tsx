@@ -15,7 +15,6 @@ export const Accounts:FC<AccountsProps> = ({
    prefix
 }) => {
    const dispatch = useAppDispatch()
-   const [loaded, setLoaded] = useState(false)
    const { accounts } = useAppSelector(state => state.accounts)
    
    useEffect(() => {
@@ -23,13 +22,8 @@ export const Accounts:FC<AccountsProps> = ({
          if(auth.currentUser){
             await dispatch(dispatchFunction())
          }
-         setLoaded(true)
       })()
    },[])
-
-   if(!loaded){
-      return null
-   }
 
    return (
       <>
