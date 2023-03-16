@@ -4,7 +4,7 @@ import { FormElements } from "types"
 import { IconLoading, Input } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { getUser, login } from "~/slices/authSlice"
+import { getUser, login, setExperTime } from "~/slices/authSlice"
 
 const LoginPage = () => {
    const dispatch = useAppDispatch()
@@ -43,6 +43,7 @@ const LoginPage = () => {
          await dispatch(getUser(
             secret_key
          ))
+         dispatch(setExperTime())
          await router.replace("/")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
