@@ -171,7 +171,7 @@ export const getDirectoryAccounts =
             ...x.data(),
             id: x.id
          }))
-         console.log(accounts)
+         
          dispatch(setAccounts(accounts as AccountType[]))
       }catch(e){
          throw new Error(e as any)

@@ -12,7 +12,6 @@ export const Checkbox:FC<CheckboxProps> = ({
    label,
    onChange
 }) => {
-   console.log(checked)
    return (
       <label htmlFor={`checkbox-${label}`} className="relative text-sm my-1 flex items-center cursor-pointer select-none">
          <input 
