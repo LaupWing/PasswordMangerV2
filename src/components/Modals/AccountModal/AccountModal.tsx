@@ -3,6 +3,7 @@ import { FC, FormEvent, useState } from "react"
 import { AccountType, DirectoryType } from "types"
 import { IconClose, IconLoading } from "~/components/Elements"
 import { Backdrop } from "~/components/Global"
+import { notify } from "~/components/Global/Notify"
 import { decryptPassword } from "~/lib/utils"
 import { useAppDispatch } from "~/redux/hooks"
 import { createAccount, postDirectories, updateAccount } from "~/slices/accountsSlice"
@@ -61,6 +62,8 @@ export const AccountModal:FC<AccountModalProps> = ({
                ...directories.map(x => x.id)
             ] as string[]
          }))
+         close()
+         notify("success", "Toegevoegd", "Account is toegevoegd!")
       }else {
          dispatch(updateAccount({
             id: account.id!,
@@ -76,6 +79,8 @@ export const AccountModal:FC<AccountModalProps> = ({
                username: edit_account.username
             }
          }))
+         close()
+         notify("success", "Update", "Account is geupdate!")
       }
       setLoading(false)
    }
