@@ -8,10 +8,12 @@ interface AccountsProps {
    children?: ReactNode
    dispatchFunction: (args?: any) => (dispatch: Dispatch) => Promise<void>
    prefix: string
+   in_directory?: string
 }
 export const Accounts:FC<AccountsProps> = ({
    dispatchFunction,
    children,
+   in_directory,
    prefix
 }) => {
    const dispatch = useAppDispatch()
@@ -31,6 +33,7 @@ export const Accounts:FC<AccountsProps> = ({
          <Websites 
             accounts={accounts}
             prefix={prefix}
+            in_directory={in_directory}
          />
       </>
    )

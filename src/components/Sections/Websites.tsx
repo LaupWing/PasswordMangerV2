@@ -10,17 +10,19 @@ import { AccountModal } from "~/components/Modals"
 interface WebsitesProps {
    accounts: AccountType[]
    prefix: string
+   in_directory?: string
 }
 
 export const Websites:FC<WebsitesProps> = ({
    accounts,
-   prefix
+   prefix,
+   in_directory
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
 
    const addNew = () => {
       setShowModal({
-         directories: [],
+         directories: in_directory ? [in_directory] : [],
          id: "",
          name: "",
          password: "",

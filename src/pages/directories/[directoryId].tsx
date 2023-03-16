@@ -11,6 +11,7 @@ export default function Favorites() {
       <Accounts 
          dispatchFunction={() => getDirectoryAccounts(id)} 
          prefix="favorites"
+         in_directory={id}
       >
          <Head>
             <title>Directory</title>
