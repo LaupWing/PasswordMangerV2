@@ -1,8 +1,11 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
-import { collection, getDocs } from "firebase/firestore"
+import { 
+   browserSessionPersistence, 
+   setPersistence, 
+   signInWithEmailAndPassword 
+} from "firebase/auth"
 import StringCrypto from "string-crypto"
-import { auth, db } from "~/firebase"
+import { auth } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
 
