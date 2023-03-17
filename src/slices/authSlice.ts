@@ -11,10 +11,6 @@ interface AuthState {
    start_time: number
    interval: ReturnType<typeof setInterval>
    timer: number
-   time_left: {
-      minutes: number,
-      seconds: number
-   },
    secret_key: string
    master_key: string
 }
@@ -24,10 +20,6 @@ const initialState:AuthState = {
    start_time: 0,
    interval: setInterval(()=>{}),
    timer: 0,
-   time_left: {
-      minutes: 0,
-      seconds: 0
-   },
    secret_key: typeof window !== "undefined" && localStorage.getItem("secret_key") || "",
    master_key: ""
 }
@@ -36,6 +28,13 @@ export const authSlice = createSlice({
    name: "auth",
    initialState,
    reducers: {
+      resetAuth: (state) =>{
+         state.expire_time = 0
+         state.start_time = 0
+         clearInterval(state.interval)
+         state.timer = 0
+         state.master_key = ""
+      },
       setExperTime: (state) => {
          const lastSignInTime = new Date(auth.currentUser!.metadata.lastSignInTime!)
          
@@ -64,6 +63,7 @@ export const {
    incrementTimer, 
    setKeys, 
    startTimer,
+   resetAuth
 } = authSlice.actions
 
 export const login = 
@@ -81,7 +81,8 @@ export const login =
 
 export const logout = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
-
+      auth.signOut()
+      dispatch(resetAuth())
    }
    
 export const getUser = 

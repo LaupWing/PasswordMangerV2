@@ -137,7 +137,7 @@ export const removeFromDirectory =
    }
 
 export const addToDirectory = 
-   (id: string, account_id: string) => async (dispatch: Dispatch) => {
+   (id: string, account_id: string) => async () => {
       await setDoc(doc(
          db, 
          "directories", 
