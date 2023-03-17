@@ -3,6 +3,7 @@ import { FC, PropsWithChildren } from "react"
 
 interface BackdropProps extends PropsWithChildren {
    className?: string
+   onClick?: () => void
 }
 
 export const Backdrop:FC<BackdropProps> = ({

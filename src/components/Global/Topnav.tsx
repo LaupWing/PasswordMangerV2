@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { incrementTimer, startTimer } from "~/slices/authSlice"
@@ -21,8 +21,9 @@ export const Topnav = () => {
       clearInterval(interval)
       auth.signOut()
       router.push("/login")
-      console.log("logout")
    }
+   const [show_tooltip, setShowTooltip] = useState(false)
+
    useEffect(() => {
       if(auth.currentUser){
          dispatch(startTimer(setInterval(() => {
@@ -34,7 +35,7 @@ export const Topnav = () => {
    },[])
    return (
       <>
-         <Backdrop className="!bg-transparent"/>
+         {show_tooltip && <Backdrop className="!bg-transparent"/>}
          <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
             TopNav
             <div className="flex space-x-4">
@@ -42,11 +43,14 @@ export const Topnav = () => {
                   Time left: <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
                </p>
                <div className="relative">
-                  <h2 className="flex space-x-1 items-center">
+                  <h2 
+                     className="flex space-x-1 items-center cursor-pointer"
+                     onClick={()=> setShowTooltip(true)}
+                  >
                      Account
                      <IconChevron size={20}/>
                   </h2>
-                  <Tooltip />
+                  {show_tooltip && <Tooltip />}
                </div>
             </div>
          </div>
