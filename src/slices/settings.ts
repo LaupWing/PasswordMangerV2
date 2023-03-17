@@ -24,7 +24,7 @@ export const settingsSlice = createSlice({
          state.lg = window.innerWidth < 1024
          state.md = window.innerWidth < 678
          state.xs = window.innerWidth < 420
-         
+         console.log(state.lg)
          window.addEventListener("resize", () => {
             state.lg = window.innerWidth < 1024
             state.md = window.innerWidth < 678
@@ -38,7 +38,8 @@ export const settingsSlice = createSlice({
 })
 
 export const { 
-   watchResize
+   watchResize,
+   setNavWidth
 } = settingsSlice.actions
 
 export default settingsSlice.reducer

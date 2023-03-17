@@ -6,12 +6,13 @@ import { auth } from "~/firebase"
 import { fetchDirectories } from "~/slices/accountsSlice"
 import { getUser, incrementTimer, setExperTime, startTimer } from "~/slices/authSlice"
 import { useRouter } from "next/router"
+import { watchResize } from "~/slices/settings"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
    const { secret_key } = useAppSelector(state => state.auth)
-   const { show_sidenav } = useAppSelector(state => state.settings)
+   const { show_sidenav, lg, nav_width } = useAppSelector(state => state.settings)
    const router = useRouter()
 
    useEffect(() => {
@@ -21,6 +22,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                await dispatch(getUser(secret_key))
                await dispatch(fetchDirectories())
                dispatch(setExperTime())
+               dispatch(watchResize())
             }
          }catch{
             router.replace("/login")
@@ -32,13 +34,14 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    if(!loaded){
       return null
    }
+   console.log(nav_width)
    return (
       <Protected>
          <Sidenav />
          <div 
             className="flex flex-col flex-1 w-screen lg:w-auto relative translate"
             style={{
-               transform: "translateX(-250px)"
+               transform: `translateX(-${lg ? nav_width : '0'}px)`
             }}
          >
             <Topnav />

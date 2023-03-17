@@ -3,15 +3,18 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useEffect, useRef } from "react"
 import { IconStarFill, IconItems, IconFolder, IconFolderOpen } from "~/components/Elements"
-import { useAppSelector } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
+import { setNavWidth } from "~/slices/settings"
 
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
    const ref = useRef<HTMLDivElement>(null)
+   const { show_sidenav, lg, nav_width } = useAppSelector(state => state.settings)
    const router = useRouter()
+   const dispatch = useAppDispatch()
 
    useEffect(()=>{
-      console.log(ref.current!.offsetWidth)
+      dispatch(setNavWidth(ref.current!.offsetWidth))
    }, [])
    
    return (
@@ -19,7 +22,7 @@ export const Sidenav = () => {
          ref={ref} 
          className="bg-main-secondary p-4 border-r-2 border-black"
          style={{
-            transform: "translateX(-250px)"
+            transform: `translateX(-${lg ? nav_width : '0'}px)`
          }}
       >
          <img 
