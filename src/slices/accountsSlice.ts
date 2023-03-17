@@ -18,6 +18,10 @@ export const passwordsSlice = createSlice({
    name: "auth",
    initialState,
    reducers: {
+      resetAccount: (state) => {
+         state.accounts = []
+         state.directories = []
+      },
       setAccounts: (state, action: PayloadAction<AccountType[]>) => {
          state.accounts = action.payload
       },
