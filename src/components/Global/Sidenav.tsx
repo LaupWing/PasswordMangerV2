@@ -1,16 +1,27 @@
 import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { FC, PropsWithChildren } from "react"
+import { FC, PropsWithChildren, useEffect, useRef } from "react"
 import { IconStarFill, IconItems, IconFolder, IconFolderOpen } from "~/components/Elements"
 import { useAppSelector } from "~/redux/hooks"
 
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
+   const ref = useRef<HTMLDivElement>(null)
    const router = useRouter()
+
+   useEffect(()=>{
+      console.log(ref.current!.offsetWidth)
+   }, [])
    
    return (
-      <div className="bg-main-secondary p-4 border-r-2 border-black">
+      <div 
+         ref={ref} 
+         className="bg-main-secondary p-4 border-r-2 border-black"
+         style={{
+            transform: "translateX(-250px)"
+         }}
+      >
          <img 
             src="/assets/logo.png" 
             alt="logo" 

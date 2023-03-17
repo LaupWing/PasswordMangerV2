@@ -11,6 +11,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
    const { secret_key } = useAppSelector(state => state.auth)
+   const { show_sidenav } = useAppSelector(state => state.settings)
    const router = useRouter()
 
    useEffect(() => {
@@ -34,7 +35,12 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
    return (
       <Protected>
          <Sidenav />
-         <div className="flex flex-col flex-1 w-screen lg:w-auto relative">
+         <div 
+            className="flex flex-col flex-1 w-screen lg:w-auto relative translate"
+            style={{
+               transform: "translateX(-250px)"
+            }}
+         >
             <Topnav />
             {children}
          </div>
