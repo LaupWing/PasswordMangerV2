@@ -12,8 +12,8 @@ export const Topnav = () => {
    const time_left = Math.floor(expire_time/ 1000) - current_time
    const minutes = Math.floor(time_left /  60) 
    const seconds = time_left - (Math.floor(time_left /60) * 60)
-   console.log(expire_time)
-   console.log(current_time)
+   console.log(minutes)
+   console.log(seconds)
    
    if((expire_time / 1000) < current_time){
       clearInterval(interval)
@@ -31,8 +31,13 @@ export const Topnav = () => {
       } 
    },[])
    return (
-      <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare flex items-center justify-between uppercase font-bold tracking-wider z-50">
+      <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
          TopNav
+         <div>
+         <p className="mr-2 flex">
+            Time left: <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
+         </p>
+         </div>
       </div>
    )
 }
