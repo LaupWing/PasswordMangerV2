@@ -4,6 +4,7 @@ import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { incrementTimer, startTimer } from "~/slices/authSlice"
 import { IconChevron } from "../Elements"
+import { Backdrop } from "./Backdrop"
 
 export const Topnav = () => {
    const { timer, expire_time, interval, start_time } = useAppSelector(state => state.auth)
@@ -32,19 +33,33 @@ export const Topnav = () => {
       } 
    },[])
    return (
-      <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
-         TopNav
-         <div className="flex space-x-4">
-            <p className="mr-2 flex">
-               Time left: <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
-            </p>
-            <div>
-               <h2 className="flex space-x-1 items-center">
-                  Account
-                  <IconChevron size={20}/>
-               </h2>
+      <>
+         <Backdrop className="!bg-transparent"/>
+         <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
+            TopNav
+            <div className="flex space-x-4">
+               <p className="mr-2 flex">
+                  Time left: <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
+               </p>
+               <div className="relative">
+                  <h2 className="flex space-x-1 items-center">
+                     Account
+                     <IconChevron size={20}/>
+                  </h2>
+                  <Tooltip />
+               </div>
             </div>
          </div>
-      </div>
+      </>
+   )
+}
+
+const Tooltip = () => {
+   return (
+      <ul className="bg-main-secondary border-2 border-black absolute bottom-0 right-0 transform translate-y-full z-50">
+         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Help</li>
+         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Settings</li>
+         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Logout</li>
+      </ul>
    )
 }
