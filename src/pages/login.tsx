@@ -43,7 +43,7 @@ const LoginPage = () => {
          await dispatch(getUser(
             secret_key
          ))
-         // dispatch(setExperTime())
+         dispatch(setExperTime())
          await router.replace("/")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
