@@ -55,7 +55,8 @@ export const {
    setDirectories, 
    setFavorite,
    addAccount,
-   updateAccount 
+   updateAccount,
+   resetAccount
 } = passwordsSlice.actions
 
 

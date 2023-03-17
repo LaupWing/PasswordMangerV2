@@ -2,7 +2,8 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { incrementTimer, startTimer } from "~/slices/authSlice"
+import { resetAccount } from "~/slices/accountsSlice"
+import { incrementTimer, logout, resetAuth, startTimer } from "~/slices/authSlice"
 import { IconChevron } from "../Elements"
 import { Backdrop } from "./Backdrop"
 
@@ -62,11 +63,23 @@ export const Topnav = () => {
 }
 
 const Tooltip = () => {
+   const dispatch = useAppDispatch()
+   const router = useRouter()
+   const _logout = async () => {
+      await dispatch(logout())
+      dispatch(resetAuth())
+      dispatch(resetAccount())
+      router.push("/login")
+   }
+
    return (
       <ul className="bg-main-secondary border-2 border-black absolute bottom-0 right-0 transform translate-y-full z-[1000]">
          <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Help</li>
          <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Settings</li>
-         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Logout</li>
+         <li 
+            className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black"
+            onClick={_logout}
+         >Logout</li>
       </ul>
    )
 }
