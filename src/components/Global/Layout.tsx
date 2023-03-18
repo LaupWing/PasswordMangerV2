@@ -6,7 +6,7 @@ import { auth } from "~/firebase"
 import { fetchDirectories } from "~/slices/accountsSlice"
 import { getUser, setExperTime } from "~/slices/authSlice"
 import { useRouter } from "next/router"
-import { toggleSidenav, watchResize } from "~/slices/settings"
+import { toggleSidenav, setSizes } from "~/slices/settings"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
@@ -22,9 +22,9 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                await dispatch(getUser(secret_key))
                await dispatch(fetchDirectories())
                dispatch(setExperTime())
-               dispatch(watchResize())
+               dispatch(setSizes())
                window.addEventListener("resize", () => {
-                  dispatch(watchResize())
+                  dispatch(setSizes())
                })
             }
          }catch{

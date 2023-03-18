@@ -20,7 +20,7 @@ export const settingsSlice = createSlice({
    name: "settings",
    initialState,
    reducers: {
-      watchResize: (state) => {
+      setSizes: (state) => {
          state.lg = window.innerWidth < 1024
          state.md = window.innerWidth < 678
          state.xs = window.innerWidth < 42
@@ -39,7 +39,7 @@ export const settingsSlice = createSlice({
 })
 
 export const { 
-   watchResize,
+   setSizes,
    setNavWidth,
    toggleSidenav
 } = settingsSlice.actions
