@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useEffect, useRef } from "react"
 import { IconStarFill, IconItems, IconFolder, IconFolderOpen } from "~/components/Elements"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { setNavWidth } from "~/slices/settings"
+import { setNavWidth, toggleSidenav } from "~/slices/settings"
 
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
@@ -78,11 +78,13 @@ const SidenavLink:FC<SidenavLinkProps> = ({ children, href, className, activeChe
       router.asPath.includes(activeCheck) && "bg-blue-600",
       className
    )
+   const dispatch = useAppDispatch()
 
    return (
       <Link
          className={styles}
          href={href}
+         onClick={() => dispatch(toggleSidenav(false))}
       >
          { children }
       </Link>
