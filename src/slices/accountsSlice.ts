@@ -137,6 +137,32 @@ export const removeFromDirectory =
       ))
    }
 
+export const removeDirectory = 
+   (id: string) => async (dispatch: Dispatch) => {
+      const snapshot = await getDocs(collection(
+         db, 
+         "directories", 
+         auth.currentUser?.uid!, 
+         "collection", 
+         id,
+         "accounts"
+      ))
+      const accounts_to_update = snapshot.docs
+         .map(x => x.id)
+         .map(async x => {
+            const account_snapshot = await getDoc(doc(
+               db, 
+               "accounts", 
+               auth.currentUser?.uid!, 
+               "collection",
+               x
+            ))
+            const account = account_snapshot.data() as AccountType
+
+         })
+      console.log(id)
+   }
+
 export const addToDirectory = 
    (id: string, account_id: string) => async () => {
       await setDoc(doc(

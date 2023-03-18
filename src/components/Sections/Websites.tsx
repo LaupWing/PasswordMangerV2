@@ -6,6 +6,8 @@ import Link from "next/link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
 import { AccountModal } from "~/components/Modals"
+import { useAppDispatch } from "~/redux/hooks"
+import { removeDirectory } from "~/slices/accountsSlice"
 
 interface WebsitesProps {
    accounts: AccountType[]
@@ -22,6 +24,8 @@ export const Websites:FC<WebsitesProps> = ({
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
    const [search, setSearch] = useState("")
+   const router = useRouter()
+   const dispatch = useAppDispatch()
 
    const addNew = () => {
       setShowModal({
@@ -35,6 +39,10 @@ export const Websites:FC<WebsitesProps> = ({
       })
    }
    
+   const handleDeleteDirectory = () => {
+      dispatch(removeDirectory(in_directory!))
+   }
+
    return (
       <div className={clsx("h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 py-6 flex flex-col" , className)}>
          {showModal && <AccountModal 
@@ -63,11 +71,14 @@ export const Websites:FC<WebsitesProps> = ({
                <p className="opacity-30 text-center tracking-wider uppercase text-xs py-6">Nog geen accounts toegevoegd!</p>
             )}
          </ul>
-         <button 
-            className="mt-auto max-w-xs bg-red-500 uppercase text-white font-bold text-sm rounded py-1 mx-auto w-full flex-shrink-0 flex items-center justify-center"
-         >
-            Verwijder Map <IconTrashcan className="ml-1" size={20}/> 
-         </button>
+         {router.asPath.includes("directories") && (
+            <button 
+               className="mt-auto max-w-xs bg-red-500 uppercase text-white font-bold text-sm rounded py-1 mx-auto w-full flex-shrink-0 flex items-center justify-center"
+               onClick={handleDeleteDirectory}
+            >
+               Verwijder Map <IconTrashcan className="ml-1" size={20}/>
+            </button> 
+         )}
       </div>
    )
 }
