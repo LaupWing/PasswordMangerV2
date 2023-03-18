@@ -9,7 +9,6 @@ import { setNavWidth } from "~/slices/settings"
 export const Sidenav = () => {
    const { directories } = useAppSelector(state => state.accounts)
    const ref = useRef<HTMLDivElement>(null)
-   const { show_sidenav, lg, nav_width } = useAppSelector(state => state.settings)
    const router = useRouter()
    const dispatch = useAppDispatch()
 
@@ -21,9 +20,6 @@ export const Sidenav = () => {
       <div 
          ref={ref} 
          className="bg-main-secondary p-4 border-r-2 border-black"
-         style={{
-            transform: `translateX(-${lg ? nav_width : '0'}px)`
-         }}
       >
          <img 
             src="/assets/logo.png" 
