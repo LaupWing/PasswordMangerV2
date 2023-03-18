@@ -6,7 +6,7 @@ import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { getUser, login, setExperTime } from "~/slices/authSlice"
 
-const LoginPage = () => {
+const RegisterPage = () => {
    const dispatch = useAppDispatch()
    const { secret_key } = useAppSelector(state => state.auth)
    const [error, setError] = useState("")
@@ -63,32 +63,6 @@ const LoginPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <div className="flex text-sm space-x-2 items-center text-yellow-400">
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={secret_key.split("-")[0] || ""}
-                     name="secret_key_1"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={secret_key.split("-")[1] || ""}
-                     name="secret_key_2"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={secret_key.split("-")[2] || ""}
-                     name="secret_key_3"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={secret_key.split("-")[3] || ""}
-                     name="secret_key_4"
-                  />
-               </div>
                <Input 
                   className="w-full" 
                   placeholder="Email"
@@ -97,11 +71,45 @@ const LoginPage = () => {
                />
                <Input 
                   className="w-full" 
-                  placeholder="Password" 
+                  placeholder="Wachtwoord" 
                   type={"password"}
                   defaultValue={""}
                   name="password"
                />
+               <Input 
+                  className="w-full" 
+                  placeholder="Wachtwoord bevestigen" 
+                  type={"password"}
+                  defaultValue={""}
+                  name="password_confirm"
+               />
+               <div className="flex text-sm space-x-2 items-center text-yellow-400">
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
+                     placeholder="XXXX"
+                     defaultValue={""}
+                     name="secret_key_1"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
+                     placeholder="XXXX"
+                     defaultValue={""}
+                     name="secret_key_2"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
+                     placeholder="XXXX"
+                     defaultValue={""}
+                     name="secret_key_3"
+                  />
+                  <Input 
+                     className="w-1/4 text-center text-yellow-400 px-0" 
+                     placeholder="XXXX"
+                     defaultValue={""}
+                     name="secret_key_4"
+                  />
+               </div>
+               
             </div>
             {error && (
                <p className="text-red-500 mt-2 text-center">
@@ -118,4 +126,4 @@ const LoginPage = () => {
       </div>
    )
 }
-export default LoginPage
+export default RegisterPage

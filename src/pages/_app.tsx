@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
    if(!loaded){
       return null
    }
-   if(router.asPath.includes("login")){
+   if(router.asPath.includes("login") || router.asPath.includes("register")){
       return (
          <Provider store={store}>
             <div className="w-screen h-screen fixed inset-0 flex bg-main-primary">
