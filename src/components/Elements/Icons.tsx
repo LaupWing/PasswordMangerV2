@@ -6,9 +6,8 @@ import { BiTrash } from "react-icons/bi"
 import { MdOutlineEdit } from "react-icons/md"
 import { IoClose } from "react-icons/io5"
 import { AiFillFolder, AiFillFolderOpen, AiFillStar, AiOutlineStar } from "react-icons/ai"
-import { GoFileDirectory } from "react-icons/go"
 import { FiChevronDown } from "react-icons/fi"
-import { HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
+import { HiMenuAlt3, HiOutlineDuplicate, HiOutlineExternalLink, HiUsers } from "react-icons/hi"
 import { ColorRing } from "react-loader-spinner"
 
 export const IconClose:IconType = (props) => {
@@ -92,6 +91,12 @@ export const IconSearch:IconType = (props) => {
 export const IconItems:IconType = (props) => {
    return (
       <BsGridFill {...props}/>
+   )
+}  
+
+export const IconMenu:IconType = (props) => {
+   return (
+      <HiMenuAlt3 {...props}/>
    )
 }  
 
