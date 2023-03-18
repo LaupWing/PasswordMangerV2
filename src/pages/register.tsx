@@ -83,31 +83,36 @@ const RegisterPage = () => {
                   defaultValue={""}
                   name="password_confirm"
                />
-               <div className="flex text-sm space-x-2 items-center text-yellow-400">
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={""}
-                     name="secret_key_1"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={""}
-                     name="secret_key_2"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={""}
-                     name="secret_key_3"
-                  />
-                  <Input 
-                     className="w-1/4 text-center text-yellow-400 px-0" 
-                     placeholder="XXXX"
-                     defaultValue={""}
-                     name="secret_key_4"
-                  />
+               <div className="flex text-sm text-yellow-400 relative py-2">
+                  <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
+                     <button className="bg-blue-600 uppercase text-white font-bold py-0.5 px-2 rounded text-xs tracking-widest hover:bg-blue-700">Genereer</button>
+                  </div>
+                  <div className="flex space-x-2 items-center">
+                     <Input 
+                        className="w-1/4 text-center text-yellow-400 px-0" 
+                        placeholder="XXXX"
+                        defaultValue={""}
+                        name="secret_key_1"
+                     />
+                     <Input 
+                        className="w-1/4 text-center text-yellow-400 px-0" 
+                        placeholder="XXXX"
+                        defaultValue={""}
+                        name="secret_key_2"
+                     />
+                     <Input 
+                        className="w-1/4 text-center text-yellow-400 px-0" 
+                        placeholder="XXXX"
+                        defaultValue={""}
+                        name="secret_key_3"
+                     />
+                     <Input 
+                        className="w-1/4 text-center text-yellow-400 px-0" 
+                        placeholder="XXXX"
+                        defaultValue={""}
+                        name="secret_key_4"
+                     />
+                  </div>
                </div>
                
             </div>
