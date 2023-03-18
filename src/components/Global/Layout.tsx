@@ -23,6 +23,9 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
                await dispatch(fetchDirectories())
                dispatch(setExperTime())
                dispatch(watchResize())
+               window.addEventListener("resize", () => {
+                  dispatch(watchResize())
+               })
             }
          }catch{
             router.replace("/login")

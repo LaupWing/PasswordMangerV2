@@ -23,13 +23,7 @@ export const settingsSlice = createSlice({
       watchResize: (state) => {
          state.lg = window.innerWidth < 1024
          state.md = window.innerWidth < 678
-         state.xs = window.innerWidth < 420
-         console.log(state.lg)
-         window.addEventListener("resize", () => {
-            state.lg = window.innerWidth < 1024
-            state.md = window.innerWidth < 678
-            state.xs = window.innerWidth < 420
-         })
+         state.xs = window.innerWidth < 42
       },
       setNavWidth: (state, action: PayloadAction<number>) => {
          state.nav_width = action.payload
