@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, Dispatch, SetStateAction } from "react"
 import { AccountType } from "types"
 import { useAppSelector } from "~/redux/hooks"
 import { IconSearch, ImageContainer } from "~/components/Elements"
@@ -21,6 +21,7 @@ export const Websites:FC<WebsitesProps> = ({
    className
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
+   const [search, setSearch] = useState("")
 
    const addNew = () => {
       setShowModal({
@@ -43,9 +44,14 @@ export const Websites:FC<WebsitesProps> = ({
          />}
          <AddWebsiteForm 
             addNew={addNew}
+            setSearch={setSearch}
+            search={search}
          />
          <ul className="text-white text-sm w-full overflow-y-auto">
-            {accounts.map(account => (
+            {accounts.filter(x => 
+               x.name.toLowerCase().includes(search.toLowerCase()) || 
+               x.username.toLowerCase().includes(search.toLowerCase())
+            ).map(account => (
                <WebsiteItem
                   account={account}
                   key={account.id}
@@ -87,9 +93,13 @@ const WebsiteItem:FC<{
 
 interface AddWebsiteFormProps {
    addNew: () => void
+   setSearch: Dispatch<SetStateAction<string>>
+   search: string
 } 
 const AddWebsiteForm:FC<AddWebsiteFormProps> = ({
-   addNew
+   addNew,
+   setSearch,
+   search
 }) => {
    return (
       <div className="mb-4 flex text-accent-grey">
@@ -99,6 +109,8 @@ const AddWebsiteForm:FC<AddWebsiteFormProps> = ({
                type="text" 
                className="bg-main-tertiare text-sm flex-1 outline-none ml-2"
                placeholder="Zoeken in alle"
+               value={search}
+               onChange={(e) => setSearch(e.target.value)}
             />
          </div>
          <button
