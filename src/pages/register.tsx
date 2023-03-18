@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { FormEvent, useState } from "react"
 import { FormElements } from "types"
@@ -109,9 +108,6 @@ const LoginPage = () => {
                   {error}
                </p>
             )}
-            <Link className="mt-2 ml-auto text-blue-600" href={"/register"}>
-               Create account
-            </Link>
             <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
                {loading 
                   ? <IconLoading width={40} height={40}/>
