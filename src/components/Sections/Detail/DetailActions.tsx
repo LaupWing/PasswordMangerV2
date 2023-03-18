@@ -13,8 +13,15 @@ export const DetailActions:FC<DetailActionsProps> = ({
    const router = useRouter()
 
    const back = () => {
-      console.log(router.asPath.includes("directories"))
-      console.log(router)
+      if(router.asPath.includes("directories")){
+         router.push(`/directories/${router.query.directoryId}`)
+      }
+      if(router.asPath.includes("favorites")){
+         router.push(`/favorites`)
+      }
+      if(router.asPath.includes("all")){
+         router.push(`/`)
+      }
    }
 
    return (
