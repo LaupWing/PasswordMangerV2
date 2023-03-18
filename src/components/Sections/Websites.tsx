@@ -1,7 +1,7 @@
 import { FC, useState, Dispatch, SetStateAction } from "react"
 import { AccountType } from "types"
 import Highlighter from "react-highlight-words"
-import { IconSearch, ImageContainer } from "~/components/Elements"
+import { IconSearch, IconTrashcan, ImageContainer } from "~/components/Elements"
 import Link from "next/link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
@@ -36,7 +36,7 @@ export const Websites:FC<WebsitesProps> = ({
    }
    
    return (
-      <div className={clsx("h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col" , className)}>
+      <div className={clsx("h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 py-6 flex flex-col" , className)}>
          {showModal && <AccountModal 
             account={showModal}
             is_new={true}
@@ -47,7 +47,7 @@ export const Websites:FC<WebsitesProps> = ({
             setSearch={setSearch}
             search={search}
          />
-         <ul className="text-white text-sm w-full overflow-y-auto">
+         <ul className="text-white text-sm w-full overflow-y-auto my-4">
             {accounts.filter(x => 
                x.name.toLowerCase().includes(search.toLowerCase()) || 
                x.username.toLowerCase().includes(search.toLowerCase())
@@ -63,6 +63,7 @@ export const Websites:FC<WebsitesProps> = ({
                <p className="opacity-30 text-center tracking-wider uppercase text-xs py-6">Nog geen accounts toegevoegd!</p>
             )}
          </ul>
+         <button className="mt-auto max-w-xs bg-red-500 uppercase text-white font-bold text-sm rounded py-1 mx-auto w-full flex-shrink-0 flex items-center justify-center">Verwijder Map <IconTrashcan className="ml-1" size={20}/> </button>
       </div>
    )
 }
@@ -118,7 +119,7 @@ const AddWebsiteForm:FC<AddWebsiteFormProps> = ({
    search
 }) => {
    return (
-      <div className="mb-4 flex text-accent-grey">
+      <div className="flex text-accent-grey">
          <div className="bg-main-tertiare rounded flex p-2 flex-1 items-center">
             <IconSearch size={22} />
             <input 
