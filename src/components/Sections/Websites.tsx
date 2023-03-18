@@ -1,6 +1,6 @@
 import { FC, useState, Dispatch, SetStateAction } from "react"
 import { AccountType } from "types"
-import { useAppSelector } from "~/redux/hooks"
+import Highlighter from "react-highlight-words"
 import { IconSearch, ImageContainer } from "~/components/Elements"
 import Link from "next/link"
 import clsx from "clsx"
@@ -56,6 +56,7 @@ export const Websites:FC<WebsitesProps> = ({
                   account={account}
                   key={account.id}
                   prefix={prefix}
+                  search={search}
                />
             ))}
             {accounts.length === 0 &&  (
@@ -69,7 +70,8 @@ export const Websites:FC<WebsitesProps> = ({
 const WebsiteItem:FC<{
    account: AccountType
    prefix: string
-}> = ({ account, prefix }) => {
+   search: string
+}> = ({ account, prefix, search }) => {
    const router = useRouter()
    
    return (
@@ -83,8 +85,22 @@ const WebsiteItem:FC<{
          <li className="w-full flex items-center">
             <ImageContainer src={account.url}/>
             <div>
-               <h2 className="text-base font-bold tracking-wider">{account.name}</h2>
-               <p className="text-xs text-gray-400">{account.username}</p>
+               <h2 className="text-base font-bold tracking-wider">
+                  <Highlighter
+                     highlightClassName="bg-yellow-500 rounded px-[1px]"
+                     searchWords={search.split(" ")}
+                     autoEscape={true}
+                     textToHighlight={account.name}
+                  />
+               </h2>
+               <p className="text-xs text-gray-400">
+                  <Highlighter
+                     highlightClassName="bg-yellow-500 rounded px-[1px]"
+                     searchWords={search.split(" ")}
+                     autoEscape={true}
+                     textToHighlight={account.username}
+                  />
+               </p>
             </div>
          </li>
       </Link>
