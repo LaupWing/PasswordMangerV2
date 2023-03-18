@@ -41,7 +41,7 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
             {show_sidenav && (
                <div 
                   className="absolute inset-0 z-50" 
-                  onClick={() => dispatch(toggleSidenav())}
+                  onClick={() => dispatch(toggleSidenav(false))}
                />
             )}
             <Topnav />
