@@ -6,12 +6,13 @@ import { auth } from "~/firebase"
 import { fetchDirectories } from "~/slices/accountsSlice"
 import { getUser, setExperTime } from "~/slices/authSlice"
 import { useRouter } from "next/router"
-import { watchResize } from "~/slices/settings"
+import { toggleSidenav, watchResize } from "~/slices/settings"
 
 export const Layout:FC<PropsWithChildren> = ({children}) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
    const { secret_key } = useAppSelector(state => state.auth)
+   const { show_sidenav } = useAppSelector(state => state.settings)
    const router = useRouter()
 
    useEffect(() => {
@@ -37,6 +38,12 @@ export const Layout:FC<PropsWithChildren> = ({children}) => {
       <Protected>
          <Sidenav />
          <div className="flex flex-col flex-1 w-screen lg:w-auto relative translate">
+            {show_sidenav && (
+               <div 
+                  className="absolute inset-0 z-50" 
+                  onClick={() => dispatch(toggleSidenav())}
+               />
+            )}
             <Topnav />
             {children}
          </div>

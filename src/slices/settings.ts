@@ -34,8 +34,12 @@ export const settingsSlice = createSlice({
       setNavWidth: (state, action: PayloadAction<number>) => {
          state.nav_width = action.payload
       },
-      toggleSidenav: (state) => {
-         state.show_sidenav = !state.show_sidenav 
+      toggleSidenav: (state, action: PayloadAction<boolean|undefined>) => {
+         if(action.payload){
+            state.show_sidenav = action.payload
+         }else{
+            state.show_sidenav = !state.show_sidenav 
+         }
       }
    },
 })
