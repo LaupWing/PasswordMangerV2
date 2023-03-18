@@ -63,7 +63,11 @@ export const Websites:FC<WebsitesProps> = ({
                <p className="opacity-30 text-center tracking-wider uppercase text-xs py-6">Nog geen accounts toegevoegd!</p>
             )}
          </ul>
-         <button className="mt-auto max-w-xs bg-red-500 uppercase text-white font-bold text-sm rounded py-1 mx-auto w-full flex-shrink-0 flex items-center justify-center">Verwijder Map <IconTrashcan className="ml-1" size={20}/> </button>
+         <button 
+            className="mt-auto max-w-xs bg-red-500 uppercase text-white font-bold text-sm rounded py-1 mx-auto w-full flex-shrink-0 flex items-center justify-center"
+         >
+            Verwijder Map <IconTrashcan className="ml-1" size={20}/> 
+         </button>
       </div>
    )
 }
