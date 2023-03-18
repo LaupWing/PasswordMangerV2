@@ -1,13 +1,14 @@
+import { NextPage } from "next"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FormEvent, useState } from "react"
 import { FormElements } from "types"
-import { IconLoading, Input } from "~/components/Elements"
+import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { getUser, login, setExperTime } from "~/slices/authSlice"
 
-const RegisterPage = () => {
+const RegisterPage:NextPage = () => {
    const dispatch = useAppDispatch()
    const { secret_key } = useAppSelector(state => state.auth)
    const [error, setError] = useState("")
@@ -64,26 +65,7 @@ const RegisterPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <Input 
-                  className="w-full" 
-                  placeholder="Email"
-                  defaultValue={""}
-                  name="email"
-               />
-               <Input 
-                  className="w-full" 
-                  placeholder="Wachtwoord" 
-                  type={"password"}
-                  defaultValue={""}
-                  name="password"
-               />
-               <Input 
-                  className="w-full" 
-                  placeholder="Wachtwoord bevestigen" 
-                  type={"password"}
-                  defaultValue={""}
-                  name="password_confirm"
-               />
+               <MainInfo/>
                <div className="flex text-sm text-yellow-400 relative py-2">
                   <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
                      <button className="bg-blue-600 uppercase text-white font-bold py-0.5 px-2 rounded text-xs tracking-widest hover:bg-blue-700">Genereer</button>
@@ -136,3 +118,45 @@ const RegisterPage = () => {
    )
 }
 export default RegisterPage
+
+const MainInfo = () => {
+   const [show_password, setShowPassword] = useState(false)
+   const [show_confirm_password, setShowConfirmPassword] = useState(false)
+
+   return (
+      <>
+         <Input 
+            className="w-full" 
+            placeholder="Email"
+            defaultValue={""}
+            name="email"
+         />
+         <div className="flex items-center space-x-1">
+            <Input 
+               className="w-full" 
+               placeholder="Wachtwoord" 
+               type={show_password ? "text" : "password"}
+               defaultValue={""}
+               name="password"
+            />
+            <TogglePassword
+               setShowPassword={setShowPassword}
+               show_password={show_password}
+            />
+         </div>
+         <div className="flex items-center space-x-1">
+            <Input 
+               className="w-full" 
+               placeholder="Wachtwoord bevestigen" 
+               type={show_confirm_password ? "text" : "password"}
+               defaultValue={""}
+               name="password_confirm"
+            />
+            <TogglePassword
+               setShowPassword={setShowConfirmPassword}
+               show_password={show_confirm_password}
+            />
+         </div>
+      </>
+   )
+}
