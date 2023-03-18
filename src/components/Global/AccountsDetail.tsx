@@ -42,7 +42,7 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
          { children }
          <div className="flex flex-1 min-h-0 relative">
             <Websites 
-               
+               className="!hidden !lg:flex"
                accounts={accounts} 
                prefix={prefix}
             />

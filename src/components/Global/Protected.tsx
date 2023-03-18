@@ -13,9 +13,9 @@ export const Protected:FC<PropsWithChildren> = ({children}) => {
    }
    return (
       <div 
-         className="flex"
+         className="flex flex-1 duration-500"
          style={{
-            transform: `translateX(-${lg ? nav_width : '0'}px)`
+            transform: `translateX(-${(lg && !show_sidenav) ? nav_width : '0'}px)`
          }}
       >
          {children}
