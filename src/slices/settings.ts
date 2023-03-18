@@ -33,13 +33,17 @@ export const settingsSlice = createSlice({
       },
       setNavWidth: (state, action: PayloadAction<number>) => {
          state.nav_width = action.payload
+      },
+      toggleSidenav: (state) => {
+         state.show_sidenav = !state.show_sidenav 
       }
    },
 })
 
 export const { 
    watchResize,
-   setNavWidth
+   setNavWidth,
+   toggleSidenav
 } = settingsSlice.actions
 
 export default settingsSlice.reducer

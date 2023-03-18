@@ -4,6 +4,7 @@ import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { resetAccount } from "~/slices/accountsSlice"
 import { incrementTimer, logout, resetAuth, startTimer } from "~/slices/authSlice"
+import { toggleSidenav } from "~/slices/settings"
 import { IconChevron, IconMenu } from "../Elements"
 import { Backdrop } from "./Backdrop"
 
@@ -37,7 +38,11 @@ export const Topnav = () => {
    return (
       <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
          <div className="flex">
-            <IconMenu size={34} />
+            <IconMenu 
+               className="lg:hidden" 
+               size={34} 
+               onClick={() => dispatch(toggleSidenav())}
+            />
          </div>
          <div className="flex lg:space-x-4 space-x-1">
             <p className="mr-2 flex">
