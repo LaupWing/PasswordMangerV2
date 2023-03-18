@@ -11,12 +11,14 @@ interface WebsitesProps {
    accounts: AccountType[]
    prefix: string
    in_directory?: string
+   className?: string
 }
 
 export const Websites:FC<WebsitesProps> = ({
    accounts,
    prefix,
-   in_directory
+   in_directory,
+   className
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
 
@@ -33,7 +35,7 @@ export const Websites:FC<WebsitesProps> = ({
    }
    
    return (
-      <div className="h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col">
+      <div className={clsx("h-full md:border-r-2 w-full md:w-[22rem] border-black p-3 pt-6 flex flex-col" , className)}>
          {showModal && <AccountModal 
             account={showModal}
             is_new={true}
