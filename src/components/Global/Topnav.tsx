@@ -74,9 +74,9 @@ const Tooltip = () => {
    const router = useRouter()
    const _logout = async () => {
       await dispatch(logout())
+      router.push("/login")
       dispatch(resetAuth())
       dispatch(resetAccount())
-      router.push("/login")
    }
 
    return (
