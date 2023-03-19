@@ -158,8 +158,17 @@ export const removeDirectory =
                x
             ))
             const account = account_snapshot.data() as AccountType
-
+            await updateDoc(doc(
+               db,
+               "accounts", 
+               auth.currentUser?.uid!, 
+               "collection",
+               x
+            ), {
+               directories: account.directories.filter(x => x !== id)
+            })
          })
+      await Promise.all(accounts_to_update)
       console.log(id)
    }
 
