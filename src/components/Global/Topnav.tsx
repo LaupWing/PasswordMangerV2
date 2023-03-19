@@ -10,6 +10,7 @@ import { Backdrop } from "./Backdrop"
 
 export const Topnav = () => {
    const { timer, expire_time, interval, start_time } = useAppSelector(state => state.auth)
+   const { accounts } = useAppSelector(state => state.accounts)
    const router = useRouter()
    const dispatch = useAppDispatch()
    const current_time = Math.floor(start_time / 1000) + timer
@@ -25,6 +26,13 @@ export const Topnav = () => {
       router.push("/login")
    }
    const [show_tooltip, setShowTooltip] = useState(false)
+   const route_name = () => {
+      if(router.asPath.includes("all")){
+         console.log(router.query)
+         console.log(accounts.find(x => x.id! === router.query.accountId))
+      }
+   }
+   console.log(route_name())
 
    useEffect(() => {
       if(auth.currentUser){
