@@ -17,6 +17,7 @@
     "@types/react-dom": "18.0.11",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
+    "crypto-random-string": "^5.0.0",
     "firebase": "^9.17.1",
     "generate-password": "^1.7.0",
     "next": "13.1.6",

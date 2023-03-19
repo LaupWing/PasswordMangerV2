@@ -8,6 +8,7 @@ import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { getUser, login, setExperTime } from "~/slices/authSlice"
+import cryptoRandomString from "crypto-random-string"
 // @ts-expect-error
 import secretKey from "secret-key"
 
@@ -167,12 +168,14 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
    return (
       <div className="flex text-sm text-yellow-400 relative py-2">
          <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
-            <button className={clsx(
-               "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
-               (confirm_password !== "" && password !== "") && (confirm_password === password) 
-               ? "bg-blue-600 hover:bg-blue-700 text-white" 
-               : "text-gray-500 bg-gray-500/20"
-            )}>
+            <button 
+               className={clsx(
+                  "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
+                  (confirm_password !== "" && password !== "") && (confirm_password === password) 
+                     ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                     : "text-gray-500 bg-gray-500/20 pointer-events-none"
+               )}
+            >
                Genereer
             </button>
          </div>
