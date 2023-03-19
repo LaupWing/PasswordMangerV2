@@ -28,11 +28,11 @@ export const Topnav = () => {
    const [show_tooltip, setShowTooltip] = useState(false)
    const route_name = () => {
       if(router.asPath.includes("all")){
-         console.log(router.query)
-         console.log(accounts.find(x => x.id! === router.query.accountId))
+         // console.log(router.query)
+         // console.log(accounts.find(x => x.id! === router.query.accountId))
       }
    }
-   console.log(route_name())
+   // console.log(route_name())
 
    useEffect(() => {
       if(auth.currentUser){
