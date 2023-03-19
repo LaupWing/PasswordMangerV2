@@ -10,17 +10,22 @@ import { Backdrop } from "./Backdrop"
 
 export const Topnav = memo(() => {
    const { accounts } = useAppSelector(state => state.accounts)
+   const [current_path, setCurrentPath] = useState("")
    const router = useRouter()
    const dispatch = useAppDispatch()
 
    const [show_tooltip, setShowTooltip] = useState(false)
    const route_name = () => {
-      if(router.asPath.includes("all")){
-         console.log(router.query)
-         console.log(accounts.find(x => x.id! === router.query.accountId))
-      }
    }
    route_name()
+   useEffect(() => {
+      if(router.asPath.includes("all")){
+         console.log(router.query)
+         const name = accounts.find(x => x.id! === router.query.accountId)?.name!
+         setCurrentPath(`all / ${name}`)
+      }
+
+   }, [router.asPath])
    // console.log(route_name())
 
    return (
@@ -31,6 +36,7 @@ export const Topnav = memo(() => {
                size={34} 
                onClick={() => dispatch(toggleSidenav())}
             />
+            {current_path}
          </div>
          <div className="flex lg:space-x-4 space-x-1">
             <TimesLeft />
