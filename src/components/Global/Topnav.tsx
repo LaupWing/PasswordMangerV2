@@ -17,13 +17,28 @@ export const Topnav = memo(() => {
    const [show_tooltip, setShowTooltip] = useState(false)
    
    useEffect(() => {
-      if(router.asPath.includes("all")){
+      if(Object.keys(router.query).length === 0){
+         if(router.asPath === "/ "){
+            setCurrentPath("all")
+         }
+         if(router.asPath.includes("favorites")){
+            setCurrentPath("favorites")
+         }
+      }
+      else if(router.asPath.includes("all")){
          const name = accounts.find(x => x.id! === router.query.accountId)?.name!
          setCurrentPath(`all / ${name}`)
       }
-      if(router.asPath.includes("directories")){
-         const name = directories.find(x => x.id! === router.query.directoryId)?.name!
-         setCurrentPath(`map / ${name}`)
+      else if(router.asPath.includes("directories")){
+         if(router.query.accountId){
+            const directory_name = directories.find(x => x.id! === router.query.directoryId)?.name!
+            const account_name = accounts.find(x => x.id! === router.query.accountId)?.name! 
+            setCurrentPath(`map / ${directory_name} / ${account_name}`)
+
+         }else {
+            const name = directories.find(x => x.id! === router.query.directoryId)?.name!
+            setCurrentPath(`map / ${name}`)
+         }
       }
 
    }, [router.asPath])
