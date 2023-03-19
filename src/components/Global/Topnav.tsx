@@ -42,7 +42,6 @@ export const Topnav = memo(() => {
       }
 
    }, [router.asPath])
-   // console.log(route_name())
 
    return (
       <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
