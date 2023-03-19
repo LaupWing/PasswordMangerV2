@@ -11,6 +11,7 @@ import { getUser, login, setExperTime } from "~/slices/authSlice"
 import cryptoRandomString from "crypto-random-string"
 // @ts-expect-error
 import secretKey from "secret-key"
+import StringCrypto from "string-crypto"
 
 const RegisterPage:NextPage = () => {
    const dispatch = useAppDispatch()
@@ -165,16 +166,37 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
    confirm_password,
    password
 }) => {
+   const [secret_key_1, setSecretKey1] = useState("")
+   const [secret_key_2, setSecretKey2] = useState("")
+   const [secret_key_3, setSecretKey3] = useState("")
+   const [secret_key_4, setSecretKey4] = useState("")
+   const generate = () => {
+      const { encryptString } = new StringCrypto()
+      const secret_key = [...new Array(4)]
+         .map(_=>
+            cryptoRandomString({
+               length: 4, 
+               type: "alphanumeric",
+            })
+         )
+         .join('-')
+      const secret_key_obj = secretKey.create(secret_key)
+      const secret = encryptString(secret_key_obj.secret, secret_key)
+      console.log(secret)
+      console.log(secret_key_obj)
+   }
    return (
       <div className="flex text-sm text-yellow-400 relative py-2">
          <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
             <button 
+               type="button"
                className={clsx(
                   "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
                   (confirm_password !== "" && password !== "") && (confirm_password === password) 
                      ? "bg-blue-600 hover:bg-blue-700 text-white" 
                      : "text-gray-500 bg-gray-500/20 pointer-events-none"
                )}
+               onClick={generate}
             >
                Genereer
             </button>
