@@ -45,7 +45,7 @@ export const Topnav = memo(() => {
 
    return (
       <div className="bg-main-secondary text-sm py-1 px-3 border-b-2 border-black text-main-tertiare hover:text-white flex items-center justify-between uppercase font-bold tracking-wider z-50 duration-150">
-         <div className="flex">
+         <div className="flex items-center">
             <IconMenu 
                className="lg:hidden" 
                size={34} 
@@ -105,7 +105,7 @@ const TimesLeft = () => {
 
    return (
       <p className="mr-2 flex">
-         Time left: <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
+         <span className="hidden md:inline">Time left:</span> <span className="w-11 text-center ml-1">{minutes}:{seconds}</span>
       </p>
    )
 }
