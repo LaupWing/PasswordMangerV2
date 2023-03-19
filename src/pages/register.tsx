@@ -183,7 +183,7 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
       const secret_key_obj = secretKey.create(secret_key)
       const secret = encryptString(secret_key_obj.secret, secret_key)
       console.log(secret)
-      console.log(secret_key_obj)
+      console.log(secret_key)
    }
    return (
       <div className="flex text-sm text-yellow-400 relative py-2">
