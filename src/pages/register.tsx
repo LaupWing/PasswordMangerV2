@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { FormEvent, useState } from "react"
+import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react"
 import { FormElements } from "types"
 import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
@@ -14,6 +14,8 @@ const RegisterPage:NextPage = () => {
    const [error, setError] = useState("")
    const router = useRouter()
    const [loading, setLoading] = useState(false)
+   const [password, setPassword] = useState("")
+   const [confirm_password, setConfirmPassword] = useState("")
 
    if(auth.currentUser){
       router.replace("/")
@@ -65,7 +67,10 @@ const RegisterPage:NextPage = () => {
                className="w-28 mb-8"
             />
             <div className="space-y-4">
-               <MainInfo/>
+               <MainInfo
+                  setConfirmPassword={setConfirmPassword}
+                  setPassword={setPassword}
+               />
                <div className="flex text-sm text-yellow-400 relative py-2">
                   <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
                      <button className="bg-blue-600 uppercase text-white font-bold py-0.5 px-2 rounded text-xs tracking-widest hover:bg-blue-700">Genereer</button>
@@ -119,7 +124,14 @@ const RegisterPage:NextPage = () => {
 }
 export default RegisterPage
 
-const MainInfo = () => {
+interface MainInfoProps {
+   setConfirmPassword: Dispatch<SetStateAction<string>>
+   setPassword: Dispatch<SetStateAction<string>>
+} 
+const MainInfo:FC<MainInfoProps> = ({
+   setConfirmPassword,
+   setPassword
+}) => {
    const [show_password, setShowPassword] = useState(false)
    const [show_confirm_password, setShowConfirmPassword] = useState(false)
 
@@ -138,6 +150,7 @@ const MainInfo = () => {
                type={show_password ? "text" : "password"}
                defaultValue={""}
                name="password"
+               onChange={e => setPassword(e.target.value)}
             />
             <TogglePassword
                setShowPassword={setShowPassword}
@@ -151,6 +164,7 @@ const MainInfo = () => {
                type={show_confirm_password ? "text" : "password"}
                defaultValue={""}
                name="password_confirm"
+               onChange={e => setConfirmPassword(e.target.value)}
             />
             <TogglePassword
                setShowPassword={setShowConfirmPassword}
