@@ -6,7 +6,7 @@ import Link from "next/link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
 import { AccountModal } from "~/components/Modals"
-import { useAppDispatch } from "~/redux/hooks"
+import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { deleteDirectory } from "~/slices/accountsSlice"
 
 interface WebsitesProps {
@@ -23,6 +23,7 @@ export const Websites:FC<WebsitesProps> = ({
    className
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
+   const { directories } = useAppSelector(state => state.accounts)
    const [search, setSearch] = useState("")
    const router = useRouter()
    const dispatch = useAppDispatch()
@@ -40,7 +41,11 @@ export const Websites:FC<WebsitesProps> = ({
    }
    
    const handleDeleteDirectory = () => {
-      dispatch(deleteDirectory(in_directory!))
+      const directory = directories.find(x => x.id! === in_directory)
+      const confirmed = confirm(`Weet je zeker dat je ${directory?.name} map wilt gaan verwijderen?`)
+      if(confirmed){
+         dispatch(deleteDirectory(in_directory!))
+      }
    }
 
    return (
