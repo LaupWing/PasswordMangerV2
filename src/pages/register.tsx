@@ -11,7 +11,6 @@ import { getUser, login, setExperTime } from "~/slices/authSlice"
 
 const RegisterPage:NextPage = () => {
    const dispatch = useAppDispatch()
-   const { secret_key } = useAppSelector(state => state.auth)
    const [error, setError] = useState("")
    const router = useRouter()
    const [loading, setLoading] = useState(false)
