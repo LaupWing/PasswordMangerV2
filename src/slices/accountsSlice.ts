@@ -28,7 +28,7 @@ export const passwordsSlice = createSlice({
       setDirectories: (state, action: PayloadAction<DirectoryType[]>) => {
          state.directories = action.payload
       },
-      removeDirectories: (state, action: PayloadAction<string>) => {
+      removeDirectory: (state, action: PayloadAction<string>) => {
          state.directories = state.directories.filter(x => x.id! !== action.payload)
       },
       setFavorite: (state, action: PayloadAction<{id: string, is_favorite: boolean}>) => {
@@ -59,7 +59,8 @@ export const {
    setFavorite,
    addAccount,
    updateAccount,
-   resetAccount
+   resetAccount,
+   removeDirectory
 } = passwordsSlice.actions
 
 
@@ -172,7 +173,8 @@ export const deleteDirectory =
             })
          })
       await Promise.all(accounts_to_update)
-      console.log(id)
+      
+      dispatch(removeDirectory(id))
    }
 
 export const addToDirectory = 
