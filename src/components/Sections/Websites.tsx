@@ -14,13 +14,15 @@ interface WebsitesProps {
    prefix: string
    in_directory?: string
    className?: string
+   setDeleting?: Dispatch<SetStateAction<boolean>>
 }
 
 export const Websites:FC<WebsitesProps> = ({
    accounts,
    prefix,
    in_directory,
-   className
+   className,
+   setDeleting
 }) => {
    const [showModal, setShowModal] = useState<false|AccountType>(false)
    const { directories } = useAppSelector(state => state.accounts)
@@ -40,11 +42,13 @@ export const Websites:FC<WebsitesProps> = ({
       })
    }
    
-   const handleDeleteDirectory = () => {
+   const handleDeleteDirectory = async () => {
       const directory = directories.find(x => x.id! === in_directory)
       const confirmed = confirm(`Weet je zeker dat je ${directory?.name} map wilt gaan verwijderen?`)
-      if(confirmed){
-         dispatch(deleteDirectory(in_directory!))
+      if(confirmed && setDeleting){
+         setDeleting(true)
+         await dispatch(deleteDirectory(in_directory!))
+         setDeleting(false)
       }
    }
 
