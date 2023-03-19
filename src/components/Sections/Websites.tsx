@@ -49,6 +49,7 @@ export const Websites:FC<WebsitesProps> = ({
          setDeleting(true)
          await dispatch(deleteDirectory(in_directory!))
          setDeleting(false)
+         router.replace("/")
       }
    }
 
