@@ -20,6 +20,7 @@ const RegisterPage:NextPage = () => {
    const [loading, setLoading] = useState(false)
    const [password, setPassword] = useState("")
    const [confirm_password, setConfirmPassword] = useState("")
+   const [secret, setSecret] = useState<Record<string, string>|false>(false)
 
    if(auth.currentUser){
       router.replace("/")
@@ -78,6 +79,7 @@ const RegisterPage:NextPage = () => {
                <GenerateKeys 
                   confirm_password={confirm_password}
                   password={password}
+                  setSecret={setSecret}
                />
             </div>
             {error && (
@@ -90,7 +92,7 @@ const RegisterPage:NextPage = () => {
             </Link>
             <button className={clsx(
                "uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9",
-               (confirm_password !== "" && password !== "") && (confirm_password === password) 
+               secret
                   ? "bg-blue-600 hover:bg-blue-700 text-white" 
                   : "text-gray-500/40 bg-gray-500/10"
             )}>
@@ -160,11 +162,13 @@ const MainInfo:FC<MainInfoProps> = ({
 interface GenerateKeysProps {
    confirm_password: string
    password: string
+   setSecret: Dispatch<SetStateAction<Record<string, string>|false>>
 }
 
 const GenerateKeys:FC<GenerateKeysProps> = ({
    confirm_password,
-   password
+   password,
+   setSecret
 }) => {
    const [secret_key_1, setSecretKey1] = useState("")
    const [secret_key_2, setSecretKey2] = useState("")
@@ -195,6 +199,10 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
       setSecretKey4(_secrect_key4)
       const secret_key_obj = secretKey.create(secret_key)
       const secret = encryptString(secret_key_obj.secret, secret_key)
+      setSecret({
+         ...secret_key_obj,
+         secret
+      })
    }
    const keys = [secret_key_1 ,secret_key_2, secret_key_3, secret_key_4]
    return (
