@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { NextPage } from "next"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -73,7 +74,14 @@ const RegisterPage:NextPage = () => {
                />
                <div className="flex text-sm text-yellow-400 relative py-2">
                   <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
-                     <button className="bg-blue-600 uppercase text-white font-bold py-0.5 px-2 rounded text-xs tracking-widest hover:bg-blue-700">Genereer</button>
+                     <button className={clsx(
+                        "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
+                        (confirm_password !== "" && password !== "") && (confirm_password === password) 
+                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                        : "text-gray-500 bg-gray-500/20"
+                     )}>
+                        Genereer
+                     </button>
                   </div>
                   <div className="flex space-x-2 items-center">
                      <Input 
@@ -112,7 +120,12 @@ const RegisterPage:NextPage = () => {
             <Link className="mt-2 mr-auto text-blue-600" href={"/login"}>
                Inloggen
             </Link>
-            <button className="bg-blue-600 uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9 hover:bg-blue-700">
+            <button className={clsx(
+               "uppercase text-sm tracking-wider font-bold flex justify-center items-center w-24 rounded mt-6 h-9",
+               (confirm_password !== "" && password !== "") && (confirm_password === password) 
+                  ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                  : "text-gray-500/40 bg-gray-500/10"
+            )}>
                {loading 
                   ? <IconLoading width={40} height={40}/>
                   : "Submit"
