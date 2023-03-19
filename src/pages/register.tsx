@@ -8,6 +8,8 @@ import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { getUser, login, setExperTime } from "~/slices/authSlice"
+// @ts-expect-error
+import secretKey from "secret-key"
 
 const RegisterPage:NextPage = () => {
    const dispatch = useAppDispatch()
