@@ -171,9 +171,24 @@ export const deleteDirectory =
             ), {
                directories: account.directories.filter(x => x !== id)
             })
+            await deleteDoc(doc(
+               db, 
+               "directories", 
+               auth.currentUser?.uid!, 
+               "collection", 
+               id,
+               "accounts",
+               x
+            ))
          })
       await Promise.all(accounts_to_update)
-      
+      await deleteDoc(doc(
+         db, 
+         "directories", 
+         auth.currentUser?.uid!, 
+         "collection", 
+         id
+      ))
       dispatch(removeDirectory(id))
    }
 
