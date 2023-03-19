@@ -19,6 +19,7 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
 }) => {
    const dispatch = useAppDispatch()
    const [loaded, setLoaded] = useState(false)
+   const [deleting, setDeleting] = useState(false)
    const router = useRouter()
    const { accounts } = useAppSelector(state => state.accounts)
    useEffect(() => {
@@ -42,12 +43,12 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
       <>
          { children }
          <div className="flex flex-1 min-h-0 relative">
-            <div className="absolute inset-0 flex items-center justify-center bg-main-primary/90">
+            {deleting && <div className="absolute inset-0 flex items-center justify-center bg-main-primary/90">
                <IconLoading 
                   height={100} 
                   width={100}
                />
-            </div>
+            </div>}
             <Websites 
                className="hidden md:flex"
                accounts={accounts} 
