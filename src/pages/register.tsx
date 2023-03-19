@@ -173,58 +173,76 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
    const generate = () => {
       const { encryptString } = new StringCrypto()
       const secret_key = [...new Array(4)]
-         .map(_=>
-            cryptoRandomString({
+         .map((_)=>{
+            const crypto_string = cryptoRandomString({
                length: 4, 
                type: "alphanumeric",
-            })
-         )
-         .join('-')
+            }) 
+            // Not using eval here but it works
+            // eval(`setSecretKey${i + 1}("${crypto_string}")`)
+            return crypto_string
+         })
+         .join("-")
+      const [
+         _secrect_key1,
+         _secrect_key2,
+         _secrect_key3,
+         _secrect_key4,
+      ] = secret_key.split("-")
+      setSecretKey1(_secrect_key1)
+      setSecretKey2(_secrect_key2)
+      setSecretKey3(_secrect_key3)
+      setSecretKey4(_secrect_key4)
       const secret_key_obj = secretKey.create(secret_key)
       const secret = encryptString(secret_key_obj.secret, secret_key)
-      console.log(secret)
-      console.log(secret_key)
    }
+   const keys = [secret_key_1 ,secret_key_2, secret_key_3, secret_key_4]
    return (
       <div className="flex text-sm text-yellow-400 relative py-2">
-         <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
-            <button 
-               type="button"
-               className={clsx(
-                  "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
-                  (confirm_password !== "" && password !== "") && (confirm_password === password) 
-                     ? "bg-blue-600 hover:bg-blue-700 text-white" 
-                     : "text-gray-500 bg-gray-500/20 pointer-events-none"
-               )}
-               onClick={generate}
-            >
-               Genereer
-            </button>
-         </div>
+         {keys.some(x => x === "") && (
+            <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
+               <button 
+                  type="button"
+                  className={clsx(
+                     "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
+                     (confirm_password !== "" && password !== "") && (confirm_password === password) 
+                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                        : "text-gray-500 bg-gray-500/20 pointer-events-none"
+                  )}
+                  onClick={generate}
+               >
+                  Genereer
+               </button>
+            </div>
+         )}
          <div className="flex space-x-2 items-center">
             <Input 
                className="w-1/4 text-center text-yellow-400 px-0" 
                placeholder="XXXX"
-               defaultValue={""}
+               readOnly
                name="secret_key_1"
+               value={secret_key_1}
             />
             <Input 
                className="w-1/4 text-center text-yellow-400 px-0" 
                placeholder="XXXX"
-               defaultValue={""}
+               readOnly
                name="secret_key_2"
+               value={secret_key_2}
             />
             <Input 
                className="w-1/4 text-center text-yellow-400 px-0" 
                placeholder="XXXX"
-               defaultValue={""}
+               readOnly
                name="secret_key_3"
+               value={secret_key_3}
             />
             <Input 
                className="w-1/4 text-center text-yellow-400 px-0" 
                placeholder="XXXX"
-               defaultValue={""}
+               value={secret_key_4}
                name="secret_key_4"
+               readOnly
             />
          </div>
       </div>
