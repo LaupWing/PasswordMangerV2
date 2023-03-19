@@ -79,12 +79,13 @@ const SidenavLink:FC<SidenavLinkProps> = ({ children, href, className, activeChe
       className
    )
    const dispatch = useAppDispatch()
+   const { md } = useAppSelector(state => state.settings)
 
    return (
       <Link
          className={styles}
          href={href}
-         onClick={() => dispatch(toggleSidenav(false))}
+         onClick={() => md && dispatch(toggleSidenav(false))}
       >
          { children }
       </Link>
