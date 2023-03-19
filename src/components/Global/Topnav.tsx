@@ -18,7 +18,7 @@ export const Topnav = memo(() => {
    
    useEffect(() => {
       if(Object.keys(router.query).length === 0){
-         if(router.asPath === "/ "){
+         if(router.asPath === "/"){
             setCurrentPath("all")
          }
          if(router.asPath.includes("favorites")){
@@ -28,6 +28,10 @@ export const Topnav = memo(() => {
       else if(router.asPath.includes("all")){
          const name = accounts.find(x => x.id! === router.query.accountId)?.name!
          setCurrentPath(`all / ${name}`)
+      }
+      else if(router.asPath.includes("favorites")){
+         const name = accounts.find(x => x.id! === router.query.accountId)?.name!
+         setCurrentPath(`favorites / ${name}`)
       }
       else if(router.asPath.includes("directories")){
          if(router.query.accountId){
