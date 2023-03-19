@@ -28,6 +28,9 @@ export const passwordsSlice = createSlice({
       setDirectories: (state, action: PayloadAction<DirectoryType[]>) => {
          state.directories = action.payload
       },
+      removeDirectories: (state, action: PayloadAction<string>) => {
+         state.directories = state.directories.filter(x => x.id! !== action.payload)
+      },
       setFavorite: (state, action: PayloadAction<{id: string, is_favorite: boolean}>) => {
          state.accounts = state.accounts.map(x => 
             x.id === action.payload.id ? ({
@@ -137,7 +140,7 @@ export const removeFromDirectory =
       ))
    }
 
-export const removeDirectory = 
+export const deleteDirectory = 
    (id: string) => async (dispatch: Dispatch) => {
       const snapshot = await getDocs(collection(
          db, 

@@ -7,7 +7,7 @@ import clsx from "clsx"
 import { useRouter } from "next/router"
 import { AccountModal } from "~/components/Modals"
 import { useAppDispatch } from "~/redux/hooks"
-import { removeDirectory } from "~/slices/accountsSlice"
+import { deleteDirectory } from "~/slices/accountsSlice"
 
 interface WebsitesProps {
    accounts: AccountType[]
@@ -40,7 +40,7 @@ export const Websites:FC<WebsitesProps> = ({
    }
    
    const handleDeleteDirectory = () => {
-      dispatch(removeDirectory(in_directory!))
+      dispatch(deleteDirectory(in_directory!))
    }
 
    return (
