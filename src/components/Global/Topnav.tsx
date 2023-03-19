@@ -9,20 +9,21 @@ import { IconChevron, IconMenu } from "../Elements"
 import { Backdrop } from "./Backdrop"
 
 export const Topnav = memo(() => {
-   const { accounts } = useAppSelector(state => state.accounts)
+   const { accounts, directories } = useAppSelector(state => state.accounts)
    const [current_path, setCurrentPath] = useState("")
    const router = useRouter()
    const dispatch = useAppDispatch()
 
    const [show_tooltip, setShowTooltip] = useState(false)
-   const route_name = () => {
-   }
-   route_name()
+   
    useEffect(() => {
       if(router.asPath.includes("all")){
-         console.log(router.query)
          const name = accounts.find(x => x.id! === router.query.accountId)?.name!
          setCurrentPath(`all / ${name}`)
+      }
+      if(router.asPath.includes("directories")){
+         const name = directories.find(x => x.id! === router.query.directoryId)?.name!
+         setCurrentPath(`map / ${name}`)
       }
 
    }, [router.asPath])
