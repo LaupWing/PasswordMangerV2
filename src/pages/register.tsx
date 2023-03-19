@@ -73,45 +73,10 @@ const RegisterPage:NextPage = () => {
                   setConfirmPassword={setConfirmPassword}
                   setPassword={setPassword}
                />
-               <div className="flex text-sm text-yellow-400 relative py-2">
-                  <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
-                     <button className={clsx(
-                        "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
-                        (confirm_password !== "" && password !== "") && (confirm_password === password) 
-                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
-                        : "text-gray-500 bg-gray-500/20"
-                     )}>
-                        Genereer
-                     </button>
-                  </div>
-                  <div className="flex space-x-2 items-center">
-                     <Input 
-                        className="w-1/4 text-center text-yellow-400 px-0" 
-                        placeholder="XXXX"
-                        defaultValue={""}
-                        name="secret_key_1"
-                     />
-                     <Input 
-                        className="w-1/4 text-center text-yellow-400 px-0" 
-                        placeholder="XXXX"
-                        defaultValue={""}
-                        name="secret_key_2"
-                     />
-                     <Input 
-                        className="w-1/4 text-center text-yellow-400 px-0" 
-                        placeholder="XXXX"
-                        defaultValue={""}
-                        name="secret_key_3"
-                     />
-                     <Input 
-                        className="w-1/4 text-center text-yellow-400 px-0" 
-                        placeholder="XXXX"
-                        defaultValue={""}
-                        name="secret_key_4"
-                     />
-                  </div>
-               </div>
-               
+               <GenerateKeys 
+                  confirm_password={confirm_password}
+                  password={password}
+               />
             </div>
             {error && (
                <p className="text-red-500 mt-2 text-center">
@@ -186,5 +151,57 @@ const MainInfo:FC<MainInfoProps> = ({
             />
          </div>
       </>
+   )
+}
+
+
+interface GenerateKeysProps {
+   confirm_password: string
+   password: string
+}
+
+const GenerateKeys:FC<GenerateKeysProps> = ({
+   confirm_password,
+   password
+}) => {
+   return (
+      <div className="flex text-sm text-yellow-400 relative py-2">
+         <div className="absolute inset-0 flex items-center justify-center bg-main-primary/80">
+            <button className={clsx(
+               "uppercase font-bold py-0.5 px-2 rounded text-xs tracking-widest",
+               (confirm_password !== "" && password !== "") && (confirm_password === password) 
+               ? "bg-blue-600 hover:bg-blue-700 text-white" 
+               : "text-gray-500 bg-gray-500/20"
+            )}>
+               Genereer
+            </button>
+         </div>
+         <div className="flex space-x-2 items-center">
+            <Input 
+               className="w-1/4 text-center text-yellow-400 px-0" 
+               placeholder="XXXX"
+               defaultValue={""}
+               name="secret_key_1"
+            />
+            <Input 
+               className="w-1/4 text-center text-yellow-400 px-0" 
+               placeholder="XXXX"
+               defaultValue={""}
+               name="secret_key_2"
+            />
+            <Input 
+               className="w-1/4 text-center text-yellow-400 px-0" 
+               placeholder="XXXX"
+               defaultValue={""}
+               name="secret_key_3"
+            />
+            <Input 
+               className="w-1/4 text-center text-yellow-400 px-0" 
+               placeholder="XXXX"
+               defaultValue={""}
+               name="secret_key_4"
+            />
+         </div>
+      </div>
    )
 }
