@@ -4,6 +4,7 @@ import { FC, ReactNode, useEffect, useState } from "react"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
 import { Detail, Websites } from "~/components/Sections"
+import { IconLoading } from "../Elements"
 
 interface AccountsDetailProps {
    children?: ReactNode
@@ -41,6 +42,12 @@ export const AccountsDetail:FC<AccountsDetailProps> = ({
       <>
          { children }
          <div className="flex flex-1 min-h-0 relative">
+            <div className="absolute inset-0 flex items-center justify-center bg-main-primary/90">
+               <IconLoading 
+                  height={100} 
+                  width={100}
+               />
+            </div>
             <Websites 
                className="hidden md:flex"
                accounts={accounts} 
