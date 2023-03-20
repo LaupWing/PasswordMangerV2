@@ -20,7 +20,7 @@ const RegisterPage:NextPage = () => {
    const [loading, setLoading] = useState(false)
    const [password, setPassword] = useState("")
    const [confirm_password, setConfirmPassword] = useState("")
-   const [secret, setSecret] = useState<Record<string, string>|false>(false)
+   const [secret, setSecret] = useState<any|false>(false)
 
    if(auth.currentUser){
       router.replace("/")
@@ -47,6 +47,10 @@ const RegisterPage:NextPage = () => {
       try{
          console.log(secret_key)
          console.log(secret)
+         const { decryptString } = new StringCrypto()
+         console.log("DEcrypting")
+         const decrypted = decryptString(secret.secret!, secret_key)
+         console.log(decrypted)
          // await dispatch(login(
          //    elements.email.value, 
          //    elements.password.value
@@ -204,7 +208,7 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
       setSecretKey4(_secrect_key4)
       const secret_key_obj = secretKey.create(secret_key)
       const secret = encryptString(secret_key_obj.secret, secret_key)
-
+      
       alert("Scrhijf je privacy sleutels ergens op!")
       setSecret({
          ...secret_key_obj,
