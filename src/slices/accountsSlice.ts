@@ -72,6 +72,8 @@ export const fetchAccounts =
          dispatch(setAccounts(
             snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
          ))
+      }else{
+         dispatch(setAccounts([]))
       }
    }
 
@@ -80,11 +82,13 @@ export const fetchFavoriteAccounts =
       const accounts_ref = collection(db, "accounts", auth.currentUser?.uid!, "collection")
       const q = query(accounts_ref, where("is_favorite", "==", true))
       const snapshot = await getDocs(q)
-      console.log(snapshot)
+      
       if(!snapshot.empty){
          dispatch(setAccounts(
             snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
          ))
+      }else{
+         dispatch(setAccounts([]))
       }
    }
 
@@ -94,6 +98,8 @@ export const fetchDirectories =
       
       if(!snapshot.empty){
          dispatch(setDirectories(snapshot.docs.map(x => ({...x.data(), id: x.id}) as DirectoryType)))
+      }else{
+         dispatch(setAccounts([]))
       }
    }
 
