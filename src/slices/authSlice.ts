@@ -86,7 +86,12 @@ export const login =
    }
 
 export const register = 
-   (email: string, password: string, secret: SecretKey) => 
+   (
+      email: string, 
+      password: string, 
+      secret: SecretKey, 
+      secret_key: string
+   ) => 
    async () => {
       try{
          const snapshot = await createUserWithEmailAndPassword(auth, email, password)
@@ -94,7 +99,7 @@ export const register =
             db, "secret_key", snapshot.user.uid
          ), secret)
          await setPersistence(auth, browserSessionPersistence)
-         
+         localStorage.setItem('secret_key', secret_key)
       }catch(e){
          auth.signOut()
          throw new Error(e as any)
