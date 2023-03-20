@@ -199,6 +199,8 @@ const GenerateKeys:FC<GenerateKeysProps> = ({
       setSecretKey4(_secrect_key4)
       const secret_key_obj = secretKey.create(secret_key)
       const secret = encryptString(secret_key_obj.secret, secret_key)
+
+      alert("Scrhijf je privacy sleutels ergens op!")
       setSecret({
          ...secret_key_obj,
          secret
