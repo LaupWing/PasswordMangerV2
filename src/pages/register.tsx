@@ -45,15 +45,17 @@ const RegisterPage:NextPage = () => {
          elements.secret_key_4.value
       ].join("-")
       try{
-         await dispatch(login(
-            elements.email.value, 
-            elements.password.value
-         ))
-         await dispatch(getUser(
-            secret_key
-         ))
-         dispatch(setExperTime())
-         await router.replace("/")
+         console.log(secret_key)
+         console.log(secret)
+         // await dispatch(login(
+         //    elements.email.value, 
+         //    elements.password.value
+         // ))
+         // await dispatch(getUser(
+         //    secret_key
+         // ))
+         // dispatch(setExperTime())
+         // await router.replace("/")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
       }
@@ -122,6 +124,7 @@ const MainInfo:FC<MainInfoProps> = ({
       <>
          <Input 
             className="w-full" 
+            autoComplete="username"
             placeholder="Email"
             defaultValue={""}
             name="email"
@@ -132,6 +135,7 @@ const MainInfo:FC<MainInfoProps> = ({
                placeholder="Wachtwoord" 
                type={show_password ? "text" : "password"}
                defaultValue={""}
+               autoComplete="new-password"
                name="password"
                onChange={e => setPassword(e.target.value)}
             />
@@ -146,6 +150,7 @@ const MainInfo:FC<MainInfoProps> = ({
                placeholder="Wachtwoord bevestigen" 
                type={show_confirm_password ? "text" : "password"}
                defaultValue={""}
+               autoComplete="new-password"
                name="password_confirm"
                onChange={e => setConfirmPassword(e.target.value)}
             />
