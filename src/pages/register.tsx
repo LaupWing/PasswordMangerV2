@@ -7,7 +7,7 @@ import { FormElements, SecretKey } from "types"
 import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
-import { getUser, login, setExperTime } from "~/slices/authSlice"
+import { getUser, login, register, setExperTime } from "~/slices/authSlice"
 import cryptoRandomString from "crypto-random-string"
 // @ts-expect-error
 import secretKey from "secret-key"
@@ -46,12 +46,12 @@ const RegisterPage:NextPage = () => {
       ].join("-")
       try{
          if(secret){
-            console.log(secret_key)
-            console.log(secret)
-            const { decryptString } = new StringCrypto()
-            console.log("DEcrypting")
-            const decrypted = decryptString(secret.secret, secret_key)
-            console.log(decrypted)
+            await dispatch(register(
+               elements.email.value,
+               elements.password.value,
+               secret,
+               secret_key
+            ))
          }
          // await dispatch(login(
          //    elements.email.value, 
