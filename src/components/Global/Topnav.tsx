@@ -124,12 +124,26 @@ const Tooltip = () => {
       dispatch(resetAccount())
    }
 
+   const placeholder = () => {
+      alert("Nog niet beschikbaar")
+   }
+
    return (
       <ul className="bg-main-secondary border-2 border-black absolute bottom-0 right-0 transform translate-y-full z-[1000]">
-         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Help</li>
-         <li className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black">Settings</li>
          <li 
-            className="cursor-pointer hover:bg-blue-600 py-1 px-2 w-24 tracking-wider border-b-2 border-black"
+            className="cursor-pointer hover:bg-blue-600 py-1 px-3 tracking-wider border-b-2 border-black"
+            onClick={placeholder}
+         >
+            Help
+         </li>
+         <li 
+            className="cursor-pointer hover:bg-blue-600 py-1 px-3 tracking-wider border-b-2 border-black"
+            onClick={placeholder}
+         >
+            Instellingen
+         </li>
+         <li 
+            className="cursor-pointer hover:bg-blue-600 py-1 px-3 tracking-wider border-b-2 border-black"
             onClick={_logout}
          >Logout</li>
       </ul>

@@ -46,8 +46,8 @@ const LoginPage = () => {
          ))
          dispatch(setExperTime())
          await router.replace("/")
-      }catch(e: any){
-         setError(e.message.replace("Error: ", ""))
+      }catch{
+         setError("Email/wachtwoord verkeerd")
       }
       setLoading(false)
    }
