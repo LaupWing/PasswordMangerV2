@@ -80,6 +80,7 @@ export const fetchFavoriteAccounts =
       const accounts_ref = collection(db, "accounts", auth.currentUser?.uid!, "collection")
       const q = query(accounts_ref, where("is_favorite", "==", true))
       const snapshot = await getDocs(q)
+      console.log(snapshot)
       if(!snapshot.empty){
          dispatch(setAccounts(
             snapshot.docs.map(x => ({...x.data(), id: x.id}) as AccountType)
