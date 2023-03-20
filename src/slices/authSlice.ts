@@ -82,6 +82,19 @@ export const login =
       }
    }
 
+export const register = 
+   (email: string, password: string) => 
+   async () => {
+      try{
+         await setPersistence(auth, browserSessionPersistence)
+         await signInWithEmailAndPassword(auth, email, password)
+         
+      }catch(e){
+         auth.signOut()
+         throw new Error(e as any)
+      }
+   }
+
 export const logout = 
    () => async (dispatch: Dispatch, getState: typeof store.getState) => {
       auth.signOut()

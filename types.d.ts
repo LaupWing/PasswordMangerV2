@@ -14,3 +14,9 @@ export interface DirectoryType {
    id?: string
    name: string
 }
+
+export interface SecretKey {
+   iv: string
+   timestamp: number
+   secret: string
+}
