@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react"
-import { FormElements } from "types"
+import { FormElements, SecretKey } from "types"
 import { IconLoading, Input, TogglePassword } from "~/components/Elements"
 import { auth } from "~/firebase"
 import { useAppDispatch, useAppSelector } from "~/redux/hooks"
@@ -20,7 +20,7 @@ const RegisterPage:NextPage = () => {
    const [loading, setLoading] = useState(false)
    const [password, setPassword] = useState("")
    const [confirm_password, setConfirmPassword] = useState("")
-   const [secret, setSecret] = useState<any|false>(false)
+   const [secret, setSecret] = useState<SecretKey|false>(false)
 
    if(auth.currentUser){
       router.replace("/")
@@ -45,12 +45,14 @@ const RegisterPage:NextPage = () => {
          elements.secret_key_4.value
       ].join("-")
       try{
-         console.log(secret_key)
-         console.log(secret)
-         const { decryptString } = new StringCrypto()
-         console.log("DEcrypting")
-         const decrypted = decryptString(secret.secret!, secret_key)
-         console.log(decrypted)
+         if(secret){
+            console.log(secret_key)
+            console.log(secret)
+            const { decryptString } = new StringCrypto()
+            console.log("DEcrypting")
+            const decrypted = decryptString(secret.secret, secret_key)
+            console.log(decrypted)
+         }
          // await dispatch(login(
          //    elements.email.value, 
          //    elements.password.value
@@ -171,7 +173,7 @@ const MainInfo:FC<MainInfoProps> = ({
 interface GenerateKeysProps {
    confirm_password: string
    password: string
-   setSecret: Dispatch<SetStateAction<Record<string, string>|false>>
+   setSecret: Dispatch<SetStateAction<SecretKey|false>>
 }
 
 const GenerateKeys:FC<GenerateKeysProps> = ({
