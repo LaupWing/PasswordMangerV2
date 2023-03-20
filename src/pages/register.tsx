@@ -12,6 +12,7 @@ import cryptoRandomString from "crypto-random-string"
 // @ts-expect-error
 import secretKey from "secret-key"
 import StringCrypto from "string-crypto"
+import { notify } from "~/components/Global/Notify"
 
 const RegisterPage:NextPage = () => {
    const dispatch = useAppDispatch()
@@ -52,16 +53,13 @@ const RegisterPage:NextPage = () => {
                secret,
                secret_key
             ))
+            await dispatch(getUser(
+               secret_key
+            ))
+            dispatch(setExperTime())
+            await router.replace("/")
+            notify("success", "Geregistreerd", "Registratie is succesvol! Welkom :)")
          }
-         // await dispatch(login(
-         //    elements.email.value, 
-         //    elements.password.value
-         // ))
-         // await dispatch(getUser(
-         //    secret_key
-         // ))
-         // dispatch(setExperTime())
-         // await router.replace("/")
       }catch(e: any){
          setError(e.message.replace("Error: ", ""))
       }
