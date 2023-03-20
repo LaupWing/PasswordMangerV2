@@ -1,11 +1,14 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { 
    browserSessionPersistence, 
+   createUserWithEmailAndPassword, 
    setPersistence, 
    signInWithEmailAndPassword 
 } from "firebase/auth"
+import { doc, setDoc } from "firebase/firestore"
 import StringCrypto from "string-crypto"
-import { auth } from "~/firebase"
+import { SecretKey } from "types"
+import { auth, db } from "~/firebase"
 import checkSecretKey from "~/lib/checkSecretKey"
 import { store } from "~/redux/store"
 
@@ -83,11 +86,14 @@ export const login =
    }
 
 export const register = 
-   (email: string, password: string) => 
+   (email: string, password: string, secret: SecretKey) => 
    async () => {
       try{
+         const snapshot = await createUserWithEmailAndPassword(auth, email, password)
+         await setDoc(doc(
+            db, "secret_key", snapshot.user.uid
+         ), secret)
          await setPersistence(auth, browserSessionPersistence)
-         await signInWithEmailAndPassword(auth, email, password)
          
       }catch(e){
          auth.signOut()
