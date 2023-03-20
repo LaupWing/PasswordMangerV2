@@ -10,7 +10,7 @@ const FavoritesDetail:NextPage = () => {
          prefix="favorites"
       >
          <Head>
-            <title>Favorites</title>
+            <title>Lockkey: favorites</title>
          </Head>
       </AccountsDetail>
    )

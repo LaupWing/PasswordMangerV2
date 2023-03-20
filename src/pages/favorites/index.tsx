@@ -9,7 +9,7 @@ export default function Favorites() {
          prefix="favorites"
       >
          <Head>
-            <title>Favorites</title>
+            <title>Lockkey: Favorites</title>
          </Head>
       </Accounts>
    )
