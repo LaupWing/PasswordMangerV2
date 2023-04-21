@@ -145,7 +145,7 @@ export const AccountModal:FC<AccountModalProps> = ({
                   </span>
                </div>
             </header>
-            <div className="p-4 border-y-2 border-black">
+            <div className="p-4 border-y-2 flex flex-col overflow-y-auto border-black">
                {show_main_info ? (
                   <AccountModalInfo 
                      edit_account={edit_account!}
@@ -167,7 +167,7 @@ export const AccountModal:FC<AccountModalProps> = ({
                   />
                )}
             </div>
-            <div className="flex items-center p-4">
+            <div className="flex items-center p-4 flex-shrink-0">
                <button className="bg-blue-600 uppercase text-white font-bold ml-auto py-1.5 px-4 rounded text-sm tracking-widest hover:bg-blue-700">
                   Opslaan
                </button>
